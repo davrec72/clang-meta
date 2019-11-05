@@ -1,0 +1,79 @@
+================
+META LIBRARY
+================
+
+I envision this folder house your metafunction/metaclass library.
+
+It will necessarily be a header-only library -- convenient, no fuss,
+just #include what you need.
+
+It is sparsely populated at present, but I have included it to suggest
+a good way to organize your library as it grows, for easy lookup.
+
+
+STRUCTURE:
+-----------
+
+chk/ : place in here your "checkers": constexpr functions that utilize
+       reflection to trigger diagnostics/fixits, WITHOUT doing any
+       __queue_metaparse (QPARSE) statements.
+
+gen/ : place in here your "generative" metafunctions and metaclasses:
+       those that use __queue_metaparse (QPARSE) statements.
+
+util/: place in here any general purpose stuff used by both checkers
+       and generative metafunctions.
+
+Within chk/ and gen/, I think the sub-structure should be the same:
+
+  d/  : holds functions that operate on generic Decl parameters.
+  nd/ : operate on NamedDecls.  (I.e. you begin most of these with 'auto ND = cast<NamedDecl>(...)').
+  dc/ : operate on DeclContexts (our CheckAllMembersHaveDoc example might go here)
+  rd/ : operate on CXXRecordDecls (here's where metaclasses go!)
+  nsd/: operate on NamespaceDecls (but remember to factor out any generic DeclContext stuff into dc/)
+  qt/ : operate on QualTypes
+...etc: name each folder based on the typical clang variable name you'd give to an
+        object of that type.  E.g. in clang you often see 'auto RD = cast<CXXRecordDecl>(D)',
+        hence the CXXRecordDecl-specific folder is named "rd".
+
+Use the most generic casts/subfolders necessary and refactor out the common
+stuff as you go.
+
+
+TESTING:
+---------
+
+A good basic way to add tests right within your headers is like so:
+
+    #ifdef TEST_META_GEN_RD_MYMETACLASS //macro suggests the path to this file
+    namespace test::MyMetaClass_ { //or whatever, just make sure it's unique
+
+      struct TestPrototypeClass {};
+
+      // Never called; we just need a scope to define objects
+      // etc to test if it will compile:
+      void dummy() {
+        MyMetaClass<TestPrototypeClass> *m;
+        int i = m->expected_metaparsed_int_field; //we'll get an error if it doesn't exist
+        m->exp_metaparsed_void_func();            // ""
+        //...
+      }
+
+    } //namespace test::MyMetaClass_
+    #endif //TEST_META_GEN_RD_MYMETACLASS
+
+Easy to set up a tree of helper macros to switch on/off arbitrary batches of tests when
+everything follows the same naming structure.
+
+It would be nice to be able to test for expected errors as well -- static_asserts on
+SFINAE type traits would be helpful for this purpose -- e.g. for checking that a
+certain member does NOT exist when it should not.  (TODO examples)
+
+Testing for expected diagnostics/fixit results is trickier -- look into
+using an external program like llvm-lit, which is what clang seems to use to interpret
+and run its test suites.  It might resort to some python scripts too, I dunno.
+If you figure out a good diagnostic-testing setup please share.
+
+
+Have fun!
+[DWR]
