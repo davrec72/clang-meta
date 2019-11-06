@@ -11,7 +11,7 @@ Adapted from Andrew Sutton's original reflection/metaclasses work:
 Many thanks to him for sharing his excellent work; without it my 
 contributions would not have been possible.
 
-
+My work is based around llvm/clang 7.0.0.
 
 INSTALLATION (Mac/Unix):
 
