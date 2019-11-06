@@ -32,7 +32,7 @@ contributions would not have been possible.
  INSTALLATION (Mac/Unix):
 -------------------------
 
-1. Download CMake (to build) and, optionally, Python (to run Clang's test suite), if necessary.
+1. Download CMake if necessary.
 
 2. Create a folder to house the source, build, and examples.  We'll call it clang-meta.
 	mkdir clang-meta
