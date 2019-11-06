@@ -136,6 +136,7 @@ Not to mention that it is dirt-simple to understand, and it seems to me there ma
 
 
 SOURCE CODE
+-------------------------
 
 Only the llvm/tools/clang folder has been modified from the original llvm/clang 7.0.0.
 
@@ -153,7 +154,7 @@ The source code is a mess right now -- lots of big blocks of commented out code,
 
 The clang tool for generating the reflection sources -- llvm/tools/clang/tools/genreflectionsrc -- is likewise a mess, needs to be completely rewritten for clarity - but damned if isn't working perfectly right now on translating just about the entire clang AST into reflection code.  And I have at least documented all the various hacks needed to make it work.
 
-I would very much welcome others contributing to or fixing or adapting my code -- I have developed these contributions because I have been desperate to be able to USE C++ in this way; I would rather not become endlessly bogged down keeping the implementation working.  So you would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
+I would very much welcome others contributing to or fixing or adapting my code.  I have developed these contributions because I have been desperate to be able to USE C++ in this way -- got sick of having to BE a program to WRITE a program.  But I would rather not become endlessly bogged down keeping the implementation working.  So you would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
 
 
 I will address further issues here as they arise.  
