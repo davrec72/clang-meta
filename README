@@ -50,6 +50,7 @@ INSTALLATION (Mac/Unix):
 	
 5. Do the initial build (may take a few hours):
 	cmake --build .
+  (Don't sweat the various warnings.  I'll address them soon.)
 	
 6. Build the clang-wreflection target:
 	cmake --build . --target clang-wreflection
