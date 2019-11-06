@@ -106,7 +106,7 @@ Whereas my proposal places the object first in the typical way, allowing the IDE
 	//MY REFLECTION IMPLEM:
 	myclassrefl->decls()
 		     ^
-		     Code completer can suggest methods right away
+		     Code completer can make precise suggestions right away
 		     
 3) Improvements to the compilers' ASTs would be linked inextricably to improvements to the C++ standards, which would benefit all.
 
