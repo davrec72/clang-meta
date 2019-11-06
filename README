@@ -31,5 +31,5 @@ INSTALLATION (Mac/Unix):
 9. Open your IDE -- I highly recommend XCode for Mac users; its code completer works very well for our purposes, whereas e.g. CLion's does not.  You may need to try a few out.
 10. Import our "examples" folder into a new project, or set up a new one from scratch; all you need is to #include each of the example files (0_reflection.hpp, 1_metaparsing.hpp etc.).
 11. Change the compilers for this project: in XCode, this is done by opening the Build Settings for the project, clicking the "+" button, Add User-Defined Setting, and assigning "CXX" to a full path to your clang++ binary (e.g. ../clang-meta/build/bin/clang++), and "CC" to e.g. ../clang-meta/build/bin/clang.
-	--In CMake-based IDEs like CLion, you must set the CMAKE_CXX_COMPILER and CMAKE_C_COMPILER settings; research how to do this.
-12. Then...try building!  I recommend going through the examples/tutorials in order, there is a lot here to get familiar with.  As explained in 0_reflection.hpp, you may encounter an unexplained crash now and then -- just rebuild if you do.
+--In CMake-based IDEs like CLion, you must set CMAKE_CXX_COMPILER and CMAKE_C_COMPILER appropriately.
+12. Then, build the example project.  I recommend going through the examples/tutorials in order, there is a lot here to get familiar with.  As explained in 0_reflection.hpp, you may encounter an unexplained crash now and then -- just rebuild if you do.
