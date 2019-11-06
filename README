@@ -63,8 +63,22 @@ INSTALLATION (Mac/Unix):
 
 10. Import our "examples" folder into a new project, or set up a new one from scratch; all you need is to #include each of the example files (0_reflection.hpp, 1_metaparsing.hpp etc.).
 
-11. Change the compilers for this project: in XCode, this is done by opening the Build Settings for the project, clicking the "+" button, Add User-Defined Setting, and assigning "CXX" to a full path to your clang++ binary (e.g. /.../clang-meta/build/bin/clang++), and "CC" to e.g. /.../clang-meta/build/bin/clang.
---In CMake-based IDEs like CLion, you must set CMAKE_CXX_COMPILER and CMAKE_C_COMPILER appropriately.
+11. Change the compilers/other IDE settings for this project:
+--In XCode: go to Build Settings for the project, then:
+  a) FIRST, search for "index", and set "Enable Index-While-Building Functionality" to No.
+  b) THEN, search for "dialect", and set your C++ dialect to either C++17 or GNU++17 (for optimal IDE support)
+  c) Lastly, click the "+" button, click Add User-Defined Setting, and assign "CXX" to the full path to your new clang++ binary (e.g. /.../clang-meta/build/bin/clang++)
+     And I suppose do this again and assign "CC" to e.g. /.../clang-meta/build/bin/clang.
+--In CMake-based IDEs like CLion, you must set CMAKE_CXX_COMPILER and CMAKE_C_COMPILER appropriately.  (I don't think you'll
+  encoutner the index-search-path issue there; that is an XCode-specific issue.)
 
 12. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.  As explained in 0_reflection.hpp, you may encounter an unexplained crash now and then -- just rebuild if you do.
 
+
+Please raise an Issue if you encounter one.  Even better, raise one if you encountered an issue but came up with a solution
+to share with others.
+Also please raise even aesthetic/naming concerns, those are important to address early on and are the most fun to address.
+
+Thanks and have fun!
+
+Dave
