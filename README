@@ -100,7 +100,7 @@ This has four main benefits over the existing reflection proposals:
 	        ^   ^    ^
 		       Code completer can only offer loose suggestions at best throughout
 	
-Whereas my proposal places the object first in the typical way, allowing the IDE to assist in code completion:
+Whereas my implementation places the object first in the typical way, allowing the IDE to assist in code completion:
 
 	//MY REFLECTION IMPLEM:
 	myclassrefl->decls()
