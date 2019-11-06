@@ -9,12 +9,11 @@ A C++ compiler with added meta-programming features:
 
 EXAMPLES
 
-Just...check out the examples folder.  There's a lot of new stuff here.  
+Best to just check out the examples folder.  There's a lot of new stuff here.  
 It'll be worth your time.  
 
 This is the real deal, a huge new metaprogramming feature set, 
-ready for prime time, now.  Either you'll realize you've been programming 
-on punch cards up until now, or you and I are living on different planets.
+pretty much ready for prime time.
 
 I've even implemented to trick your IDE into providing support -- 
 code completion, etc.  No need to wait a decade.  It's ready now!
@@ -25,7 +24,7 @@ ACKNOWLEDGMENTS
 This work is based around llvm/clang 7.0.0.  More significantly, this
 work is adapted from Andrew Sutton's original reflection/metaclasses repository: 
 	https://github.com/asutton/clang.
-Many thanks to him for sharing his excellent work; without it my 
+Many thanks to him for sharing his excellent work; without it these additional 
 contributions would not have been possible.
 
 
@@ -77,8 +76,59 @@ INSTALLATION (Mac/Unix):
 
 Please raise an Issue if you encounter one.  Even better, raise one if you encountered an issue but came up with a solution
 to share with others.
-Also please raise even aesthetic/naming concerns, those are important to address early on and are the most fun to address.
+Also please raise even aesthetic/naming concerns, those are important to address early on.
 
-Thanks and have fun!
 
+DISCUSSION - REFLECTION
+
+There are many C++ reflection proposals floating around.  I believe the way I've done it here is the best.  I have simply automated generation of reflection properties from the public methods/fields of clang AST nodes and helper types, creating a massive reflection library in a matter of minutes.
+
+E.g., if clang::NamespaceDecl has an isAnonymousNamespace() public method, so the user will be able to access a reflexpr(mynamespace)->isAnonymousNamespace() reflection.
+
+This has three main benefits over the existing reflection proposals:
+1) No parallel code to maintain -- e.g. you don't need to keep up to date an NamespaceDecl::isAnonymousNamespace() member AND some sort of reflectIsAnonymousNamespace() function.
+
+2) Reflection properties can take advantage of the object oriented architecture of the clang AST.  Existing reflection proposals seem to only allow the user to query reflections via external functions -- e.g. 
+	
+	//CURRENT REFLECTION PROPOSALS:
+	meta::decls_of(myclassrefl)
+	        ^   ^    ^
+		       Code completer can only offer loose suggestions at best throughout
+	
+Whereas my proposal places the object first in the typical way, allowing the IDE to assist in code completion:
+
+	//MY REFLECTION IMPLEM:
+	myclassrefl->decls()
+		     ^
+		     Code completer can suggest methods right away
+		     
+3) My argument here is that the C++ standard should define a minimum compiler AST architecture that all compilers must use; this would be the basis of the reflection library.
+Improvements to the compilers' ASTs would thus be linked inextricably to improvements to the C++ standards, which would benefit all.
+
+There is one final benefit, this one belonging to the implementers of refleciton.  I needn't - and won't -- answer to complaints about what properties of this or that decl are or are not reflectible.  Any change a user wants, she or he can make by modifying the AST interface and rebuilding clang-wreflection -- and indeed they should.  People can have discussions about what they want reflected without feeling they are hostage to the reflection implementers, and the implementers can work without having to engage in the hundreds of arguments sure to be required to make such decisions.  The two are decoupled.
+
+In short, everyone wins with this approach.
+
+
+DISCUSSION - METAPARSING
+
+The metaparsing feature will, I suspect, have some detractors.  It feels a bit Python-y; a bit out of place in strict typing environment like C++.
+This is why, I imagine, other proposals lean toward methods of source code "injection" or modification using cleaner, more C++-like statements:
+
+	// CURRENT INJECTION PROPOSALS:
+	myfuncrefl->addVirtual();
+
+instead of 
+
+	// MY METAPARSING IMPLEM:
+	QPARSE("virtual ", ...outright textual copying of function signature...);
+	
+I again disagree, for much the same reasons as above: with metaparsing, there is
+1) no parallel code to maintain -- new parse-able keywords etc. are automatically supported, and
+2) Implementers like myself needn't answer to questions about what is or is not injectible.
+
+Not to mention that it is dirt-simple to understand, and it seems to me there may be cases that ONLY metaparsing can solve; it really does offer some new capabilities I believe.
+
+
+Have fun!
 Dave
