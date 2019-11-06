@@ -150,7 +150,7 @@ Mr. Sutton and co. have made subsequent progress along their own track for refle
 	
 	https://gitlab.com/lock3/clang
 
-I have looked at their source code, it is very impressive, but I have not adapted anything from it, as my implementation has diverged fairly significantly from theirs EXCEPTING key elements of Mr. Sutton's original 5.x code (ConstexprDecl, CXXForTupleExpansionStmt, CXXConcatenateExpr, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
+I have looked at their source code, it is very impressive, but I have not adapted anything from it, as my implementation has diverged fairly significantly from theirs EXCEPTING key elements of Mr. Sutton's original 5.x code (ConstexprDecl, CXXTupleExpansionStmt, CXXConcatenateExpr, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
 
 The source code is a mess right now -- lots of big blocks of commented out code, etc.  I will clean it up it subsequent commits; but I thought it was good to have all the various old stuff I tried in there for the first commit, to help others who might try to adapt this to other purposes.
 
