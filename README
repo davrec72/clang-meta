@@ -132,7 +132,7 @@ I disagree, for some of the same reasons as above: with the metaparsing solution
 1) no parallel code to maintain -- new parse-able keywords etc. are automatically supported, and
 2) Implementers needn't answer to complaints about what is or is not injectible.
 
-Not to mention that it is dirt-simple to understand, and it seems to me there may be cases that ONLY metaparsing can solve; it really does offer some new capabilities I believe.
+Not to mention that it is dirt-simple to understand, and it seems to me there may be problems that ONLY metaparsing can solve; it really does offer some unique capabilities I believe.
 
 
 
