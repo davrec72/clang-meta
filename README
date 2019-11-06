@@ -26,7 +26,7 @@ INSTALLATION (Mac/Unix):
 	cmake --build .
 6. Build the clang-wreflection target:
 	cmake --build clang-wreflection
-7. Navigate to build/include, make sure a client-reflection-impl.hpp file has been created.  Make note of the path to it.  Also, in build/bin, there should be a clang++ executable/shortcut.  Make note of the absolute path to that -- you will need it shortly to instruct your IDE to use it as your CXX compilers.
+7. Navigate to build/include, make sure a client-reflection-impl.hpp file has been created.  Make note of the path to it.  Also, in build/bin, there should be a clang++ executable/shortcut.  Make note of the absolute path to that -- you will need it shortly to instruct your IDE to use it as your CXX compiler.
 8. Open clang-meta/examples/client_reflection_impl.hpp file.  It is intended to be a helper shortcut to your root client_reflection_impl.hpp.  Right now it contains a relative path that is probably correct for now.  But it would be best to change that to the absolute path to your clang-meta/build/include/client_reflection_impl.hpp, in case you want to move things around later.
 9. Open your IDE -- I highly recommend XCode for Mac users; its code completer works very well for our purposes, whereas e.g. CLion's does not.  You may need to try a few out.
 10. Import our "examples" folder into a new project, or set up a new one from scratch; all you need is to #include each of the example files (0_reflection.hpp, 1_metaparsing.hpp etc.).
