@@ -6,6 +6,11 @@ A C++ compiler with added meta-programming features:
 3) custom diagnostics, and
 4) constexpr containers.
 
+Adapted from Andrew Sutton's original reflection/metaclasses work: 
+	https://github.com/asutton/clang.
+Many thanks to him for sharing his excellent work; without it my 
+contributions would not have been possible.
+
 
 
 INSTALLATION (Mac/Unix):
