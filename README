@@ -93,10 +93,11 @@ More generally, my argument is that the C++ standard should define a minimum com
 This has four main benefits over the existing reflection proposals:
 1) No parallel code to maintain -- e.g. you don't need to keep up to date an NamespaceDecl::isAnonymousNamespace() member AND some sort of reflectIsAnonymousNamespace() function.
 
-2) Reflection properties can take advantage of the object oriented architecture of the clang AST.  Existing reflection proposals seem to only allow the user to query reflections via external functions -- e.g. 
+2) Reflection properties can take advantage of the object oriented architecture of the clang AST.  Existing reflection proposals seem to only allow the user to query reflections via external functions or templates -- e.g. 
 	
 	//CURRENT REFLECTION PROPOSALS:
 	meta::decls_of(myclassrefl)
+	meta::decls_of<myclassrefl>
 	        ^   ^    ^
 		       Code completer can only offer loose suggestions at best throughout
 	
