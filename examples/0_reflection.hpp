@@ -180,18 +180,9 @@ DO_META {
 
 template<typename T, typename U>
 constexpr void mymetafcn(const T reflA, const U reflB) {
-  // NOTE: For some reason, reflA/reflB don't seem to register as
-  // constexpr, even when we call with obviously constexpr reflections.
-  // So, the following statement won't work:
-  //
-//  ce_assert(isa<NamespaceDecl>(reflA)); //ERROR: not constexpr
-  //
-  // Eventually I'll find the bug.  But the current solution is also
-  // good practice: always begin a function taking reflection args
+  // Good practice: always begin a function taking reflection args
   // by cast<T>(...)'ing the arguments to the expected reflection Ts;
-  // you will get an error automatically should the cast fail,
-  // so a ce_assert(isa<...>(...)) statement would be redundant,
-  // and the cast fixes the constexpr issue somehow.
+  // you will get an error automatically should the cast fail.
   //
   // WITHIN those casts though, ANOTHER note: surround them in the
   //
@@ -201,9 +192,6 @@ constexpr void mymetafcn(const T reflA, const U reflB) {
   // reflection type, so it isn't flagged, and so the IDE
   // cooperates with code completion within the
   // function.
-  //
-  // BOTTOM LINE, always begin a function operating on reflection
-  // params (NamespaceDecls in this case) like so:
   auto_ nsreflA = cast<NamespaceDecl>(idrefl(reflA));
   auto_ nsreflB = cast<NamespaceDecl>(idrefl(reflB));
 
