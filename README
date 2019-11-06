@@ -143,7 +143,7 @@ I have annotated with "//DWR ADDN" or "//DWR MOD" etc. everywhere I have added t
 
 I have done likewise -- "//ASUTTON ADDN" -- for wherever I have copied over or adapted code from Andrew Sutton's original repository, linked above (which is based around clang 5.x).
 
-Mr. Sutton and co. have made subsequent progress along his own track for reflection; I encourage you to also check out their newer work:
+Mr. Sutton and co. have made subsequent progress along their own track for reflection & "reification" (their analog of metaparsing); I encourage you to also check out their newer work:
 	
 	https://gitlab.com/lock3/clang
 
