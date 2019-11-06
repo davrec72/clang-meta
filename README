@@ -66,12 +66,11 @@ contributions would not have been possible.
 
 11. Change the compilers/other IDE settings for this project:
 --In XCode: go to Build Settings for the project, then:
-  a) FIRST, search for "index", and set "Enable Index-While-Building Functionality" to No.
-  b) THEN, search for "dialect", and set your C++ dialect to either C++17 or GNU++17 (for optimal IDE support)
-  c) Lastly, click the "+" button, click Add User-Defined Setting, and assign "CXX" to the full path to your new clang++ binary (e.g. /.../clang-meta/build/bin/clang++)
-     And I suppose do this again and assign "CC" to e.g. /.../clang-meta/build/bin/clang.
---In CMake-based IDEs like CLion, you must set CMAKE_CXX_COMPILER and CMAKE_C_COMPILER appropriately.  (I don't think you'll
-  encoutner the index-search-path issue there; that is an XCode-specific issue.)
+  a) Search for "index", and set "Enable Index-While-Building Functionality" to No.
+  b) Search for "dialect", and set your C++ dialect to either C++17 or GNU++17 (for optimal IDE support)
+  c) Click the "+" button, click Add User-Defined Setting, and assign "CXX" to the full path to your new clang++ binary (e.g. /.../clang-meta/build/bin/clang++)
+  d) Click the "+" again and assign "CC" to e.g. /.../clang-meta/build/bin/clang.
+--In CMake-based IDEs like CLion, you must set CMAKE_CXX_COMPILER and CMAKE_C_COMPILER appropriately, and the language dialect.
 
 12. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.  As explained in 0_reflection.hpp, you may encounter an unexplained crash now and then -- just rebuild if you do.
 
