@@ -24,9 +24,6 @@ namespace metaparse_example_0 {
   // Imagine your preprocessor macros operating as regular functions
   // alongside your high level C++ templates and types and syntax.
   // That is essentially what metaparsing allows.
-  // Indeed many of the same expansion/deferral tricks you need to get
-  // complicated macros to properly expand, are also needed to get
-  // complicated metaparses to be properly parsed.  The logic is the same.
   //
   // There are two kinds of metaparsing functionality we need:
   // __queue_metaparse and __metaparse_expr.
@@ -64,7 +61,7 @@ namespace metaparse_example_0 {
 #endif
   
   // __metaparse_expr is something I just developed, and is
-  // really only useful deep inside implementation details;
+  // useful only deep inside implementation details;
   // it was developed to get our ce::vector/ce::set/ce::map to work,
   // see ce/vector.hpp for use cases.  VERY useful there.
   //
@@ -72,10 +69,8 @@ namespace metaparse_example_0 {
   // no implicit casts from one int type to another, no understanding
   // of the enclosing scope, etc.
   //
-  // Instead, in most metaclasses/metafunctions, you'll be using QPARSE
-  // exclusively.
-  //
-  // The rest of the examples here are devoted to QPARSE.
+  // In most metaclasses/metafunctions, you'll be using QPARSE
+  // exclusively.  The rest of the examples here are thus devoted to QPARSE.
   //
   DO_META {
     MAYBE_META_USED const char *myfield = "float f;";
@@ -191,14 +186,12 @@ namespace metaparse_example_0 {
   
   // Now, higher order meta-parsing: deferring meta processing by combining
   // DO_META, PARSE, and the preprocessor's stringizing capability.
-  // Here's where you may start to see a semblance to preprocessor expansion
-  // techniques:
   //
   DO_META {
     
     QPARSE("static constexpr int TheNumFuncs = 5;");
     
-//    static_assert(TheNumFuncs==5); //ERROR: undeclared identifier. Not meta enough.
+//    static_assert(TheNumFuncs==5); //ERROR: undeclared identifier.
     
     // Works, by deferring parsing by at least the same amount as the declaration:
     QPARSE("static_assert(TheNumFuncs==5);");
