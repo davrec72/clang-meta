@@ -2,7 +2,7 @@ DESCRIPTION
 -------------------------
 
 A C++ compiler with added meta-programming features: 
-1) static reflection (of Clang AST nodes), 
+1) static reflection (of just about the entire Clang AST), 
 2) metaparsing, 
 3) custom diagnostics, and
 4) constexpr containers.
