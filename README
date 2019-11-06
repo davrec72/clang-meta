@@ -52,7 +52,7 @@ INSTALLATION (Mac/Unix):
 	cmake --build .
 	
 6. Build the clang-wreflection target:
-	cmake --build clang-wreflection
+	cmake --build . --target clang-wreflection
 	
 7. Navigate to build/include, make sure a client-reflection-impl.hpp file has been created.  Make note of the path to it.  Also, in build/bin, there should be a clang++ executable/shortcut.  Make note of the absolute path to that -- you will need it shortly to instruct your IDE to use it as your CXX compiler.
 
