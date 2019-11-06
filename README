@@ -29,7 +29,7 @@ Many thanks to him for sharing his excellent work; without it these additional
 contributions would not have been possible.
 
 
- INSTALLATION (Mac/Unix):
+ INSTALLATION & USE (Mac/Unix):
 -------------------------
 
 1. Download CMake if necessary.
@@ -134,6 +134,26 @@ I disagree, for some of the same reasons as above: with the metaparsing solution
 
 Not to mention that it is dirt-simple to understand, and it seems to me there may be problems that ONLY metaparsing can solve; it really does offer some unique capabilities I believe.
 
+
+SOURCE CODE
+
+Only the llvm/tools/clang folder has been modified from the original llvm/clang 7.0.0.
+
+I have annotated with "//DWR ADDN" or "//DWR MOD" etc. everywhere I have added to or modified code from the original -- hopefully this will make it straightforward to port this into clang 9 or wherever it's at now.
+
+I have done likewise -- "//ASUTTON ADDN" -- for wherever I have copied over or adapted code from Andrew Sutton's original repository, linked above (which is based around clang 5.x).
+
+Mr. Sutton and co. have made subsequent progress along his own track for reflection; I encourage you to also check out their newer work:
+	
+	https://gitlab.com/lock3/clang
+
+I have looked at their source code, it is very impressive, but I have not adapted anything from it, as my implementation has diverged fairly significantly from theirs EXCEPTING key elements of Mr. Sutton's original 5.x code (ConstexprDecl, CXXForTupleExpansionStmt, CXXConcatenateExpr, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
+
+The source code is a mess right now -- lots of big blocks of commented out code, etc.  I will clean it up it subsequent commits; but I thought it was good to have all the various old stuff I tried in there for the first commit, to help others who might try to adapt this to other purposes.
+
+The clang tool for generating the reflection sources -- llvm/tools/clang/tools/genreflectionsrc -- is likewise a mess, needs to be completely rewritten for clarity - but damned if isn't working perfectly right now on translating just about the entire clang AST into reflection code.  And I have at least documented all the various hacks needed to make it work.
+
+I would very much welcome others contributing to or fixing or adapting my code -- I have developed these contributions because I have been desperate to be able to USE C++ in this way; I would rather not become endlessly bogged down keeping the implementation working.  So you would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
 
 
 I will address further issues here as they arise.  
