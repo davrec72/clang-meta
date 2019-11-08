@@ -123,12 +123,12 @@ cmake --build . --target clang-wreflection
 11. Import our "examples" folder into a new project, or set up a new one from scratch; all you need is to #include each of the example files (`0_reflection.hpp`, `1_metaparsing.hpp` etc.).
 
 12. Change the compilers/other IDE settings for this project:
---In XCode: go to Build Settings for the project, then:
-  a) Search for "index", and set "Enable Index-While-Building Functionality" to No.
-  b) Search for "dialect", and set your C++ dialect to either C++17 or GNU++17 (for optimal IDE support)
-  c) Click the "+" button, click Add User-Defined Setting, and assign `CXX` to the full path to your new clang++ binary (e.g. `/.../clang-meta/build/bin/clang++`)
-  d) Click the "+" again and assign `CC` to e.g. `/.../clang-meta/build/bin/clang`.
---In CMake-based IDEs like CLion, you must set `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` appropriately, and the language dialect.
+- In XCode: go to Build Settings for the project, then:
+  - Search for "index", and set "Enable Index-While-Building Functionality" to No.
+  - Search for "dialect", and set your C++ dialect to either C++17 or GNU++17 (for optimal IDE support)
+  - Click the "+" button, click Add User-Defined Setting, and assign `CXX` to the full path to your new clang++ binary (e.g. `/.../clang-meta/build/bin/clang++`)
+  - Click the "+" again and assign `CC` to e.g. `/.../clang-meta/build/bin/clang`.
+- In CMake-based IDEs like CLion, you must set `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` appropriately, and the language dialect.
 
 13. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.  As explained in `0_reflection.hpp`, you may encounter an unexplained crash now and then -- just rebuild if you do.
 
