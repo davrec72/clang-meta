@@ -11,7 +11,9 @@ Use these to define your own metaclasses, metanamespaces, meta-metafunctions, th
 Stop doing repetitive coding tasks -- delegate to your compiler.  
 If you're not *using* metafunctions, you *are* one!
 
-## Examples
+## Code examples
+
+Please see the examples folder; here is just some basics:
 
 ### Reflection:
 ```
