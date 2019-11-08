@@ -13,7 +13,7 @@ If you're not *using* metafunctions, you *are* one!
 
 ## Code examples
 
-Please see the examples folder for an in-depth tutorial; here are just some basic syntax examples:
+(TODO) Please see the examples folder for an in-depth tutorial; here are just some basic syntax examples:
 
 ### Reflection:
 ```
