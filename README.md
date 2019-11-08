@@ -114,7 +114,7 @@ cmake --build .
 cmake --build . --target clang-wreflection
 ```
 	
-8. Navigate to `build/include`, make sure a `client-reflection-impl.hpp` file has been created.  Make note of the path to it.  Also, in `build/bin`, there should be a `clang++` executable/shortcut.  Make note of the absolute path to that -- you will need it shortly to instruct your IDE to use it as your CXX compiler.
+8. Navigate to `build/include`, make sure a `client_reflection_impl.hpp` file has been created.  Make note of the full path to it.  Also, in `build/bin`, there should be a `clang++` executable/shortcut.  Make note of the full path to that too -- you will need it shortly to instruct your IDE to use it as your CXX compiler.
 
 9. Open `clang-meta/examples/include/client_reflection_impl.hpp` file.  It is intended to be a helper shortcut to your root `client_reflection_impl.hpp`.  Right now it contains a relative path that is probably correct for now.  But it would be best to change that to the absolute path to your `/.../clang-meta/build/include/client_reflection_impl.hpp`, in case you want to move examples/include around later.
 
