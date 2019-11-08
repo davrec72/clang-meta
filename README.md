@@ -143,9 +143,9 @@ to share with others.
 
 ### Reflection
 
-There are many C++ reflection proposals floating around.  I believe the way I've done it here is the best.  I have simply automated generation of reflection properties from the public methods/fields of clang AST nodes and helper types, creating a massive reflection library in a matter of minutes.
+There are many C++ reflection proposals floating around.  I believe the way I've done it here is the best.  I have simply automated generation of reflection properties from the public const methods/fields of clang AST nodes and helper types, creating a massive reflection library in a matter of minutes.
 
-E.g., if `clang::NamespaceDecl` has an `isAnonymousNamespace()` public method, so the user will be able to access a `reflexpr(mynamespace)->isAnonymousNamespace()` reflection.
+E.g., if `clang::NamespaceDecl` has an `isAnonymousNamespace()` public const method, so the user will be able to access a `reflexpr(mynamespace)->isAnonymousNamespace()` reflection.
 
 More generally, my argument is that the C++ standard should define a minimum compiler AST architecture that all compilers must use; this would be the basis of the reflection library.
 
