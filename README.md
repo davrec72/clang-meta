@@ -139,6 +139,9 @@ Also please raise even aesthetic/naming concerns if you have alternate suggestio
 
 
 ## Discussion
+
+(Only for other implementers or people concerned with the C++ proposals/future standards for reflection etc; most users can skip...)
+
 ### Reflection
 
 There are many C++ reflection proposals floating around.  I believe the way I've done it here is the best.  I have simply automated generation of reflection properties from the public methods/fields of clang AST nodes and helper types, creating a massive reflection library in a matter of minutes.
