@@ -6,6 +6,10 @@ A C++ compiler with added meta-programming features:
 3) **custom compile-time diagnostics** (at source locations YOU define, that work with your IDE as is), and
 4) **constexpr containers** (vector, set, map) of any constexpr class you define.
 
+Use these to define your own metaclasses, metanamespaces, meta-metafunctions, the sky's the limit -- recursion works endlessly.  You can write an interface metaclass in your sleep.
+
+Stop doing repetitive coding tasks -- delegate to your compiler.  
+If you're not *using* metafunctions, you *are* one!
 
 ## Examples
 
