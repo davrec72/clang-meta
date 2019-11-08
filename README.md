@@ -133,9 +133,8 @@ cmake --build . --target clang-wreflection
 13. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.  As explained in `0_reflection.hpp`, you may encounter an unexplained crash now and then -- just rebuild if you do.
 
 
-Please raise an Issue if you encounter one.  Even better, raise one if you encountered an issue but came up with a solution
+Please create an Issue if you encounter one.  Even better, create one if you encountered a problem but came up with a solution
 to share with others.
-Also please raise even aesthetic/naming concerns if you have alternate suggestions, as those are important to address early on.
 
 
 ## Discussion
