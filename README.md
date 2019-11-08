@@ -19,16 +19,13 @@ DO_META {
 	
 	RD->
 	//  ^ Your IDE will provide suggestions for all reflection properties 
-	//    of a "CXXRecordDecl" (aka class declaration)
-	
-	ce_assert(!RD->isClass());
-	ce_assert(RD->isStruct());
-	RD->dump();
-	//  ^ Just about every const method of a CXXRecordDecl that clang
-	//    provides is available -- 100s of them!
+	//    (100s of them -- just about every const method in the clang AST!)
 	//    And if you make changes to clang, just recompile and the new properties 
 	//    are automatically reflected!
 	
+	ce_assert(!RD->isClass());
+	ce_assert(RD->isStruct());
+
 	// Helper macros provided to trick your IDE into providing support
 	// no annoying red flags will be raised for the new keywords
 	FOR( (Decl *) D : RD->decls()) {
