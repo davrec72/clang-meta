@@ -3,7 +3,7 @@
 A C++ compiler with added meta-programming features: 
 1) **static reflection** (of just about anything - templates, other reflection expressions, you name it), 
 2) **metaparsing** (turn string literals into parsed code),
-3) **custom compiler diagnostics** (pointing to locations *you* define, with fixits *you* define, displayed by your IDE *just like* built-in diagnostics), and
+3) **custom compiler diagnostics** (pointing to locations *you* define, with fixits *you* define, displayed by your IDE just like built-in diagnostics), and
 4) **constexpr containers** (vector, set, map -- or add your own!) of any constexpr classes you define.
 
 Use these to define your own metaclasses, metanamespaces, meta-metafunctions, the sky's the limit -- recursion works endlessly.  You can write an interface metaclass in your sleep.
