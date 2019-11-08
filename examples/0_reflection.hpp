@@ -63,8 +63,7 @@ DO_META {
   // is the exact opposite -- the CLASS OF a class.
   // I'm going insulate myself from any arguments about names/
   // included reflections etc -- implementing the rest is hard 
-  // enough.  But these discussions ARE important, if we want
-  // this to become standard.
+  // enough.
   // If YOU want to experiment with changing the names of things,
   // adding/removing methods from the interface, all you need do
   // is to modify clang accordingly and recompile clang_wreflection.
