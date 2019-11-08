@@ -8,7 +8,7 @@ A C++ compiler with added meta-programming features:
 
 Use these to define your own metaclasses, metanamespaces, meta-metafunctions, the sky's the limit -- recursion works endlessly.  You can write an interface metaclass in your sleep.
 
-Stop doing repetitive coding tasks -- delegate to your compiler.  
+Stop doing repetitive coding tasks.  Delegate to your compiler.  
 If you're not *using* metafunctions, you *are* one!
 
 ## Code examples
