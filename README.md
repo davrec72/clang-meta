@@ -25,7 +25,7 @@ DO_META {
 	
 	RD->
 	//  ^ Your IDE will provide suggestions for all reflection properties 
-	//    (100s of them -- just about every const method in the clang AST!)
+	//    (100s of them -- just about every public const method in the clang AST!)
 	//    And if you make changes to clang, just recompile and the new properties 
 	//    are automatically reflected!
 	
