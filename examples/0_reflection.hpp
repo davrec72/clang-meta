@@ -108,6 +108,7 @@ DO_META {
   
   // Very useful: a ce_debug macro to display build-time messages.
   // Successive string args are concatenated.  Integer args are okay.
+  // Copied over from Andrew Sutton's implem.
   ce_debug("Finished with ", "the above dump ca", "ll for ",
            myfuncrefl->getQualifiedNameAsString(), ";\n2 + 2 = ", 2+2);
   
