@@ -7,31 +7,6 @@
 //
 //  Demonstrates basic reflection capabilities.
 //
-//
-// README FIRST:
-//
-// You may encounter occasional bugs that cause crashes.  Just before the stack dump,
-// you will generally see which assert failed or which llvm_unreachable was reached.
-// (Be sure to use only a debug-compiled version of this clang!)
-// Let me know about such bugs; don't send them to llvm or whatever it says to do.
-//
-// HOWEVER, even when everything is working, about 1:10 to 1:20 builds will end in
-// a crash, with NO explanation before the stack dump.
-//
-// Usually in clang this is the calling card of a nullptr dereference, I believe,
-// but I am not an expert.
-//
-// It usually occurs during Sema::DoQueuedMetaparsing.  (If you take out all
-// the __queued_metaparse/__metaparse_expr statements I believe you will not
-// get any unexplained crashes.)
-//
-// This bug is my white whale.  I have tried many things, cannot find the cause.
-// I've just about given up, have been just living with it for now.  (I guess I'm
-// not much of an Ahab!)
-//
-// If you know your way around clang and can figure it out, I would be very
-// impressed and eternally grateful!
-//
 
 #ifndef dwrmeta_0_reflection_hpp
 #define dwrmeta_0_reflection_hpp
