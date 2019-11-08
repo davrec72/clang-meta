@@ -243,6 +243,7 @@ class IsInInlineNamespace {
     // Very often you'll want to do this.
     // Use QualType::getSingleStepDesugaredType() to dealias the type by one step.
     // The result may still be an alias/qualified alias.
+    // Again, weird naming.
     //
     auto_ FullyDeAliasedType = TreflQT.getCanonicalType();
 
