@@ -186,14 +186,14 @@ I have annotated with `//DWR ADDN` or `//DWR MOD` etc. everywhere I have added t
 I have done likewise -- `//ASUTTON ADDN` -- for wherever I have copied over or adapted code from Andrew Sutton's original repository, linked above (which is based around clang 5.x).
 
 Mr. Sutton and co. have made subsequent progress along their own track for reflection & "reification" (their analog of metaparsing); I encourage you to also check out their newer work:
-	https://gitlab.com/lock3/clang
-I have looked at their source code, it is very impressive, but I have not adapted anything from it, as my implementation has diverged fairly significantly from theirs EXCEPTING key elements of Mr. Sutton's original 5.x code (`ConstexprDecl`, `CXXTupleExpansionStmt`, `CXXConcatenateExpr`, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
+	https://gitlab.com/lock3/clang.
+Their code is very impressive, but owing to the divergence of our implementations, I have not borrowed anything additional from it excepting what was already in Mr. Sutton's original 5.x code (`ConstexprDecl`, `CXXTupleExpansionStmt`, `CXXConcatenateExpr`, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
 
-The source code is a mess right now -- lots of big blocks of commented out code, etc.  I will clean it up it subsequent commits; but I thought it was good to have all the various old stuff I tried in there for the first commit, to help others who might try to adapt this to other purposes.
+The source code is a bit of a mess right now -- lots of big blocks of commented out code, etc.  I will clean it up it subsequent commits; but I thought it was good to have all the various old stuff I tried in there for the first commit, to help others who might try to hack further on the code.
 
 The clang tool for generating the reflection sources -- `llvm/tools/clang/tools/gen-reflection-src` -- is likewise a mess, needs to be completely rewritten for clarity - but darned if isn't working perfectly right now on translating just about the entire clang AST into reflection code.  And I have at least documented all the various hacks needed to make it work.
 
-I would very much welcome others contributing to or fixing or adapting my code.  I have developed these contributions because I have been desperate to be able to USE C++ in this way -- got sick of having to BE a program to WRITE a program.  But I would rather not become endlessly bogged down keeping the implementation working.  So you would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
+I would very much welcome others contributing fixes and additions.  I have developed this contribution because of my desperation to USE C++ in this way.  But I would rather not become endlessly bogged down in maintaining it.  You would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
 
 
 I will address further issues here as they arise.  
