@@ -32,8 +32,11 @@ DO_META {
 	ce_assert(!RD->isClass());
 	ce_assert(RD->isStruct());
 
-	// Helper macros provided to trick your IDE into providing support
-	// no annoying red flags will be raised for the new keywords
+	// Note all the helper macros provided to trick your IDE into providing support --
+	// no annoying red flags will be raised for the new keywords we introduce,
+	// but you'll still get red flags for the usual misspellings etc.
+	// (I.e. no need to wait a few years for reflection, THEN wait another few years 
+	// for your IDE to support it...it all works now!)
 	FOR( (Decl *) D : RD->decls()) {
 		D->dump();
 	}
