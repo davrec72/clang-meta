@@ -178,7 +178,8 @@ constexpr void mymetafcn(const T reflA, const U reflB) {
 
   // The IDE can't see the ce_debug usages of these variables,
   // so we mark them MAYBE_META_USED to get rid of the flags.
-  // Or for brevity, auto_ works well for arbitrary types in
+  // (If even in meta they're unused you'll get a warning after building.)
+  // For brevity, auto_ works well for arbitrary types in
   // metaprograms, applying the MAYBE_META_USED automatically:
   //
   MAYBE_META_USED const char *Aname = nsreflA->getNameAsString();
