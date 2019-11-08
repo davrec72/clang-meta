@@ -137,7 +137,7 @@ Please create an Issue if you encounter one.  Even better, create one if you enc
 to share with others.
 
 
-## Discussion
+## Discussion/implementation notes
 
 (Only for other implementers or people concerned with the C++ proposals/future standards for reflection etc; most users can skip...)
 
