@@ -125,7 +125,7 @@ cmake --build . --target clang-wreflection
 12. Change the compilers/other IDE settings for this project:
 - In XCode: go to Build Settings for the project, then:
   - Search for "index", and set "Enable Index-While-Building Functionality" to No.
-  - Search for "dialect", and set your C++ dialect to either C++17 or GNU++17 (for optimal IDE support)
+  - Search for "dialect", and set your C++ dialect to either C++17 or GNU++17
   - Click the "+" button, click Add User-Defined Setting, and assign `CXX` to the full path to your new clang++ binary (e.g. `/.../clang-meta/build/bin/clang++`)
   - Click the "+" again and assign `CC` to e.g. `/.../clang-meta/build/bin/clang`.
 - In CMake-based IDEs like CLion, you must set `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` appropriately, and the language dialect.
