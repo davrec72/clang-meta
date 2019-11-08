@@ -13,7 +13,7 @@ If you're not *using* metafunctions, you *are* one!
 
 ## Code examples
 
-Please see the examples folder; here is just some basics:
+Please see the examples folder for an in-depth tutorial; here is just the basic syntax:
 
 ### Reflection:
 ```
