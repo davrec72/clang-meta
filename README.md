@@ -149,31 +149,12 @@ E.g., if `clang::NamespaceDecl` has an `isAnonymousNamespace()` public const met
 
 More generally, my argument is that the C++ standard should define a minimum compiler AST architecture that all compilers must use; this would be the basis of the reflection library.
 
-This has four main benefits over the existing reflection proposals:
+I see at least three benefits over the existing reflection proposals:
 1) No parallel code to maintain -- e.g. you don't need to keep up to date an `NamespaceDecl::isAnonymousNamespace()` member AND some sort of `reflectIsAnonymousNamespace()` function.
 
 2) Improvements to the compilers' ASTs would be linked inextricably to improvements to the C++ standards, which would benefit all.
 
-3) Reflection properties can take advantage of the object oriented architecture of the clang AST.  Existing reflection proposals seem to only allow the user to query reflections via external functions or templates -- e.g. 
-```	
-	//CURRENT REFLECTION PROPOSALS:
-	meta::decls_of(myclassrefl)
-	meta::decls_of<myclassrefl>
-	        ^   ^    ^
-		       Code completer can only offer loose suggestions at best throughout
-```
-Whereas the object-oriented implementation places the object first in the typical way, allowing the IDE to assist in code completion:
-```
-	//OBJ-ORIENTED REFLECTION IMPLEM:
-	myclassrefl->decls()
-		     ^
-		     Code completer can make precise suggestions right away
-```
-(To be sure, the actual implementations of passing reflection statements to the compiler perhaps must involve external function-like statements that place the object inside the function, a la the first way.  BUT, why bother coming up with a detailed naming system for such expressions?  I have simply used `__reflect_prop(...arbitrary arguments...)` for all of them.  They are immediately wrapped into more meaningful methods/fields in the reflection hierarchy in `client_reflection_impl.hpp`.  The user should never interface with them directly; they should always use the object wrappers, and almost certainly will.  So why waste time and clutter up the syntax by giving all these implementation details precise, meaningful names?  Just my opinion -- and perhaps I misunderstand the proposals; please correct me if so.)
-
-4) Reflection implementers needn't answer to complaints about what properties of this or that decl are or are not reflectible.  Any change a user wants, she or he can make by modifying the AST interface and rebuilding `clang-wreflection` -- and indeed they should.  Interested parties can have discussions about what they want reflected without feeling they are hostage to the reflection implementers, and the implementers can work without having to engage in the hundreds of arguments sure to be required to make such decisions.  The two are decoupled.
-
-Everyone wins with this approach.
+3) Reflection implementers needn't answer to complaints about what properties of this or that decl are or are not reflectible.  Any change a user wants, she or he can make by modifying the AST interface and rebuilding `clang-wreflection` -- and indeed they should.  Interested parties can have discussions about what they want reflected without feeling they are hostage to the reflection implementers, and the implementers can work without having to engage in the hundreds of arguments sure to be required to make such decisions.  The two are decoupled.  Everyone benefits.
 
 
 ### Metaparsing
@@ -193,7 +174,7 @@ I disagree, for some of the same reasons as above: with the metaparsing solution
 1) no parallel code to maintain -- new parse-able keywords etc. are automatically supported, and
 2) Implementers needn't answer to complaints about what is or is not injectible.
 
-Not to mention that it is dirt-simple to understand, and it seems to me there may be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
+Not to mention that it is dirt-simple to understand, and there seem to be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
 
 
 ### Source code
