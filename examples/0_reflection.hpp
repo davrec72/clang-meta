@@ -119,14 +119,7 @@ DO_META {
   //
   //   xcodebuild -target mytargetname
   //
-  // So long as one of mytargetname's source files has changed even minutely
-  // (best to "touch" one automatically before the build),
-  // or the last build failed, the target will be rebuilt and you should
-  // see all your debug messages and dumps, alongside any diagnostic
-  // messages.  (It is useful to clear the screen, via command-K, before
-  // each build to distinguish messages between successive builds).
-  //
-  // Let's verify some reflected properties with ce_assert:
+  // Now, let's verify some reflected properties with ce_assert:
   //
   ce_assert(!mynsrefl->isAnonymousNamespace());
 //  ce_assert(mynsrefl->isAnonymousNamespace()); //ERROR: uncomment to see failed assert message
