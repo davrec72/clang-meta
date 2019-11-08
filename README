@@ -1,27 +1,66 @@
-DESCRIPTION
--------------------------
+# clang-meta
 
 A C++ compiler with added meta-programming features: 
-1) static reflection (of just about the entire Clang AST), 
+1) static reflection (of just about anything), 
 2) metaparsing, 
 3) custom diagnostics, and
 4) constexpr containers.
 
 
-EXAMPLES
--------------------------
+## Examples
 
-(TODO)
-Best to just check out the examples folder.  There's a lot of new stuff here.  
-It will be worth your time.   This is the real deal, a huge new metaprogramming 
-feature set, pretty much ready for prime time.
+### Reflection:
+```
+struct MyClassA { float f; };
 
-I've even implemented it so as to trick your IDE into providing support -- 
-code completion, etc.  No need to wait a decade.  It's ready now!
+DO_META {
+	auto_ RD = cast<CXXRecordDecl>(reflexpr(MyClassA));
+		// ^ cast/dyn_cast/isa work exactly as you'd use them in clang
+	
+	RD->
+	//  ^ Your IDE will provide suggestions for all reflection properties 
+	//    of a "CXXRecordDecl" (aka class declaration)
+	
+	ce_assert(!RD->isClass());
+	ce_assert(RD->isStruct());
+	RD->dump();
+	//  ^ Just about every const method of a CXXRecordDecl that clang
+	//    provides is available -- 100s of them!
+	//    And if you make changes to clang, just recompile and the new properties 
+	//    are automatically reflected!
+	
+	// Helper macros provided to trick your IDE into providing support
+	// no annoying red flags will be raised for the new keywords
+	FOR( (Decl *) D : RD->decls()) {
+		D->dump();
+	}
+}
+```
+
+### metaparsing:
+```
+ DO_META {
+    QPARSE("static const int i = 3;");
+    QPARSE("static const int j = i + ");
+    MAYBE_META_USED constexpr int jval = __metaparse_expr(__concatenate("3", 2+2), int);
+    QPARSE(jval, ";");
+    
+    //ce_assert(i == 3); //ERROR: undeclared identifier
+    //ce_assert(j == 37); //ERROR: undeclared identifier
+    ce_assert(jval == 34);
+    
+  } //...queued metaparses performed here...
+  
+  static_assert(i == 3);
+  static_assert(j == 37);
+//  static_assert(jval == 34); //ERROR: undeclared identifier
+```
+
+Check out the examples folder for custom diagnostics and constexpr containers examples, and
+more advanced reflection/metaparsing stuff.
 
 
-ACKNOWLEDGMENTS
--------------------------
+## Acknowledgments
 
 This work is based around llvm/clang 7.0.0.  More significantly, this
 work is adapted from Andrew Sutton's original reflection/metaclasses repository: 
@@ -30,8 +69,8 @@ Many thanks to him for sharing his excellent work; without it these additional
 contributions would not have been possible.
 
 
- INSTALLATION & USE (Mac/Unix):
--------------------------
+## Installation & Use
+### Mac/Unix:
 
 1. Download CMake if necessary.
 
@@ -81,8 +120,8 @@ to share with others.
 Also please raise even aesthetic/naming concerns if you have alternate suggestions, as those are important to address early on.
 
 
-DISCUSSION - REFLECTION
--------------------------
+## Discussion
+### Reflection
 
 There are many C++ reflection proposals floating around.  I believe the way I've done it here is the best.  I have simply automated generation of reflection properties from the public methods/fields of clang AST nodes and helper types, creating a massive reflection library in a matter of minutes.
 
@@ -117,8 +156,7 @@ Whereas the object-oriented implementation places the object first in the typica
 Everyone wins with this approach.
 
 
-DISCUSSION - METAPARSING
--------------------------
+### Metaparsing
 
 The metaparsing feature will, I suspect, have some detractors.  It feels a bit Python-y; a bit out of place in strict typing environment like C++.
 This is why, I imagine, other proposals lean toward methods of source code "injection" or modification using cleaner, more C++-like statements:
@@ -138,8 +176,7 @@ I disagree, for some of the same reasons as above: with the metaparsing solution
 Not to mention that it is dirt-simple to understand, and it seems to me there may be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
 
 
-SOURCE CODE
--------------------------
+### Source code
 
 Only the llvm/tools/clang folder has been modified from the original llvm/clang 7.0.0.
 
