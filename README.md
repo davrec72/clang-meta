@@ -139,7 +139,11 @@ to share with others.
 
 ## Discussion/implementation notes
 
-(Only for other implementers or people concerned with the C++ proposals/future standards for reflection etc; most users can skip...)
+### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
+Metaprograms outside your main program to generate the sources your C++ compiler runs -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you, forever.
+
+Our metaprograms -- let's call them "immanent metaprograms" -- ARE reflectible; others can write metafunctions to check them/fix them, or to generate them outright.  Less need for CMake trickery and long term maintenance thereof.
+
 
 ### Reflection
 
