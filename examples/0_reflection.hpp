@@ -57,7 +57,6 @@ DO_META {
   // A 'CXXRecordDecl' is a class/struct/union.
   // otherns is a NamespaceDecl, so this dyn_cast will return
   // a nullptr reflection.
-  // [ASIDE]
   // CXXRecordDecl is oddly named -- to me  "record" suggests 
   // an INSTANCE of a class, i.e. an object, but a CXXRecordDecl 
   // is the exact opposite -- the CLASS OF a class.
@@ -66,7 +65,6 @@ DO_META {
   // is to modify clang accordingly and recompile clang_wreflection.
   // The new reflections and their documentation will show up
   // in your client_reflection_impl.hpp.
-  // [END ASIDE]
   
   ce_assert(!nullcast);
   // ^ ce_assert/nce_assert are defined as simple wrappers around
