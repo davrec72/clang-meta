@@ -43,10 +43,27 @@
 // Bottom line, what we lose in Java-like syntax, we gain (or rather
 // retain) in C++ flexibility.
 //
-// If there is REALLY a desire for Java-like syntax, what we really
-// need to accomplish these sorts of things are user syntax-definition
-// commands, defined roughly like preprocessor #defines but just a bit
-// more involved.  But that's for another time.
+// [ASIDE]
+// If there is REALLY a desire for Java-like syntax -- very reasonable --
+// what we really need to accomplish these sorts of things are:
+//
+// 1) anonymous structs allowed as typename arguments to templates, e.g.:
+// 
+//  using myifc = interface< struct { void f(); void g(); } >;
+// 
+// and perhaps, to put the icing on the cake,
+//
+// 2) user syntax-definition commands (#syndef?), defined roughly like 
+// preprocessor #defines but just a bit more involved, capable in this case 
+// of expanding
+//
+// interface myifc { void f(); void g(); };
+//
+// into the above.  That would expand our flexibility without 
+// giving first class status to an arbitrary category of metaclasses 
+// -- those that take exactly one typename param.
+//
+// Onto our interface definition:
 //
 #ifndef dwrmeta_3_interface_metaclass_hpp
 #define dwrmeta_3_interface_metaclass_hpp
