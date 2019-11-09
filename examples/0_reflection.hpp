@@ -58,20 +58,14 @@ DO_META {
   // otherns is a NamespaceDecl, so this dyn_cast will return
   // a nullptr reflection.
   // [ASIDE]
-  // CXXRecordDecl is poorly named -- to me  "record" suggests 
+  // CXXRecordDecl is oddly named -- to me  "record" suggests 
   // an INSTANCE of a class, i.e. an object, but a CXXRecordDecl 
   // is the exact opposite -- the CLASS OF a class.
-  // I'm going insulate myself from any arguments about names/
-  // included reflections etc -- implementing the rest is hard 
-  // enough.
-  // If YOU want to experiment with changing the names of things,
+  // However, if you want to experiment with changing the names of things,
   // adding/removing methods from the interface, all you need do
   // is to modify clang accordingly and recompile clang_wreflection.
   // The new reflections and their documentation will show up
   // in your client_reflection_impl.hpp.
-  // I highly encourage communities to do this -- the clang AST 
-  // is powerful but a bit flabby, like a retired offensive lineman.  
-  // Needs some help getting into playing shape.  I leave that to you.
   // [END ASIDE]
   
   ce_assert(!nullcast);
