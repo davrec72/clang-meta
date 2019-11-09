@@ -195,10 +195,6 @@ The clang tool for generating the reflection sources -- `llvm/tools/clang/tools/
 
 I would very much welcome others contributing fixes and additions.  I have developed this contribution because of my desperation to USE C++ in this way.  But I would rather not become endlessly bogged down in maintaining it.  You would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
 
-
-I will address further issues here as they arise.  
-Please let me know if you run into problems anywhere.
-
 Have fun!
 
 Dave
