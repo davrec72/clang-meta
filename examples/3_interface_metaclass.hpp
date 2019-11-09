@@ -46,18 +46,16 @@
 // [ASIDE]
 // If there is REALLY a desire for Java-like syntax -- very reasonable --
 // what we really need to accomplish these sorts of things are:
-//
 // 1) anonymous structs allowed as typename arguments to templates, e.g.:
 // 
-//  using myifc = interface< struct { void f(); void g(); } >;
+//   using myifc = interface< struct { void f(); void g(); } >;
 // 
-// and perhaps, to put the icing on the cake,
-//
+// and to give it the desired aesthetics,
 // 2) user syntax-definition commands (#syndef?), defined roughly like 
 // preprocessor #defines but just a bit more involved, capable in this case 
 // of expanding
 //
-// interface myifc { void f(); void g(); };
+//   interface myifc { void f(); void g(); };
 //
 // into the above.  That would expand our flexibility without 
 // giving first class status to an arbitrary category of metaclasses 
