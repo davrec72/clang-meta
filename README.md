@@ -34,10 +34,7 @@ constexpr {  //aka DO_META
   ce_assert(!RD->isClass());
   ce_assert(RD->isStruct());
   
-  // Helper macros provided to trick your IDE into providing support --
-  // no annoying red flags will be raised for the new keywords we introduce,
-  // but you'll still get red flags for the usual misspellings etc.
-  FOR((Decl *) D : RD->decls()) {
+  FOR((Decl *) D : RD->decls()) { 
     if constexpr (auto_ FD = dyn_cast<FieldDecl>(D))
     	FD->dump();
   }
