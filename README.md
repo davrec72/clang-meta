@@ -196,7 +196,7 @@ The clang tool for generating the reflection sources -- `llvm/tools/clang/tools/
 
 I would very much welcome others contributing fixes and additions.  I have developed this contribution because of my desperation to USE C++ in this way.  But I would rather not become endlessly bogged down in maintaining it.  You would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
 
-Note that you only need to rebuild the `clang-wreflection` target when you change clang/tools/reflection-src-generator/GenReflectionSrc.cpp OR one of the AST headers (i.e. the reflection interface).  When just making ordinary adjustments to clang cpps, just rebuild the `clang` target -- much faster. 
+Note that you only need to rebuild the `clang-wreflection` target when you change `clang/tools/reflection-src-generator/GenReflectionSrc.cpp` or one of the `include/clang/AST` headers (i.e. the reflected interfaces).  When just making ordinary adjustments to clang cpps, just rebuild the `clang` target -- much faster. 
 
 Have fun!
 
