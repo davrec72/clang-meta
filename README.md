@@ -154,7 +154,7 @@ Save yourself the stress of awaiting standardized reflection features by using t
 2) Only interface with those helper functions.
 3) When standards are agreed upon and every reflection you need supported, alter those helper functions accordingly.
 
-I hope others might take the lead in creating a library of such helper functions, to isolate away the eventual implementation details, so that we all might get on to writing our metafunctions without further worry.  This is a vast new frontier we are all itching to explore.
+I hope others might take the lead in creating a library of such helper functions, to isolate away the eventual implementation details, so that we all might get on to writing our metafunctions without further worry.  This is a vast new frontier many are itching to explore.
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
 Metaprograms outside your main program used to generate the sources fed to your C++ compiler -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you.
