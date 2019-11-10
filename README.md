@@ -146,7 +146,7 @@ cmake --build . --target clang-wreflection
 ### This stuff isn't an agreed-upon C++ standard, why should I bother writing any code in it?
 Because it is far more general.  You can reflect anything -- down to the individual statements in your function definitions!  Your inline assembly code statements!  You will never want for reflection.
 
-The C++ standards will surely *eventually* incorporate such capabilities, years hence -- the demand for more reflection capability will be ever-present, and insatiable; they will just *have* to be met.  But it will take years for them to decide exactly how they want to name things etc.  (This is why I recommend we bite the bullet now and define the compiler AST architecture itself into the standard -- a lot of hassle/arguments now in exchange for a lot less maintenance in years hence.)
+The C++ standards will surely *eventually* incorporate such capabilities, years hence -- the demand for more reflection capability will be ever-present, and insatiable; they will just *have* to be met.  But it will take years for them to decide exactly how they want to name things etc.  (This is why I recommend below that we bite the bullet now and define the compiler AST architecture itself into the standard -- a lot of hassle/arguments now in exchange for a lot less maintenance in years hence.)
 
 Save yourself the stress of awaiting standardized reflection features by using this version of clang to write your metafunctions in the interim and doing the following:
 1) Extract out into constexpr helper functions any reflection functions whose definition might 
