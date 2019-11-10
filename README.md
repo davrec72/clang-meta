@@ -21,7 +21,7 @@ If you're not *using* metafunctions, you *are* one!
 ```
 struct MyClassA { float f; };
 
-constexpr {
+constexpr {  //aka DO_META
   auto_ RD = cast<CXXRecordDecl>(reflexpr(MyClassA));
   	     // ^ cast/dyn_cast/isa work exactly as you'd use them in clang
 
