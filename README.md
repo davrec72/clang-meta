@@ -34,7 +34,7 @@ constexpr {  //aka DO_META
   ce_assert(!RD->isClass());
   ce_assert(RD->isStruct());
   
-  FOR((Decl *) D : RD->decls()) { 
+  FOR ((Decl *) D : RD->decls()) { 
     if constexpr (auto_ FD = dyn_cast<FieldDecl>(D))
     	FD->dump();
   }
