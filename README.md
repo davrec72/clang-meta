@@ -111,9 +111,9 @@ mkdir clang-meta
 git clone https://github.com/drec357/clang-meta.git clang-meta
 ```
 	
-4. The clang-meta folder should now have our "llvm" and "examples" folders in it.
-   In addition, make a "build" folder (make sure you have 20 GB or so of space), 
-   and navigate to it:
+4. The clang-meta folder should now have our `llvm/` and `examples/` folders in it.
+   Check that an `llvm/tools/clang` folder exists (it is the only distinctive content of this repository), and that in `llvm/projects/` are three subdirectories: `compiler-rt`, `libcxx`, and `libcxxabi`.
+   Now, make a "build" folder (make sure you have 20 GB or so of space), and navigate to it:
 ```   
 cd clang-meta
 mkdir build
