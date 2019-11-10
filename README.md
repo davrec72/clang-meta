@@ -22,44 +22,44 @@ If you're not *using* metafunctions, you *are* one!
 struct MyClassA { float f; };
 
 constexpr {
-	auto_ RD = cast<CXXRecordDecl>(reflexpr(MyClassA));
-		// ^ cast/dyn_cast/isa work exactly as you'd use them in clang
-	
-	RD->
-	//  ^ Your IDE will provide suggestions for all reflection properties 
-	//    (100s of them -- just about every public const method in the clang AST!)
-	//    And if you make changes to clang, just recompile and the new properties 
-	//    are automatically reflected!
-	
-	ce_assert(!RD->isClass());
-	ce_assert(RD->isStruct());
+  auto_ RD = cast<CXXRecordDecl>(reflexpr(MyClassA));
+  	     // ^ cast/dyn_cast/isa work exactly as you'd use them in clang
 
-	// Helper macros provided to trick your IDE into providing support --
-	// no annoying red flags will be raised for the new keywords we introduce,
-	// but you'll still get red flags for the usual misspellings etc.
-	FOR( (Decl *) D : RD->decls()) {
-		D->dump();
-	}
+  RD->
+  //  ^ Your IDE will provide suggestions for all reflection properties 
+  //    (100s of them -- just about every public const method in the clang AST!)
+  //    And if you make changes to clang, just recompile and the new properties 
+  //    are automatically reflected!
+  
+  ce_assert(!RD->isClass());
+  ce_assert(RD->isStruct());
+  
+  // Helper macros provided to trick your IDE into providing support --
+  // no annoying red flags will be raised for the new keywords we introduce,
+  // but you'll still get red flags for the usual misspellings etc.
+  FOR( (Decl *) D : RD->decls()) {
+    D->dump();
+  }
 }
 ```
 
 ### metaparsing:
 ```
- constexpr {
-    __queue_metaparse("static const int i = 3;");
-    __queue_metaparse("static const int j = i + ");
-    constexpr int jval = __metaparse_expr(__concatenate("3", 2+2), int);
-    __queue_metaparse(__concatenate(jval, ";"));
-    
-    //ce_assert(i == 3); //ERROR: undeclared identifier
-    //ce_assert(j == 37); //ERROR: undeclared identifier
-    ce_assert(jval == 34);
-    
-  } //...queued metaparses performed here...
+constexpr {
+  __queue_metaparse("static const int i = 3;");
+  __queue_metaparse("static const int j = i + ");
+  constexpr int jval = __metaparse_expr(__concatenate("3", 2+2), int);
+  __queue_metaparse(__concatenate(jval, ";"));
   
-  static_assert(i == 3);
-  static_assert(j == 37);
-//  static_assert(jval == 34); //ERROR: undeclared identifier
+  //ce_assert(i == 3); //ERROR: undeclared identifier
+  //ce_assert(j == 37); //ERROR: undeclared identifier
+  ce_assert(jval == 34);
+  
+} //...queued metaparses performed here...
+
+static_assert(i == 3);
+static_assert(j == 37);
+//static_assert(jval == 34); //ERROR: undeclared identifier
 ```
 
 Check out the examples folder for custom diagnostics and constexpr containers examples, and
