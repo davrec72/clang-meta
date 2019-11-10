@@ -23,7 +23,7 @@ struct MyClassA { float f; };
 
 constexpr {  //aka DO_META
   auto_ RD = cast<CXXRecordDecl>(reflexpr(MyClassA));
-  	     // ^ cast/dyn_cast/isa work exactly as you'd use them in clang
+  	     // ^ cast/dyn_cast/isa work as you'd expect
 
   RD->
   //  ^ Your IDE will provide suggestions for all reflection properties 
