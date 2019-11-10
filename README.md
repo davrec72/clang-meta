@@ -21,7 +21,7 @@ If you're not *using* metafunctions, you *are* one!
 ```
 struct MyClassA { float f; };
 
-DO_META {
+constexpr {
 	auto_ RD = cast<CXXRecordDecl>(reflexpr(MyClassA));
 		// ^ cast/dyn_cast/isa work exactly as you'd use them in clang
 	
@@ -45,7 +45,7 @@ DO_META {
 
 ### metaparsing:
 ```
- DO_META {
+ constexpr {
     __queue_metaparse("static const int i = 3;");
     __queue_metaparse("static const int j = i + ");
     constexpr int jval = __metaparse_expr(__concatenate("3", 2+2), int);
