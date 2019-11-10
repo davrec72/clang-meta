@@ -113,38 +113,39 @@ git clone https://github.com/drec357/clang-meta.git clang-meta
 	
 4. The clang-meta folder should now have our `llvm/` and `examples/` folders in it.
    Check that an `llvm/tools/clang` folder exists (it is the only distinctive content of this repository), and that in `llvm/projects/` are three subdirectories: `compiler-rt`, `libcxx`, and `libcxxabi`.
-   Now, make a `build/` folder (make sure you have 20 GB or so of space for it), and navigate to it:
+   
+5.  Now, make a `build/` folder (make sure you have 20 GB or so of space for it), and navigate to it:
 ```   
 cd clang-meta
 mkdir build
 cd build
 ```
 	
-5. Run CMake on the llvm sources:
+6. Run CMake on the llvm sources:
 ```
 cmake ../llvm
 ```
 	
-6. Do the initial build (may take a few hours):
+7. Do the initial build (may take a few hours):
 ```
 cmake --build .
 ```
   (Don't sweat the various warnings.  I'll try to address them soon.  They don't matter.)
 	
-7. Build the clang-wreflection target:
+8. Build the clang-wreflection target:
 ```
 cmake --build . --target clang-wreflection
 ```
 	
-8. Navigate to `build/include`, make sure a `client_reflection_impl.hpp` file has been created.  Make note of the full path to it.  Also, in `build/bin`, there should be a `clang++` executable/shortcut.  Make note of the full path to that too -- you will need it shortly to instruct your IDE to use it as your CXX compiler.
+9. Navigate to `build/include`, make sure a `client_reflection_impl.hpp` file has been created.  Make note of the full path to it.  Also, in `build/bin`, there should be a `clang++` executable/shortcut.  Make note of the full path to that too -- you will need it shortly to instruct your IDE to use it as your CXX compiler.
 
-9. Open `clang-meta/examples/include/client_reflection_impl.hpp` file.  It is intended to be a helper shortcut to your root `client_reflection_impl.hpp`.  Right now it contains a relative path that is probably correct for now.  But it would be best to change that to the absolute path to your `/.../clang-meta/build/include/client_reflection_impl.hpp`, in case you want to move examples/include around later.
+10. Open `clang-meta/examples/include/client_reflection_impl.hpp` file.  It is intended to be a helper shortcut to your root `client_reflection_impl.hpp`.  Right now it contains a relative path that is probably correct for now.  But it would be best to change that to the absolute path to your `/.../clang-meta/build/include/client_reflection_impl.hpp`, in case you want to move examples/include around later.
 
-10. Open your IDE -- I highly recommend XCode for Mac users; its code completer works very well for our purposes, whereas e.g. CLion's does not.  You may need to try a few out.
+11. Open your IDE -- I highly recommend XCode for Mac users; its code completer works very well for our purposes, whereas e.g. CLion's does not.  You may need to try a few out.
 
-11. Import our "examples" folder into a new project, or set up a new one from scratch; all you need is to #include each of the example files (`0_reflection.hpp`, `1_metaparsing.hpp` etc.).
+12. Import our "examples" folder into a new project, or set up a new one from scratch; all you need is to #include each of the example files (`0_reflection.hpp`, `1_metaparsing.hpp` etc.).
 
-12. Change the compilers/other IDE settings for this project:
+13. Change the compilers/other IDE settings for this project:
 - In XCode: go to Build Settings for the project, then:
   - Search for "index", and set "Enable Index-While-Building Functionality" to No.
   - Search for "dialect", and set your C++ dialect to either C++17 or GNU++17
@@ -152,7 +153,7 @@ cmake --build . --target clang-wreflection
   - Click the "+" again and assign `CC` to e.g. `/.../clang-meta/build/bin/clang`.
 - In CMake-based IDEs like CLion, you must set `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` appropriately, and the language dialect.
 
-13. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.
+14. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.
 
 ### Updating:
 ```
