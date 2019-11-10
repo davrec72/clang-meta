@@ -1274,7 +1274,7 @@ public:
     value_type SingleElement;
 
   public:
-    iterator() = default;
+    //iterator() = default; //DWR COMMENTED OUT due to warnings
     explicit iterator(pointer Pos, value_type Single = nullptr)
         : IteratorBase(Pos), SingleElement(Single) {}
 
