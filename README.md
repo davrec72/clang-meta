@@ -1,5 +1,7 @@
 # clang-meta
 
+*[UPDATE 11/10: clang folder added, should work now, sorry for the boneheaded mistake :)]*
+
 A C++ compiler with added meta-programming features: 
 1) **static reflection** (of just about anything - templates, function definitions, other reflections, you name it), 
 2) **metaparsing** (turn string literals into parsed code),
