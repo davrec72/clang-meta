@@ -72,7 +72,8 @@ This work is based around llvm/clang 7.0.0.  More significantly, this
 work is adapted from Andrew Sutton's original reflection/metaclasses repository: 
 	https://github.com/asutton/clang.
 Many thanks to him for sharing his excellent work; without it these additional 
-contributions would not have been possible.
+contributions would not have been possible.  
+Please also check out his newer work (https://gitlab.com/lock3/clang) for an alternate implementation along these lines.
 
 
 ## Discussion
