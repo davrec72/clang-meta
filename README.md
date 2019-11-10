@@ -38,7 +38,8 @@ constexpr {  //aka DO_META
   // no annoying red flags will be raised for the new keywords we introduce,
   // but you'll still get red flags for the usual misspellings etc.
   FOR((Decl *) D : RD->decls()) {
-    D->dump();
+    if constexpr (auto_ FD = dyn_cast<FieldDecl>(D))
+    	FD->dump();
   }
 }
 ```
