@@ -4610,7 +4610,7 @@ void ReflGenASTConsumer::generate_client_reflheader_preamble(stream_t &fstream)
              "  /// the types we cast to, as our dummy cast implems above don't do any actual\n"
              "  /// casting; their goal here is to just helping the IDE navigate the types,\n"
              "  /// without resorting to casting nullptrs (which raises other errors).\n"
-             "# define reflexpr(...)  (&DfltNonnullObj<_RememberToManuallyCastReflexprForNow_>)\n"
+             "# define reflexpr(...)  (&cppx::meta::DfltNonnullObj<cppx::meta::_RememberToManuallyCastReflexprForNow_>)\n"
              "\n"
              "  /// Cast this to whatever makes sense in the context; e.g. `cast<CXXRecordDecl>(reflexpr(SomeClass))`.\n"
              "  /// Not necessary to compile, but definitely a good practice to help the IDE help you.\n"
