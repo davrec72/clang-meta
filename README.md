@@ -148,13 +148,13 @@ Because it is far more general.  You can reflect anything -- down to the individ
 
 The C++ standards will surely *eventually* incorporate such capabilities, years hence -- the demand for more reflection capability will be ever-present, and insatiable; they will just *have* to be met.  But it will take years for them to decide exactly how they want to name things etc.  (This is why I recommend below that we bite the bullet now and define the compiler AST architecture itself into the standard -- a lot of hassle/arguments now in exchange for a lot less maintenance in years hence.)
 
-Save yourself the stress of awaiting standardized reflection features by using this version of clang to write your metafunctions in the interim and doing the following:
+Save yourself the stress of awaiting standardized reflection features by using this version of clang to write your metafunctions in the interim and simply isolate away the eventual implementation details:
 1) Extract out into constexpr helper functions any reflection functions whose definition might 
    change from this implementation to the eventual standard.
 2) Only interface with those helper functions.
 3) When standards are agreed upon and every reflection you need supported, alter those helper functions accordingly.
 
-I hope others might take the lead in creating a library of such helper functions, to isolate away the eventual implementation details, so that we all might get on to writing our metafunctions without further worry.  This is a vast new frontier many are itching to explore.
+I hope others might take the lead in creating a library of such helper functions, so that we all might get on to writing our metafunctions.  This is a vast new frontier that many are itching to explore; no need to wait further for implementation details to be worked out.
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
 Metaprograms outside your main program used to generate the sources fed to your C++ compiler -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you.
