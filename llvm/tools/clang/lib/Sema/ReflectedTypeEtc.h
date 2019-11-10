@@ -594,7 +594,6 @@ static QualType GetNonDependentReflectedType(Sema &SemaRef, Expr *E)
 
 /// Evaluates the given expression and yields the computed type.
 LLVM_ATTRIBUTE_UNUSED static QualType BuildReflectedType(Sema &S, SourceLocation TypenameLoc, Expr *E) {
-  QualType T;
   if (E->isTypeDependent())
     return S.Context.getReflectedType(E, S.Context.DependentTy);
   else
