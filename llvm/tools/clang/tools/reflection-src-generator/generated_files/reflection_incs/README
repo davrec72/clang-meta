@@ -1,0 +1,7 @@
+Once these are generated, you must manually copy them into lib/Sema/reflection_incs, and recompile clang (this
+ second build should be pretty quick relative to the initial build, since no headers are modified).
+
+If it compiles and the reflection tests pass (TODO, tests do not exist yet), copy the reflection.hpp file to the location where clients using this newly compiled clang can #include it.  Delete any old reflection.hpp to avoid confusion.
+
+If you encounter an error during compilation, you should be able to get clang to compile again, minus reflection,
+by copying the contents of blank_reflection_incs to the lib/Sema/reflection_incs folder.

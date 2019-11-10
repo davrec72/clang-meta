@@ -1,0 +1,1046 @@
+case RK_llvm__APInt:
+  return refl::llvm__APInt::_total_num_mems_;
+case RK_llvm__APInt__ms:
+  return refl::llvm__APInt__ms::_total_num_mems_;
+case RK_llvm__APInt__mu:
+  return refl::llvm__APInt__mu::_total_num_mems_;
+case RK_llvm__APFloatBase:
+  return refl::llvm__APFloatBase::_total_num_mems_;
+case RK_llvm__APFloat:
+  return refl::llvm__APFloat::_total_num_mems_;
+case RK_llvm__APSInt:
+  return refl::llvm__APSInt::_total_num_mems_;
+case RK_clang__APValue:
+  return refl::clang__APValue::_total_num_mems_;
+case RK_clang__APValue__LValueBase:
+  return refl::clang__APValue__LValueBase::_total_num_mems_;
+case RK_clang__DiagnosticOptions:
+  return refl::clang__DiagnosticOptions::_total_num_mems_;
+case RK_clang__FileID:
+  return refl::clang__FileID::_total_num_mems_;
+case RK_clang__SourceLocation:
+  return refl::clang__SourceLocation::_total_num_mems_;
+case RK_clang__SourceRange:
+  return refl::clang__SourceRange::_total_num_mems_;
+case RK_clang__CharSourceRange:
+  return refl::clang__CharSourceRange::_total_num_mems_;
+case RK_clang__PresumedLoc:
+  return refl::clang__PresumedLoc::_total_num_mems_;
+case RK_clang__FullSourceLoc:
+  return refl::clang__FullSourceLoc::_total_num_mems_;
+case RK_llvm__DebugEpochBase:
+  return refl::llvm__DebugEpochBase::_total_num_mems_;
+case RK_clang__FixItHint:
+  return refl::clang__FixItHint::_total_num_mems_;
+case RK_clang__DiagnosticsEngine:
+  return refl::clang__DiagnosticsEngine::_total_num_mems_;
+case RK_clang__DiagnosticBuilder:
+  return refl::clang__DiagnosticBuilder::_total_num_mems_;
+case RK_clang__DiagnosticConsumer:
+  return refl::clang__DiagnosticConsumer::_total_num_mems_;
+case RK_clang__IdentifierInfo:
+  return refl::clang__IdentifierInfo::_total_num_mems_;
+case RK_clang__IdentifierInfoLookup:
+  return refl::clang__IdentifierInfoLookup::_total_num_mems_;
+case RK_clang__IdentifierTable:
+  return refl::clang__IdentifierTable::_total_num_mems_;
+case RK_clang__Selector:
+  return refl::clang__Selector::_total_num_mems_;
+case RK_clang__SelectorTable:
+  return refl::clang__SelectorTable::_total_num_mems_;
+case RK_clang__PartialDiagnostic:
+  return refl::clang__PartialDiagnostic::_total_num_mems_;
+case RK_clang__DeclarationName:
+  return refl::clang__DeclarationName::_total_num_mems_;
+case RK_clang__DeclarationNameLoc:
+  return refl::clang__DeclarationNameLoc::_total_num_mems_;
+case RK_clang__DeclarationNameInfo:
+  return refl::clang__DeclarationNameInfo::_total_num_mems_;
+case RK_llvm__raw_ostream:
+  return refl::llvm__raw_ostream::_total_num_mems_;
+case RK_llvm__VersionTuple:
+  return refl::llvm__VersionTuple::_total_num_mems_;
+case RK_clang__Decl:
+  return refl::clang__Decl::_total_num_mems_;
+case RK_clang__DeclContextLookupResult:
+  return refl::clang__DeclContextLookupResult::_total_num_mems_;
+case RK_clang__DeclContext:
+  return refl::clang__DeclContext::_total_num_mems_;
+case RK_clang__CharUnits:
+  return refl::clang__CharUnits::_total_num_mems_;
+case RK_clang__FileSystemOptions:
+  return refl::clang__FileSystemOptions::_total_num_mems_;
+case RK_llvm__Twine:
+  return refl::llvm__Twine::_total_num_mems_;
+case RK_llvm__sys__fs__UniqueID:
+  return refl::llvm__sys__fs__UniqueID::_total_num_mems_;
+case RK_llvm__MemoryBuffer:
+  return refl::llvm__MemoryBuffer::_total_num_mems_;
+case RK_llvm__MemoryBufferRef:
+  return refl::llvm__MemoryBufferRef::_total_num_mems_;
+case RK_clang__DirectoryEntry:
+  return refl::clang__DirectoryEntry::_total_num_mems_;
+case RK_clang__FileEntry:
+  return refl::clang__FileEntry::_total_num_mems_;
+case RK_clang__FileManager:
+  return refl::clang__FileManager::_total_num_mems_;
+case RK_clang__ASTFileSignature:
+  return refl::clang__ASTFileSignature::_total_num_mems_;
+case RK_clang__Module:
+  return refl::clang__Module::_total_num_mems_;
+case RK_clang__Module__Header:
+  return refl::clang__Module__Header::_total_num_mems_;
+case RK_clang__Module__DirectoryName:
+  return refl::clang__Module__DirectoryName::_total_num_mems_;
+case RK_clang__ExternalASTSource:
+  return refl::clang__ExternalASTSource::_total_num_mems_;
+case RK_clang__ExternalASTSource__MemoryBufferSizes:
+  return refl::clang__ExternalASTSource__MemoryBufferSizes::_total_num_mems_;
+case RK_llvm__FoldingSetBase:
+  return refl::llvm__FoldingSetBase::_total_num_mems_;
+case RK_llvm__FoldingSetBase__Node:
+  return refl::llvm__FoldingSetBase__Node::_total_num_mems_;
+case RK_llvm__FoldingSetNodeIDRef:
+  return refl::llvm__FoldingSetNodeIDRef::_total_num_mems_;
+case RK_llvm__FoldingSetNodeID:
+  return refl::llvm__FoldingSetNodeID::_total_num_mems_;
+case RK_clang__NestedNameSpecifier:
+  return refl::clang__NestedNameSpecifier::_total_num_mems_;
+case RK_clang__NestedNameSpecifierLoc:
+  return refl::clang__NestedNameSpecifierLoc::_total_num_mems_;
+case RK_clang__UncommonTemplateNameStorage:
+  return refl::clang__UncommonTemplateNameStorage::_total_num_mems_;
+case RK_clang__OverloadedTemplateStorage:
+  return refl::clang__OverloadedTemplateStorage::_total_num_mems_;
+case RK_clang__SubstTemplateTemplateParmPackStorage:
+  return refl::clang__SubstTemplateTemplateParmPackStorage::_total_num_mems_;
+case RK_clang__TemplateName:
+  return refl::clang__TemplateName::_total_num_mems_;
+case RK_clang__SubstTemplateTemplateParmStorage:
+  return refl::clang__SubstTemplateTemplateParmStorage::_total_num_mems_;
+case RK_clang__QualifiedTemplateName:
+  return refl::clang__QualifiedTemplateName::_total_num_mems_;
+case RK_clang__DependentTemplateName:
+  return refl::clang__DependentTemplateName::_total_num_mems_;
+case RK_clang__LinkageInfo:
+  return refl::clang__LinkageInfo::_total_num_mems_;
+case RK_clang__Qualifiers:
+  return refl::clang__Qualifiers::_total_num_mems_;
+case RK_clang__SplitQualType:
+  return refl::clang__SplitQualType::_total_num_mems_;
+case RK_clang__QualType:
+  return refl::clang__QualType::_total_num_mems_;
+case RK_clang__ExtQualsTypeCommonBase:
+  return refl::clang__ExtQualsTypeCommonBase::_total_num_mems_;
+case RK_clang__Type:
+  return refl::clang__Type::_total_num_mems_;
+case RK_clang__BuiltinType:
+  return refl::clang__BuiltinType::_total_num_mems_;
+case RK_clang__ComplexType:
+  return refl::clang__ComplexType::_total_num_mems_;
+case RK_clang__ParenType:
+  return refl::clang__ParenType::_total_num_mems_;
+case RK_clang__PointerType:
+  return refl::clang__PointerType::_total_num_mems_;
+case RK_clang__AdjustedType:
+  return refl::clang__AdjustedType::_total_num_mems_;
+case RK_clang__DecayedType:
+  return refl::clang__DecayedType::_total_num_mems_;
+case RK_clang__BlockPointerType:
+  return refl::clang__BlockPointerType::_total_num_mems_;
+case RK_clang__ReferenceType:
+  return refl::clang__ReferenceType::_total_num_mems_;
+case RK_clang__LValueReferenceType:
+  return refl::clang__LValueReferenceType::_total_num_mems_;
+case RK_clang__RValueReferenceType:
+  return refl::clang__RValueReferenceType::_total_num_mems_;
+case RK_clang__MemberPointerType:
+  return refl::clang__MemberPointerType::_total_num_mems_;
+case RK_clang__ArrayType:
+  return refl::clang__ArrayType::_total_num_mems_;
+case RK_clang__ConstantArrayType:
+  return refl::clang__ConstantArrayType::_total_num_mems_;
+case RK_clang__IncompleteArrayType:
+  return refl::clang__IncompleteArrayType::_total_num_mems_;
+case RK_clang__VariableArrayType:
+  return refl::clang__VariableArrayType::_total_num_mems_;
+case RK_clang__DependentSizedArrayType:
+  return refl::clang__DependentSizedArrayType::_total_num_mems_;
+case RK_clang__DependentAddressSpaceType:
+  return refl::clang__DependentAddressSpaceType::_total_num_mems_;
+case RK_clang__DependentSizedExtVectorType:
+  return refl::clang__DependentSizedExtVectorType::_total_num_mems_;
+case RK_clang__VectorType:
+  return refl::clang__VectorType::_total_num_mems_;
+case RK_clang__DependentVectorType:
+  return refl::clang__DependentVectorType::_total_num_mems_;
+case RK_clang__ExtVectorType:
+  return refl::clang__ExtVectorType::_total_num_mems_;
+case RK_clang__FunctionType:
+  return refl::clang__FunctionType::_total_num_mems_;
+case RK_clang__FunctionType__ExtInfo:
+  return refl::clang__FunctionType__ExtInfo::_total_num_mems_;
+case RK_clang__FunctionNoProtoType:
+  return refl::clang__FunctionNoProtoType::_total_num_mems_;
+case RK_clang__FunctionProtoType:
+  return refl::clang__FunctionProtoType::_total_num_mems_;
+case RK_clang__FunctionProtoType__ExtParameterInfo:
+  return refl::clang__FunctionProtoType__ExtParameterInfo::_total_num_mems_;
+case RK_clang__FunctionProtoType__ExceptionSpecInfo:
+  return refl::clang__FunctionProtoType__ExceptionSpecInfo::_total_num_mems_;
+case RK_clang__FunctionProtoType__ExtProtoInfo:
+  return refl::clang__FunctionProtoType__ExtProtoInfo::_total_num_mems_;
+case RK_clang__UnresolvedUsingType:
+  return refl::clang__UnresolvedUsingType::_total_num_mems_;
+case RK_clang__TypedefType:
+  return refl::clang__TypedefType::_total_num_mems_;
+case RK_clang__TypeOfExprType:
+  return refl::clang__TypeOfExprType::_total_num_mems_;
+case RK_clang__TypeOfType:
+  return refl::clang__TypeOfType::_total_num_mems_;
+case RK_clang__DecltypeType:
+  return refl::clang__DecltypeType::_total_num_mems_;
+case RK_clang__ReflectedType:
+  return refl::clang__ReflectedType::_total_num_mems_;
+case RK_clang__UnaryTransformType:
+  return refl::clang__UnaryTransformType::_total_num_mems_;
+case RK_clang__TagType:
+  return refl::clang__TagType::_total_num_mems_;
+case RK_clang__RecordType:
+  return refl::clang__RecordType::_total_num_mems_;
+case RK_clang__EnumType:
+  return refl::clang__EnumType::_total_num_mems_;
+case RK_clang__AttributedType:
+  return refl::clang__AttributedType::_total_num_mems_;
+case RK_clang__TemplateTypeParmType:
+  return refl::clang__TemplateTypeParmType::_total_num_mems_;
+case RK_clang__SubstTemplateTypeParmType:
+  return refl::clang__SubstTemplateTypeParmType::_total_num_mems_;
+case RK_clang__SubstTemplateTypeParmPackType:
+  return refl::clang__SubstTemplateTypeParmPackType::_total_num_mems_;
+case RK_clang__DeducedType:
+  return refl::clang__DeducedType::_total_num_mems_;
+case RK_clang__AutoType:
+  return refl::clang__AutoType::_total_num_mems_;
+case RK_clang__DeducedTemplateSpecializationType:
+  return refl::clang__DeducedTemplateSpecializationType::_total_num_mems_;
+case RK_clang__TemplateSpecializationType:
+  return refl::clang__TemplateSpecializationType::_total_num_mems_;
+case RK_clang__InjectedClassNameType:
+  return refl::clang__InjectedClassNameType::_total_num_mems_;
+case RK_clang__TypeWithKeyword:
+  return refl::clang__TypeWithKeyword::_total_num_mems_;
+case RK_clang__ElaboratedType:
+  return refl::clang__ElaboratedType::_total_num_mems_;
+case RK_clang__DependentNameType:
+  return refl::clang__DependentNameType::_total_num_mems_;
+case RK_clang__DependentTemplateSpecializationType:
+  return refl::clang__DependentTemplateSpecializationType::_total_num_mems_;
+case RK_clang__PackExpansionType:
+  return refl::clang__PackExpansionType::_total_num_mems_;
+case RK_clang__ObjCTypeParamType:
+  return refl::clang__ObjCTypeParamType::_total_num_mems_;
+case RK_clang__ObjCObjectType:
+  return refl::clang__ObjCObjectType::_total_num_mems_;
+case RK_clang__ObjCInterfaceType:
+  return refl::clang__ObjCInterfaceType::_total_num_mems_;
+case RK_clang__ObjCObjectPointerType:
+  return refl::clang__ObjCObjectPointerType::_total_num_mems_;
+case RK_clang__AtomicType:
+  return refl::clang__AtomicType::_total_num_mems_;
+case RK_clang__PipeType:
+  return refl::clang__PipeType::_total_num_mems_;
+case RK_clang__TypeSourceInfo:
+  return refl::clang__TypeSourceInfo::_total_num_mems_;
+case RK_clang__TranslationUnitDecl:
+  return refl::clang__TranslationUnitDecl::_total_num_mems_;
+case RK_clang__PragmaCommentDecl:
+  return refl::clang__PragmaCommentDecl::_total_num_mems_;
+case RK_clang__PragmaDetectMismatchDecl:
+  return refl::clang__PragmaDetectMismatchDecl::_total_num_mems_;
+case RK_clang__ExternCContextDecl:
+  return refl::clang__ExternCContextDecl::_total_num_mems_;
+case RK_clang__NamedDecl:
+  return refl::clang__NamedDecl::_total_num_mems_;
+case RK_clang__LabelDecl:
+  return refl::clang__LabelDecl::_total_num_mems_;
+case RK_clang__NamespaceDecl:
+  return refl::clang__NamespaceDecl::_total_num_mems_;
+case RK_clang__ValueDecl:
+  return refl::clang__ValueDecl::_total_num_mems_;
+case RK_clang__DeclaratorDecl:
+  return refl::clang__DeclaratorDecl::_total_num_mems_;
+case RK_clang__EvaluatedStmt:
+  return refl::clang__EvaluatedStmt::_total_num_mems_;
+case RK_clang__VarDecl:
+  return refl::clang__VarDecl::_total_num_mems_;
+case RK_clang__ImplicitParamDecl:
+  return refl::clang__ImplicitParamDecl::_total_num_mems_;
+case RK_clang__ParmVarDecl:
+  return refl::clang__ParmVarDecl::_total_num_mems_;
+case RK_clang__FunctionDecl:
+  return refl::clang__FunctionDecl::_total_num_mems_;
+case RK_clang__FieldDecl:
+  return refl::clang__FieldDecl::_total_num_mems_;
+case RK_clang__EnumConstantDecl:
+  return refl::clang__EnumConstantDecl::_total_num_mems_;
+case RK_clang__IndirectFieldDecl:
+  return refl::clang__IndirectFieldDecl::_total_num_mems_;
+case RK_clang__TypeDecl:
+  return refl::clang__TypeDecl::_total_num_mems_;
+case RK_clang__TypedefNameDecl:
+  return refl::clang__TypedefNameDecl::_total_num_mems_;
+case RK_clang__TypedefDecl:
+  return refl::clang__TypedefDecl::_total_num_mems_;
+case RK_clang__TypeAliasDecl:
+  return refl::clang__TypeAliasDecl::_total_num_mems_;
+case RK_clang__TagDecl:
+  return refl::clang__TagDecl::_total_num_mems_;
+case RK_clang__EnumDecl:
+  return refl::clang__EnumDecl::_total_num_mems_;
+case RK_clang__RecordDecl:
+  return refl::clang__RecordDecl::_total_num_mems_;
+case RK_clang__FileScopeAsmDecl:
+  return refl::clang__FileScopeAsmDecl::_total_num_mems_;
+case RK_clang__BlockDecl:
+  return refl::clang__BlockDecl::_total_num_mems_;
+case RK_clang__BlockDecl__Capture:
+  return refl::clang__BlockDecl__Capture::_total_num_mems_;
+case RK_clang__CapturedDecl:
+  return refl::clang__CapturedDecl::_total_num_mems_;
+case RK_clang__ImportDecl:
+  return refl::clang__ImportDecl::_total_num_mems_;
+case RK_clang__ExportDecl:
+  return refl::clang__ExportDecl::_total_num_mems_;
+case RK_clang__EmptyDecl:
+  return refl::clang__EmptyDecl::_total_num_mems_;
+case RK_clang__DeclGroup:
+  return refl::clang__DeclGroup::_total_num_mems_;
+case RK_clang__DeclGroupRef:
+  return refl::clang__DeclGroupRef::_total_num_mems_;
+case RK_clang__Stmt:
+  return refl::clang__Stmt::_total_num_mems_;
+case RK_clang__Stmt__EmptyShell:
+  return refl::clang__Stmt__EmptyShell::_total_num_mems_;
+case RK_clang__DeclStmt:
+  return refl::clang__DeclStmt::_total_num_mems_;
+case RK_clang__NullStmt:
+  return refl::clang__NullStmt::_total_num_mems_;
+case RK_clang__CompoundStmt:
+  return refl::clang__CompoundStmt::_total_num_mems_;
+case RK_clang__SwitchCase:
+  return refl::clang__SwitchCase::_total_num_mems_;
+case RK_clang__CaseStmt:
+  return refl::clang__CaseStmt::_total_num_mems_;
+case RK_clang__DefaultStmt:
+  return refl::clang__DefaultStmt::_total_num_mems_;
+case RK_clang__LabelStmt:
+  return refl::clang__LabelStmt::_total_num_mems_;
+case RK_clang__AttributedStmt:
+  return refl::clang__AttributedStmt::_total_num_mems_;
+case RK_clang__IfStmt:
+  return refl::clang__IfStmt::_total_num_mems_;
+case RK_clang__SwitchStmt:
+  return refl::clang__SwitchStmt::_total_num_mems_;
+case RK_clang__WhileStmt:
+  return refl::clang__WhileStmt::_total_num_mems_;
+case RK_clang__DoStmt:
+  return refl::clang__DoStmt::_total_num_mems_;
+case RK_clang__ForStmt:
+  return refl::clang__ForStmt::_total_num_mems_;
+case RK_clang__GotoStmt:
+  return refl::clang__GotoStmt::_total_num_mems_;
+case RK_clang__IndirectGotoStmt:
+  return refl::clang__IndirectGotoStmt::_total_num_mems_;
+case RK_clang__ContinueStmt:
+  return refl::clang__ContinueStmt::_total_num_mems_;
+case RK_clang__BreakStmt:
+  return refl::clang__BreakStmt::_total_num_mems_;
+case RK_clang__ReturnStmt:
+  return refl::clang__ReturnStmt::_total_num_mems_;
+case RK_clang__AsmStmt:
+  return refl::clang__AsmStmt::_total_num_mems_;
+case RK_clang__GCCAsmStmt:
+  return refl::clang__GCCAsmStmt::_total_num_mems_;
+case RK_clang__MSAsmStmt:
+  return refl::clang__MSAsmStmt::_total_num_mems_;
+case RK_clang__SEHExceptStmt:
+  return refl::clang__SEHExceptStmt::_total_num_mems_;
+case RK_clang__SEHFinallyStmt:
+  return refl::clang__SEHFinallyStmt::_total_num_mems_;
+case RK_clang__SEHTryStmt:
+  return refl::clang__SEHTryStmt::_total_num_mems_;
+case RK_clang__SEHLeaveStmt:
+  return refl::clang__SEHLeaveStmt::_total_num_mems_;
+case RK_clang__CapturedStmt:
+  return refl::clang__CapturedStmt::_total_num_mems_;
+case RK_clang__CapturedStmt__Capture:
+  return refl::clang__CapturedStmt__Capture::_total_num_mems_;
+case RK_clang__TemplateArgument:
+  return refl::clang__TemplateArgument::_total_num_mems_;
+case RK_clang__TemplateArgumentLocInfo:
+  return refl::clang__TemplateArgumentLocInfo::_total_num_mems_;
+case RK_clang__TemplateArgumentLoc:
+  return refl::clang__TemplateArgumentLoc::_total_num_mems_;
+case RK_clang__TemplateArgumentListInfo:
+  return refl::clang__TemplateArgumentListInfo::_total_num_mems_;
+case RK_clang__ASTTemplateArgumentListInfo:
+  return refl::clang__ASTTemplateArgumentListInfo::_total_num_mems_;
+case RK_clang__TypeLoc:
+  return refl::clang__TypeLoc::_total_num_mems_;
+case RK_clang__UnqualTypeLoc:
+  return refl::clang__UnqualTypeLoc::_total_num_mems_;
+case RK_clang__CommentOptions:
+  return refl::clang__CommentOptions::_total_num_mems_;
+case RK_clang__comments__CommandInfo:
+  return refl::clang__comments__CommandInfo::_total_num_mems_;
+case RK_clang__comments__CommandTraits:
+  return refl::clang__comments__CommandTraits::_total_num_mems_;
+case RK_llvm__Triple:
+  return refl::llvm__Triple::_total_num_mems_;
+case RK_clang__ObjCRuntime:
+  return refl::clang__ObjCRuntime::_total_num_mems_;
+case RK_clang__SanitizerSet:
+  return refl::clang__SanitizerSet::_total_num_mems_;
+case RK_clang__LangOptionsBase:
+  return refl::clang__LangOptionsBase::_total_num_mems_;
+case RK_clang__LangOptions:
+  return refl::clang__LangOptions::_total_num_mems_;
+case RK_clang__FPOptions:
+  return refl::clang__FPOptions::_total_num_mems_;
+case RK_clang__PrinterHelper:
+  return refl::clang__PrinterHelper::_total_num_mems_;
+case RK_clang__PrintingPolicy:
+  return refl::clang__PrintingPolicy::_total_num_mems_;
+case RK_clang__SrcMgr__ContentCache:
+  return refl::clang__SrcMgr__ContentCache::_total_num_mems_;
+case RK_clang__SrcMgr__FileInfo:
+  return refl::clang__SrcMgr__FileInfo::_total_num_mems_;
+case RK_clang__SrcMgr__ExpansionInfo:
+  return refl::clang__SrcMgr__ExpansionInfo::_total_num_mems_;
+case RK_clang__SrcMgr__SLocEntry:
+  return refl::clang__SrcMgr__SLocEntry::_total_num_mems_;
+case RK_clang__SourceManager:
+  return refl::clang__SourceManager::_total_num_mems_;
+case RK_clang__RawComment:
+  return refl::clang__RawComment::_total_num_mems_;
+case RK_clang__SanitizerBlacklist:
+  return refl::clang__SanitizerBlacklist::_total_num_mems_;
+case RK_clang__TargetCXXABI:
+  return refl::clang__TargetCXXABI::_total_num_mems_;
+case RK_clang__OpenCLOptions:
+  return refl::clang__OpenCLOptions::_total_num_mems_;
+case RK_clang__TargetOptions:
+  return refl::clang__TargetOptions::_total_num_mems_;
+case RK_llvm__Type:
+  return refl::llvm__Type::_total_num_mems_;
+case RK_llvm__IntegerType:
+  return refl::llvm__IntegerType::_total_num_mems_;
+case RK_llvm__CompositeType:
+  return refl::llvm__CompositeType::_total_num_mems_;
+case RK_llvm__StructType:
+  return refl::llvm__StructType::_total_num_mems_;
+case RK_llvm__PointerType:
+  return refl::llvm__PointerType::_total_num_mems_;
+case RK_llvm__DataLayout:
+  return refl::llvm__DataLayout::_total_num_mems_;
+case RK_llvm__StructLayout:
+  return refl::llvm__StructLayout::_total_num_mems_;
+case RK_clang__TargetInfo:
+  return refl::clang__TargetInfo::_total_num_mems_;
+case RK_clang__TargetInfo__ConstraintInfo:
+  return refl::clang__TargetInfo__ConstraintInfo::_total_num_mems_;
+case RK_clang__XRayFunctionFilter:
+  return refl::clang__XRayFunctionFilter::_total_num_mems_;
+case RK_clang__TypeInfo:
+  return refl::clang__TypeInfo::_total_num_mems_;
+case RK_clang__ASTContext:
+  return refl::clang__ASTContext::_total_num_mems_;
+case RK_clang__DeclAccessPair:
+  return refl::clang__DeclAccessPair::_total_num_mems_;
+case RK_clang__UnresolvedSetIterator:
+  return refl::clang__UnresolvedSetIterator::_total_num_mems_;
+case RK_clang__UnresolvedSetImpl:
+  return refl::clang__UnresolvedSetImpl::_total_num_mems_;
+case RK_clang__Expr:
+  return refl::clang__Expr::_total_num_mems_;
+case RK_clang__Expr__Classification:
+  return refl::clang__Expr__Classification::_total_num_mems_;
+case RK_clang__Expr__EvalStatus:
+  return refl::clang__Expr__EvalStatus::_total_num_mems_;
+case RK_clang__Expr__EvalResult:
+  return refl::clang__Expr__EvalResult::_total_num_mems_;
+case RK_clang__OpaqueValueExpr:
+  return refl::clang__OpaqueValueExpr::_total_num_mems_;
+case RK_clang__DeclRefExpr:
+  return refl::clang__DeclRefExpr::_total_num_mems_;
+case RK_clang__PredefinedExpr:
+  return refl::clang__PredefinedExpr::_total_num_mems_;
+case RK_clang__APIntStorage:
+  return refl::clang__APIntStorage::_total_num_mems_;
+case RK_clang__IntegerLiteral:
+  return refl::clang__IntegerLiteral::_total_num_mems_;
+case RK_clang__FixedPointLiteral:
+  return refl::clang__FixedPointLiteral::_total_num_mems_;
+case RK_clang__CharacterLiteral:
+  return refl::clang__CharacterLiteral::_total_num_mems_;
+case RK_clang__FloatingLiteral:
+  return refl::clang__FloatingLiteral::_total_num_mems_;
+case RK_clang__ImaginaryLiteral:
+  return refl::clang__ImaginaryLiteral::_total_num_mems_;
+case RK_clang__StringLiteral:
+  return refl::clang__StringLiteral::_total_num_mems_;
+case RK_clang__ParenExpr:
+  return refl::clang__ParenExpr::_total_num_mems_;
+case RK_clang__UnaryOperator:
+  return refl::clang__UnaryOperator::_total_num_mems_;
+case RK_clang__OffsetOfNode:
+  return refl::clang__OffsetOfNode::_total_num_mems_;
+case RK_clang__OffsetOfExpr:
+  return refl::clang__OffsetOfExpr::_total_num_mems_;
+case RK_clang__UnaryExprOrTypeTraitExpr:
+  return refl::clang__UnaryExprOrTypeTraitExpr::_total_num_mems_;
+case RK_clang__ArraySubscriptExpr:
+  return refl::clang__ArraySubscriptExpr::_total_num_mems_;
+case RK_clang__CallExpr:
+  return refl::clang__CallExpr::_total_num_mems_;
+case RK_clang__MemberExpr:
+  return refl::clang__MemberExpr::_total_num_mems_;
+case RK_clang__CompoundLiteralExpr:
+  return refl::clang__CompoundLiteralExpr::_total_num_mems_;
+case RK_clang__CastExpr:
+  return refl::clang__CastExpr::_total_num_mems_;
+case RK_clang__ImplicitCastExpr:
+  return refl::clang__ImplicitCastExpr::_total_num_mems_;
+case RK_clang__ExplicitCastExpr:
+  return refl::clang__ExplicitCastExpr::_total_num_mems_;
+case RK_clang__CStyleCastExpr:
+  return refl::clang__CStyleCastExpr::_total_num_mems_;
+case RK_clang__BinaryOperator:
+  return refl::clang__BinaryOperator::_total_num_mems_;
+case RK_clang__CompoundAssignOperator:
+  return refl::clang__CompoundAssignOperator::_total_num_mems_;
+case RK_clang__AbstractConditionalOperator:
+  return refl::clang__AbstractConditionalOperator::_total_num_mems_;
+case RK_clang__ConditionalOperator:
+  return refl::clang__ConditionalOperator::_total_num_mems_;
+case RK_clang__BinaryConditionalOperator:
+  return refl::clang__BinaryConditionalOperator::_total_num_mems_;
+case RK_clang__AddrLabelExpr:
+  return refl::clang__AddrLabelExpr::_total_num_mems_;
+case RK_clang__StmtExpr:
+  return refl::clang__StmtExpr::_total_num_mems_;
+case RK_clang__ShuffleVectorExpr:
+  return refl::clang__ShuffleVectorExpr::_total_num_mems_;
+case RK_clang__ConvertVectorExpr:
+  return refl::clang__ConvertVectorExpr::_total_num_mems_;
+case RK_clang__ChooseExpr:
+  return refl::clang__ChooseExpr::_total_num_mems_;
+case RK_clang__GNUNullExpr:
+  return refl::clang__GNUNullExpr::_total_num_mems_;
+case RK_clang__VAArgExpr:
+  return refl::clang__VAArgExpr::_total_num_mems_;
+case RK_clang__InitListExpr:
+  return refl::clang__InitListExpr::_total_num_mems_;
+case RK_clang__DesignatedInitExpr:
+  return refl::clang__DesignatedInitExpr::_total_num_mems_;
+case RK_clang__DesignatedInitExpr__Designator:
+  return refl::clang__DesignatedInitExpr__Designator::_total_num_mems_;
+case RK_clang__NoInitExpr:
+  return refl::clang__NoInitExpr::_total_num_mems_;
+case RK_clang__DesignatedInitUpdateExpr:
+  return refl::clang__DesignatedInitUpdateExpr::_total_num_mems_;
+case RK_clang__ArrayInitLoopExpr:
+  return refl::clang__ArrayInitLoopExpr::_total_num_mems_;
+case RK_clang__ArrayInitIndexExpr:
+  return refl::clang__ArrayInitIndexExpr::_total_num_mems_;
+case RK_clang__ImplicitValueInitExpr:
+  return refl::clang__ImplicitValueInitExpr::_total_num_mems_;
+case RK_clang__ParenListExpr:
+  return refl::clang__ParenListExpr::_total_num_mems_;
+case RK_clang__GenericSelectionExpr:
+  return refl::clang__GenericSelectionExpr::_total_num_mems_;
+case RK_clang__ExtVectorElementExpr:
+  return refl::clang__ExtVectorElementExpr::_total_num_mems_;
+case RK_clang__BlockExpr:
+  return refl::clang__BlockExpr::_total_num_mems_;
+case RK_clang__AsTypeExpr:
+  return refl::clang__AsTypeExpr::_total_num_mems_;
+case RK_clang__PseudoObjectExpr:
+  return refl::clang__PseudoObjectExpr::_total_num_mems_;
+case RK_clang__AtomicExpr:
+  return refl::clang__AtomicExpr::_total_num_mems_;
+case RK_clang__TypoExpr:
+  return refl::clang__TypoExpr::_total_num_mems_;
+case RK_clang__Attr:
+  return refl::clang__Attr::_total_num_mems_;
+case RK_clang__InheritableAttr:
+  return refl::clang__InheritableAttr::_total_num_mems_;
+case RK_clang__ExternalSourceSymbolAttr:
+  return refl::clang__ExternalSourceSymbolAttr::_total_num_mems_;
+case RK_clang__MSInheritanceAttr:
+  return refl::clang__MSInheritanceAttr::_total_num_mems_;
+case RK_clang__MSVtorDispAttr:
+  return refl::clang__MSVtorDispAttr::_total_num_mems_;
+case RK_clang__LambdaCapture:
+  return refl::clang__LambdaCapture::_total_num_mems_;
+case RK_clang__AccessSpecDecl:
+  return refl::clang__AccessSpecDecl::_total_num_mems_;
+case RK_clang__CXXBaseSpecifier:
+  return refl::clang__CXXBaseSpecifier::_total_num_mems_;
+case RK_clang__CXXRecordDecl:
+  return refl::clang__CXXRecordDecl::_total_num_mems_;
+case RK_clang__CXXDeductionGuideDecl:
+  return refl::clang__CXXDeductionGuideDecl::_total_num_mems_;
+case RK_clang__CXXMethodDecl:
+  return refl::clang__CXXMethodDecl::_total_num_mems_;
+case RK_clang__CXXCtorInitializer:
+  return refl::clang__CXXCtorInitializer::_total_num_mems_;
+case RK_clang__InheritedConstructor:
+  return refl::clang__InheritedConstructor::_total_num_mems_;
+case RK_clang__CXXConstructorDecl:
+  return refl::clang__CXXConstructorDecl::_total_num_mems_;
+case RK_clang__CXXDestructorDecl:
+  return refl::clang__CXXDestructorDecl::_total_num_mems_;
+case RK_clang__CXXConversionDecl:
+  return refl::clang__CXXConversionDecl::_total_num_mems_;
+case RK_clang__LinkageSpecDecl:
+  return refl::clang__LinkageSpecDecl::_total_num_mems_;
+case RK_clang__UsingDirectiveDecl:
+  return refl::clang__UsingDirectiveDecl::_total_num_mems_;
+case RK_clang__NamespaceAliasDecl:
+  return refl::clang__NamespaceAliasDecl::_total_num_mems_;
+case RK_clang__UsingShadowDecl:
+  return refl::clang__UsingShadowDecl::_total_num_mems_;
+case RK_clang__ConstructorUsingShadowDecl:
+  return refl::clang__ConstructorUsingShadowDecl::_total_num_mems_;
+case RK_clang__UsingDecl:
+  return refl::clang__UsingDecl::_total_num_mems_;
+case RK_clang__UsingPackDecl:
+  return refl::clang__UsingPackDecl::_total_num_mems_;
+case RK_clang__UnresolvedUsingValueDecl:
+  return refl::clang__UnresolvedUsingValueDecl::_total_num_mems_;
+case RK_clang__UnresolvedUsingTypenameDecl:
+  return refl::clang__UnresolvedUsingTypenameDecl::_total_num_mems_;
+case RK_clang__StaticAssertDecl:
+  return refl::clang__StaticAssertDecl::_total_num_mems_;
+case RK_clang__BindingDecl:
+  return refl::clang__BindingDecl::_total_num_mems_;
+case RK_clang__DecompositionDecl:
+  return refl::clang__DecompositionDecl::_total_num_mems_;
+case RK_clang__MSPropertyDecl:
+  return refl::clang__MSPropertyDecl::_total_num_mems_;
+case RK_clang__ConstexprDecl:
+  return refl::clang__ConstexprDecl::_total_num_mems_;
+case RK_clang__TemplateParameterList:
+  return refl::clang__TemplateParameterList::_total_num_mems_;
+case RK_clang__TemplateArgumentList:
+  return refl::clang__TemplateArgumentList::_total_num_mems_;
+case RK_clang__TemplateDecl:
+  return refl::clang__TemplateDecl::_total_num_mems_;
+case RK_clang__FunctionTemplateSpecializationInfo:
+  return refl::clang__FunctionTemplateSpecializationInfo::_total_num_mems_;
+case RK_clang__MemberSpecializationInfo:
+  return refl::clang__MemberSpecializationInfo::_total_num_mems_;
+case RK_clang__DependentFunctionTemplateSpecializationInfo:
+  return refl::clang__DependentFunctionTemplateSpecializationInfo::_total_num_mems_;
+case RK_clang__RedeclarableTemplateDecl:
+  return refl::clang__RedeclarableTemplateDecl::_total_num_mems_;
+case RK_clang__FunctionTemplateDecl:
+  return refl::clang__FunctionTemplateDecl::_total_num_mems_;
+case RK_clang__TemplateTypeParmDecl:
+  return refl::clang__TemplateTypeParmDecl::_total_num_mems_;
+case RK_clang__NonTypeTemplateParmDecl:
+  return refl::clang__NonTypeTemplateParmDecl::_total_num_mems_;
+case RK_clang__TemplateTemplateParmDecl:
+  return refl::clang__TemplateTemplateParmDecl::_total_num_mems_;
+case RK_clang__BuiltinTemplateDecl:
+  return refl::clang__BuiltinTemplateDecl::_total_num_mems_;
+case RK_clang__ClassTemplateSpecializationDecl:
+  return refl::clang__ClassTemplateSpecializationDecl::_total_num_mems_;
+case RK_clang__ClassTemplatePartialSpecializationDecl:
+  return refl::clang__ClassTemplatePartialSpecializationDecl::_total_num_mems_;
+case RK_clang__ClassTemplateDecl:
+  return refl::clang__ClassTemplateDecl::_total_num_mems_;
+case RK_clang__FriendTemplateDecl:
+  return refl::clang__FriendTemplateDecl::_total_num_mems_;
+case RK_clang__TypeAliasTemplateDecl:
+  return refl::clang__TypeAliasTemplateDecl::_total_num_mems_;
+case RK_clang__ClassScopeFunctionSpecializationDecl:
+  return refl::clang__ClassScopeFunctionSpecializationDecl::_total_num_mems_;
+case RK_clang__VarTemplateSpecializationDecl:
+  return refl::clang__VarTemplateSpecializationDecl::_total_num_mems_;
+case RK_clang__VarTemplatePartialSpecializationDecl:
+  return refl::clang__VarTemplatePartialSpecializationDecl::_total_num_mems_;
+case RK_clang__VarTemplateDecl:
+  return refl::clang__VarTemplateDecl::_total_num_mems_;
+case RK_clang__FriendDecl:
+  return refl::clang__FriendDecl::_total_num_mems_;
+case RK_clang__ObjCListBase:
+  return refl::clang__ObjCListBase::_total_num_mems_;
+case RK_clang__ObjCProtocolList:
+  return refl::clang__ObjCProtocolList::_total_num_mems_;
+case RK_clang__ObjCMethodDecl:
+  return refl::clang__ObjCMethodDecl::_total_num_mems_;
+case RK_clang__ObjCTypeParamDecl:
+  return refl::clang__ObjCTypeParamDecl::_total_num_mems_;
+case RK_clang__ObjCTypeParamList:
+  return refl::clang__ObjCTypeParamList::_total_num_mems_;
+case RK_clang__ObjCPropertyDecl:
+  return refl::clang__ObjCPropertyDecl::_total_num_mems_;
+case RK_clang__ObjCContainerDecl:
+  return refl::clang__ObjCContainerDecl::_total_num_mems_;
+case RK_clang__ObjCInterfaceDecl:
+  return refl::clang__ObjCInterfaceDecl::_total_num_mems_;
+case RK_clang__ObjCIvarDecl:
+  return refl::clang__ObjCIvarDecl::_total_num_mems_;
+case RK_clang__ObjCAtDefsFieldDecl:
+  return refl::clang__ObjCAtDefsFieldDecl::_total_num_mems_;
+case RK_clang__ObjCProtocolDecl:
+  return refl::clang__ObjCProtocolDecl::_total_num_mems_;
+case RK_clang__ObjCCategoryDecl:
+  return refl::clang__ObjCCategoryDecl::_total_num_mems_;
+case RK_clang__ObjCImplDecl:
+  return refl::clang__ObjCImplDecl::_total_num_mems_;
+case RK_clang__ObjCCategoryImplDecl:
+  return refl::clang__ObjCCategoryImplDecl::_total_num_mems_;
+case RK_clang__ObjCImplementationDecl:
+  return refl::clang__ObjCImplementationDecl::_total_num_mems_;
+case RK_clang__ObjCCompatibleAliasDecl:
+  return refl::clang__ObjCCompatibleAliasDecl::_total_num_mems_;
+case RK_clang__ObjCPropertyImplDecl:
+  return refl::clang__ObjCPropertyImplDecl::_total_num_mems_;
+case RK_clang__OMPThreadPrivateDecl:
+  return refl::clang__OMPThreadPrivateDecl::_total_num_mems_;
+case RK_clang__OMPDeclareReductionDecl:
+  return refl::clang__OMPDeclareReductionDecl::_total_num_mems_;
+case RK_clang__OMPCapturedExprDecl:
+  return refl::clang__OMPCapturedExprDecl::_total_num_mems_;
+case RK_clang__CXXOperatorCallExpr:
+  return refl::clang__CXXOperatorCallExpr::_total_num_mems_;
+case RK_clang__CXXMemberCallExpr:
+  return refl::clang__CXXMemberCallExpr::_total_num_mems_;
+case RK_clang__CUDAKernelCallExpr:
+  return refl::clang__CUDAKernelCallExpr::_total_num_mems_;
+case RK_clang__CXXNamedCastExpr:
+  return refl::clang__CXXNamedCastExpr::_total_num_mems_;
+case RK_clang__CXXStaticCastExpr:
+  return refl::clang__CXXStaticCastExpr::_total_num_mems_;
+case RK_clang__CXXDynamicCastExpr:
+  return refl::clang__CXXDynamicCastExpr::_total_num_mems_;
+case RK_clang__CXXReinterpretCastExpr:
+  return refl::clang__CXXReinterpretCastExpr::_total_num_mems_;
+case RK_clang__CXXConstCastExpr:
+  return refl::clang__CXXConstCastExpr::_total_num_mems_;
+case RK_clang__UserDefinedLiteral:
+  return refl::clang__UserDefinedLiteral::_total_num_mems_;
+case RK_clang__CXXBoolLiteralExpr:
+  return refl::clang__CXXBoolLiteralExpr::_total_num_mems_;
+case RK_clang__CXXNullPtrLiteralExpr:
+  return refl::clang__CXXNullPtrLiteralExpr::_total_num_mems_;
+case RK_clang__CXXStdInitializerListExpr:
+  return refl::clang__CXXStdInitializerListExpr::_total_num_mems_;
+case RK_clang__CXXTypeidExpr:
+  return refl::clang__CXXTypeidExpr::_total_num_mems_;
+case RK_clang__MSPropertyRefExpr:
+  return refl::clang__MSPropertyRefExpr::_total_num_mems_;
+case RK_clang__MSPropertySubscriptExpr:
+  return refl::clang__MSPropertySubscriptExpr::_total_num_mems_;
+case RK_clang__CXXUuidofExpr:
+  return refl::clang__CXXUuidofExpr::_total_num_mems_;
+case RK_clang__CXXThisExpr:
+  return refl::clang__CXXThisExpr::_total_num_mems_;
+case RK_clang__CXXThrowExpr:
+  return refl::clang__CXXThrowExpr::_total_num_mems_;
+case RK_clang__CXXDefaultArgExpr:
+  return refl::clang__CXXDefaultArgExpr::_total_num_mems_;
+case RK_clang__CXXDefaultInitExpr:
+  return refl::clang__CXXDefaultInitExpr::_total_num_mems_;
+case RK_clang__CXXTemporary:
+  return refl::clang__CXXTemporary::_total_num_mems_;
+case RK_clang__CXXBindTemporaryExpr:
+  return refl::clang__CXXBindTemporaryExpr::_total_num_mems_;
+case RK_clang__CXXConstructExpr:
+  return refl::clang__CXXConstructExpr::_total_num_mems_;
+case RK_clang__CXXInheritedCtorInitExpr:
+  return refl::clang__CXXInheritedCtorInitExpr::_total_num_mems_;
+case RK_clang__CXXFunctionalCastExpr:
+  return refl::clang__CXXFunctionalCastExpr::_total_num_mems_;
+case RK_clang__CXXTemporaryObjectExpr:
+  return refl::clang__CXXTemporaryObjectExpr::_total_num_mems_;
+case RK_clang__LambdaExpr:
+  return refl::clang__LambdaExpr::_total_num_mems_;
+case RK_clang__CXXScalarValueInitExpr:
+  return refl::clang__CXXScalarValueInitExpr::_total_num_mems_;
+case RK_clang__CXXNewExpr:
+  return refl::clang__CXXNewExpr::_total_num_mems_;
+case RK_clang__CXXDeleteExpr:
+  return refl::clang__CXXDeleteExpr::_total_num_mems_;
+case RK_clang__CXXPseudoDestructorExpr:
+  return refl::clang__CXXPseudoDestructorExpr::_total_num_mems_;
+case RK_clang__TypeTraitExpr:
+  return refl::clang__TypeTraitExpr::_total_num_mems_;
+case RK_clang__ArrayTypeTraitExpr:
+  return refl::clang__ArrayTypeTraitExpr::_total_num_mems_;
+case RK_clang__ExpressionTraitExpr:
+  return refl::clang__ExpressionTraitExpr::_total_num_mems_;
+case RK_clang__OverloadExpr:
+  return refl::clang__OverloadExpr::_total_num_mems_;
+case RK_clang__OverloadExpr__FindResult:
+  return refl::clang__OverloadExpr__FindResult::_total_num_mems_;
+case RK_clang__UnresolvedLookupExpr:
+  return refl::clang__UnresolvedLookupExpr::_total_num_mems_;
+case RK_clang__DependentScopeDeclRefExpr:
+  return refl::clang__DependentScopeDeclRefExpr::_total_num_mems_;
+case RK_clang__ExprWithCleanups:
+  return refl::clang__ExprWithCleanups::_total_num_mems_;
+case RK_clang__CXXUnresolvedConstructExpr:
+  return refl::clang__CXXUnresolvedConstructExpr::_total_num_mems_;
+case RK_clang__CXXDependentScopeMemberExpr:
+  return refl::clang__CXXDependentScopeMemberExpr::_total_num_mems_;
+case RK_clang__UnresolvedMemberExpr:
+  return refl::clang__UnresolvedMemberExpr::_total_num_mems_;
+case RK_clang__CXXNoexceptExpr:
+  return refl::clang__CXXNoexceptExpr::_total_num_mems_;
+case RK_clang__PackExpansionExpr:
+  return refl::clang__PackExpansionExpr::_total_num_mems_;
+case RK_clang__SizeOfPackExpr:
+  return refl::clang__SizeOfPackExpr::_total_num_mems_;
+case RK_clang__SubstNonTypeTemplateParmExpr:
+  return refl::clang__SubstNonTypeTemplateParmExpr::_total_num_mems_;
+case RK_clang__SubstNonTypeTemplateParmPackExpr:
+  return refl::clang__SubstNonTypeTemplateParmPackExpr::_total_num_mems_;
+case RK_clang__FunctionParmPackExpr:
+  return refl::clang__FunctionParmPackExpr::_total_num_mems_;
+case RK_clang__MaterializeTemporaryExpr:
+  return refl::clang__MaterializeTemporaryExpr::_total_num_mems_;
+case RK_clang__CXXFoldExpr:
+  return refl::clang__CXXFoldExpr::_total_num_mems_;
+case RK_clang__CoroutineSuspendExpr:
+  return refl::clang__CoroutineSuspendExpr::_total_num_mems_;
+case RK_clang__CoawaitExpr:
+  return refl::clang__CoawaitExpr::_total_num_mems_;
+case RK_clang__DependentCoawaitExpr:
+  return refl::clang__DependentCoawaitExpr::_total_num_mems_;
+case RK_clang__CoyieldExpr:
+  return refl::clang__CoyieldExpr::_total_num_mems_;
+case RK_clang__ReflectionExpr:
+  return refl::clang__ReflectionExpr::_total_num_mems_;
+case RK_clang__CompilerMessageExpr:
+  return refl::clang__CompilerMessageExpr::_total_num_mems_;
+case RK_clang__CompilerDiagnosticExpr:
+  return refl::clang__CompilerDiagnosticExpr::_total_num_mems_;
+case RK_clang__CXXMetaparseExpr:
+  return refl::clang__CXXMetaparseExpr::_total_num_mems_;
+case RK_clang__ReflectionTraitExpr:
+  return refl::clang__ReflectionTraitExpr::_total_num_mems_;
+case RK_clang__ReflectNewExpr:
+  return refl::clang__ReflectNewExpr::_total_num_mems_;
+case RK_clang__ReflectDeleteExpr:
+  return refl::clang__ReflectDeleteExpr::_total_num_mems_;
+case RK_clang__CXXConstantExpr:
+  return refl::clang__CXXConstantExpr::_total_num_mems_;
+case RK_clang__CXXDependentIdExpr:
+  return refl::clang__CXXDependentIdExpr::_total_num_mems_;
+case RK_clang__CXXConcatenateExpr:
+  return refl::clang__CXXConcatenateExpr::_total_num_mems_;
+case RK_clang__ObjCStringLiteral:
+  return refl::clang__ObjCStringLiteral::_total_num_mems_;
+case RK_clang__ObjCBoolLiteralExpr:
+  return refl::clang__ObjCBoolLiteralExpr::_total_num_mems_;
+case RK_clang__ObjCBoxedExpr:
+  return refl::clang__ObjCBoxedExpr::_total_num_mems_;
+case RK_clang__ObjCArrayLiteral:
+  return refl::clang__ObjCArrayLiteral::_total_num_mems_;
+case RK_clang__ObjCDictionaryElement:
+  return refl::clang__ObjCDictionaryElement::_total_num_mems_;
+case RK_clang__ObjCDictionaryLiteral:
+  return refl::clang__ObjCDictionaryLiteral::_total_num_mems_;
+case RK_clang__ObjCEncodeExpr:
+  return refl::clang__ObjCEncodeExpr::_total_num_mems_;
+case RK_clang__ObjCSelectorExpr:
+  return refl::clang__ObjCSelectorExpr::_total_num_mems_;
+case RK_clang__ObjCProtocolExpr:
+  return refl::clang__ObjCProtocolExpr::_total_num_mems_;
+case RK_clang__ObjCIvarRefExpr:
+  return refl::clang__ObjCIvarRefExpr::_total_num_mems_;
+case RK_clang__ObjCPropertyRefExpr:
+  return refl::clang__ObjCPropertyRefExpr::_total_num_mems_;
+case RK_clang__ObjCSubscriptRefExpr:
+  return refl::clang__ObjCSubscriptRefExpr::_total_num_mems_;
+case RK_clang__ObjCMessageExpr:
+  return refl::clang__ObjCMessageExpr::_total_num_mems_;
+case RK_clang__ObjCIsaExpr:
+  return refl::clang__ObjCIsaExpr::_total_num_mems_;
+case RK_clang__ObjCIndirectCopyRestoreExpr:
+  return refl::clang__ObjCIndirectCopyRestoreExpr::_total_num_mems_;
+case RK_clang__ObjCBridgedCastExpr:
+  return refl::clang__ObjCBridgedCastExpr::_total_num_mems_;
+case RK_clang__ObjCAvailabilityCheckExpr:
+  return refl::clang__ObjCAvailabilityCheckExpr::_total_num_mems_;
+case RK_clang__OMPArraySectionExpr:
+  return refl::clang__OMPArraySectionExpr::_total_num_mems_;
+case RK_clang__CXXCatchStmt:
+  return refl::clang__CXXCatchStmt::_total_num_mems_;
+case RK_clang__CXXTryStmt:
+  return refl::clang__CXXTryStmt::_total_num_mems_;
+case RK_clang__CXXForRangeStmt:
+  return refl::clang__CXXForRangeStmt::_total_num_mems_;
+case RK_clang__CXXExpansionStmt:
+  return refl::clang__CXXExpansionStmt::_total_num_mems_;
+case RK_clang__CXXTupleExpansionStmt:
+  return refl::clang__CXXTupleExpansionStmt::_total_num_mems_;
+case RK_clang__CXXPackExpansionStmt:
+  return refl::clang__CXXPackExpansionStmt::_total_num_mems_;
+case RK_clang__MSDependentExistsStmt:
+  return refl::clang__MSDependentExistsStmt::_total_num_mems_;
+case RK_clang__CoroutineBodyStmt:
+  return refl::clang__CoroutineBodyStmt::_total_num_mems_;
+case RK_clang__CoroutineBodyStmt__CtorArgs:
+  return refl::clang__CoroutineBodyStmt__CtorArgs::_total_num_mems_;
+case RK_clang__CoreturnStmt:
+  return refl::clang__CoreturnStmt::_total_num_mems_;
+case RK_clang__CXXQueueMetaparseStmt:
+  return refl::clang__CXXQueueMetaparseStmt::_total_num_mems_;
+case RK_clang__ObjCForCollectionStmt:
+  return refl::clang__ObjCForCollectionStmt::_total_num_mems_;
+case RK_clang__ObjCAtCatchStmt:
+  return refl::clang__ObjCAtCatchStmt::_total_num_mems_;
+case RK_clang__ObjCAtFinallyStmt:
+  return refl::clang__ObjCAtFinallyStmt::_total_num_mems_;
+case RK_clang__ObjCAtTryStmt:
+  return refl::clang__ObjCAtTryStmt::_total_num_mems_;
+case RK_clang__ObjCAtSynchronizedStmt:
+  return refl::clang__ObjCAtSynchronizedStmt::_total_num_mems_;
+case RK_clang__ObjCAtThrowStmt:
+  return refl::clang__ObjCAtThrowStmt::_total_num_mems_;
+case RK_clang__ObjCAutoreleasePoolStmt:
+  return refl::clang__ObjCAutoreleasePoolStmt::_total_num_mems_;
+case RK_clang__OMPClause:
+  return refl::clang__OMPClause::_total_num_mems_;
+case RK_clang__OMPExecutableDirective:
+  return refl::clang__OMPExecutableDirective::_total_num_mems_;
+case RK_clang__OMPParallelDirective:
+  return refl::clang__OMPParallelDirective::_total_num_mems_;
+case RK_clang__OMPLoopDirective:
+  return refl::clang__OMPLoopDirective::_total_num_mems_;
+case RK_clang__OMPSimdDirective:
+  return refl::clang__OMPSimdDirective::_total_num_mems_;
+case RK_clang__OMPForDirective:
+  return refl::clang__OMPForDirective::_total_num_mems_;
+case RK_clang__OMPForSimdDirective:
+  return refl::clang__OMPForSimdDirective::_total_num_mems_;
+case RK_clang__OMPSectionsDirective:
+  return refl::clang__OMPSectionsDirective::_total_num_mems_;
+case RK_clang__OMPSectionDirective:
+  return refl::clang__OMPSectionDirective::_total_num_mems_;
+case RK_clang__OMPSingleDirective:
+  return refl::clang__OMPSingleDirective::_total_num_mems_;
+case RK_clang__OMPMasterDirective:
+  return refl::clang__OMPMasterDirective::_total_num_mems_;
+case RK_clang__OMPCriticalDirective:
+  return refl::clang__OMPCriticalDirective::_total_num_mems_;
+case RK_clang__OMPParallelForDirective:
+  return refl::clang__OMPParallelForDirective::_total_num_mems_;
+case RK_clang__OMPParallelForSimdDirective:
+  return refl::clang__OMPParallelForSimdDirective::_total_num_mems_;
+case RK_clang__OMPParallelSectionsDirective:
+  return refl::clang__OMPParallelSectionsDirective::_total_num_mems_;
+case RK_clang__OMPTaskDirective:
+  return refl::clang__OMPTaskDirective::_total_num_mems_;
+case RK_clang__OMPTaskyieldDirective:
+  return refl::clang__OMPTaskyieldDirective::_total_num_mems_;
+case RK_clang__OMPBarrierDirective:
+  return refl::clang__OMPBarrierDirective::_total_num_mems_;
+case RK_clang__OMPTaskwaitDirective:
+  return refl::clang__OMPTaskwaitDirective::_total_num_mems_;
+case RK_clang__OMPTaskgroupDirective:
+  return refl::clang__OMPTaskgroupDirective::_total_num_mems_;
+case RK_clang__OMPFlushDirective:
+  return refl::clang__OMPFlushDirective::_total_num_mems_;
+case RK_clang__OMPOrderedDirective:
+  return refl::clang__OMPOrderedDirective::_total_num_mems_;
+case RK_clang__OMPAtomicDirective:
+  return refl::clang__OMPAtomicDirective::_total_num_mems_;
+case RK_clang__OMPTargetDirective:
+  return refl::clang__OMPTargetDirective::_total_num_mems_;
+case RK_clang__OMPTargetDataDirective:
+  return refl::clang__OMPTargetDataDirective::_total_num_mems_;
+case RK_clang__OMPTargetEnterDataDirective:
+  return refl::clang__OMPTargetEnterDataDirective::_total_num_mems_;
+case RK_clang__OMPTargetExitDataDirective:
+  return refl::clang__OMPTargetExitDataDirective::_total_num_mems_;
+case RK_clang__OMPTargetParallelDirective:
+  return refl::clang__OMPTargetParallelDirective::_total_num_mems_;
+case RK_clang__OMPTargetParallelForDirective:
+  return refl::clang__OMPTargetParallelForDirective::_total_num_mems_;
+case RK_clang__OMPTeamsDirective:
+  return refl::clang__OMPTeamsDirective::_total_num_mems_;
+case RK_clang__OMPCancellationPointDirective:
+  return refl::clang__OMPCancellationPointDirective::_total_num_mems_;
+case RK_clang__OMPCancelDirective:
+  return refl::clang__OMPCancelDirective::_total_num_mems_;
+case RK_clang__OMPTaskLoopDirective:
+  return refl::clang__OMPTaskLoopDirective::_total_num_mems_;
+case RK_clang__OMPTaskLoopSimdDirective:
+  return refl::clang__OMPTaskLoopSimdDirective::_total_num_mems_;
+case RK_clang__OMPDistributeDirective:
+  return refl::clang__OMPDistributeDirective::_total_num_mems_;
+case RK_clang__OMPTargetUpdateDirective:
+  return refl::clang__OMPTargetUpdateDirective::_total_num_mems_;
+case RK_clang__OMPDistributeParallelForDirective:
+  return refl::clang__OMPDistributeParallelForDirective::_total_num_mems_;
+case RK_clang__OMPDistributeParallelForSimdDirective:
+  return refl::clang__OMPDistributeParallelForSimdDirective::_total_num_mems_;
+case RK_clang__OMPDistributeSimdDirective:
+  return refl::clang__OMPDistributeSimdDirective::_total_num_mems_;
+case RK_clang__OMPTargetParallelForSimdDirective:
+  return refl::clang__OMPTargetParallelForSimdDirective::_total_num_mems_;
+case RK_clang__OMPTargetSimdDirective:
+  return refl::clang__OMPTargetSimdDirective::_total_num_mems_;
+case RK_clang__OMPTeamsDistributeDirective:
+  return refl::clang__OMPTeamsDistributeDirective::_total_num_mems_;
+case RK_clang__OMPTeamsDistributeSimdDirective:
+  return refl::clang__OMPTeamsDistributeSimdDirective::_total_num_mems_;
+case RK_clang__OMPTeamsDistributeParallelForSimdDirective:
+  return refl::clang__OMPTeamsDistributeParallelForSimdDirective::_total_num_mems_;
+case RK_clang__OMPTeamsDistributeParallelForDirective:
+  return refl::clang__OMPTeamsDistributeParallelForDirective::_total_num_mems_;
+case RK_clang__OMPTargetTeamsDirective:
+  return refl::clang__OMPTargetTeamsDirective::_total_num_mems_;
+case RK_clang__OMPTargetTeamsDistributeDirective:
+  return refl::clang__OMPTargetTeamsDistributeDirective::_total_num_mems_;
+case RK_clang__OMPTargetTeamsDistributeParallelForDirective:
+  return refl::clang__OMPTargetTeamsDistributeParallelForDirective::_total_num_mems_;
+case RK_clang__OMPTargetTeamsDistributeParallelForSimdDirective:
+  return refl::clang__OMPTargetTeamsDistributeParallelForSimdDirective::_total_num_mems_;
+case RK_clang__OMPTargetTeamsDistributeSimdDirective:
+  return refl::clang__OMPTargetTeamsDistributeSimdDirective::_total_num_mems_;
+case RK_clang__StoredDeclsMap:
+  return refl::clang__StoredDeclsMap::_total_num_mems_;
+case RK_clang__DependentDiagnostic:
+  return refl::clang__DependentDiagnostic::_total_num_mems_;
+case RK_reflcontainers__VectorStr:
+  return refl::reflcontainers__VectorStr::_total_num_mems_;
+case RK_reflcontainers__VectorInt:
+  return refl::reflcontainers__VectorInt::_total_num_mems_;
+case RK_reflcontainers__SetInt:
+  return refl::reflcontainers__SetInt::_total_num_mems_;
+case RK_reflcontainers__SetStr:
+  return refl::reflcontainers__SetStr::_total_num_mems_;
+case RK_reflcontainers__IntIntPair:
+  return refl::reflcontainers__IntIntPair::_total_num_mems_;
+case RK_reflcontainers__IntStrPair:
+  return refl::reflcontainers__IntStrPair::_total_num_mems_;
+case RK_reflcontainers__StrIntPair:
+  return refl::reflcontainers__StrIntPair::_total_num_mems_;
+case RK_reflcontainers__StrStrPair:
+  return refl::reflcontainers__StrStrPair::_total_num_mems_;
+case RK_reflcontainers__MapIntStr:
+  return refl::reflcontainers__MapIntStr::_total_num_mems_;
+case RK_reflcontainers__MapStrInt:
+  return refl::reflcontainers__MapStrInt::_total_num_mems_;
+case RK_reflcontainers__MapStrStr:
+  return refl::reflcontainers__MapStrStr::_total_num_mems_;
+case RK_reflcontainers__MapIntInt:
+  return refl::reflcontainers__MapIntInt::_total_num_mems_;

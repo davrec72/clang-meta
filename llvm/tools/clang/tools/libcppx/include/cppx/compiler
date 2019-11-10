@@ -1,0 +1,92 @@
+// -*- C++ -*-
+
+#ifndef CPPX_COMPILER
+#define CPPX_COMPILER
+
+#include "reflection_base.h"
+#include "reflected_tuple.hpp"
+
+namespace cppx
+{
+namespace meta
+{
+inline namespace v2
+{
+
+static constexpr const char * to_string(const char *msg = "") {
+  return msg;
+}
+
+static constexpr const char * to_string(unsigned u) {
+  unsigned mod10 = u % 10;
+  const char *prevs = ( u==mod10 ? 0 : to_string((unsigned)(u/10)) );
+  switch (mod10) {
+#define RETURN_NUMCAT(num) case num: return prevs ? __concatenate(prevs, #num) : #num
+    RETURN_NUMCAT(0);
+    RETURN_NUMCAT(1);
+    RETURN_NUMCAT(2);
+    RETURN_NUMCAT(3);
+    RETURN_NUMCAT(4);
+    RETURN_NUMCAT(5);
+    RETURN_NUMCAT(6);
+    RETURN_NUMCAT(7);
+    RETURN_NUMCAT(8);
+    RETURN_NUMCAT(9);
+#undef RETURN_NUMCAT
+    default:
+      throw "Error";
+  }
+}
+
+
+
+template<typename T1, typename T2, typename... Ts>
+static constexpr const char * to_string(T1 t1, T2 t2, Ts... trest) {
+  return __concatenate(to_string(t1), to_string(t2, trest...));
+}
+
+struct compiler_type
+{
+  template<typename... Ts>
+  static constexpr void error(Ts... msg) {
+    __compiler_error(to_string(msg...));
+  }
+  template<typename... Ts>
+  static constexpr void warning(Ts... msg) {
+    __compiler_warning(to_string(msg...));
+  }
+  template<typename... Ts>
+  static constexpr void require(bool cond, Ts... msg) {
+    if (!cond)
+      error(msg...);
+  }
+  template<typename... Ts>
+  static constexpr void prefer(bool cond, Ts... msg) {
+    if (!cond)
+      warning(msg...);
+  }
+
+  template<reflection_t X, template<reflection_t> class TMPL>
+  static constexpr void debug(const TMPL<X> &refl) {
+    return __reflect_print(X);
+  }
+  template<typename... Ts>
+  static constexpr void debug(Ts... msg) {
+    return __compiler_debug(to_string(msg...));
+  }
+
+};
+
+
+constexpr compiler_type compiler;
+
+} // inline namespace v1
+} // namespace meta
+} // namespace cppx
+
+/// Make it easier for people to use the online compiler.
+///
+/// TODO: Remove this.
+using namespace cppx::meta;
+
+#endif // CPPX_COMPILER

@@ -1,0 +1,1907 @@
+// -*- C++ -*-
+
+#ifndef CPPX_META
+#define CPPX_META
+
+#include <cppx/static_string.h> //DWR ADDN
+
+#include <cppx/reflection_base.h>
+#include <cppx/traits.hpp>
+#include <cppx/kw2chars.h>
+//#include <cppx/reflected_tuple.hpp>
+#include <cppx/tuple.hpp>
+
+
+namespace sstr = ak_toolkit::static_str; //FIXME?
+
+namespace cppx
+{
+namespace meta
+{
+inline namespace v1
+{
+
+template<typename T> struct is_observable_trait;
+//
+//template<typename T> struct is_variable_trait;
+//template<typename T> struct is_function_trait;
+//template<typename T> struct is_member_variable_trait;
+//template<typename T> struct is_member_function_trait;
+//template<typename T> struct is_constructor_trait;
+//template<typename T> struct is_destructor_trait;
+//template<typename T> struct is_variable_or_field_trait;
+//template<typename T> struct is_function_or_method_trait;
+//template<typename T> struct is_class_trait; //DWR ADDN: for getting member classes
+
+namespace detail {
+  // The base class of all declarations.
+  template<reflection_t X, reflection_kind K>
+  struct decl : reflection_base<X, K> {
+  protected:
+    static constexpr decl_traits traits() {
+      return decl_traits(__reflect_traits(X));
+    }
+  };
+} //detail
+
+
+
+template<reflection_t X1, reflection_kind K1, reflection_t X2, reflection_kind K2>
+constexpr bool operator==(detail::decl<X1, K1>, detail::decl<X2, K2>) {
+  return X1 == X2;
+}
+
+template<reflection_t X1, reflection_kind K1, reflection_t X2, reflection_kind K2>
+constexpr bool operator!=(detail::decl<X1, K1>, detail::decl<X2, K2>) {
+  return X1 != X2;
+}
+
+
+template<typename T>
+constexpr void generate_access_spec(const T& t) {
+  __expand kw2chars::access_(t.access());
+  __expand ":";
+}
+
+// A reflection of an access specifier within a class definition.
+template<reflection_t X>
+struct access_spec : detail::decl<X, access_decl_kind> {
+  static constexpr access_kind access() {
+    return detail::decl<X, access_decl_kind>::traits().access;
+  }
+  constexpr void generate() const {
+    generate_access_spec(*this);
+  }
+};
+
+namespace user {
+
+class access_spec {
+  access_kind _access;
+public:
+  constexpr access_kind access() const {
+    return _access;
+  }
+  constexpr void generate() const {
+    generate_access_spec(*this);
+  }
+  constexpr access_spec(access_kind access)
+    : _access(access)
+  {}
+};
+
+}; //user
+
+
+namespace detail {
+  // A helper class for entities for which you can access the fully-qualified name,
+  // though not necessarily the unqualified name.
+  template<reflection_t X, reflection_kind K>
+  struct qualnamed : decl<X, K> {
+    static constexpr auto&& qualified_name() {
+      return std::move(__reflect_qualified_name(X));
+    }
+    static constexpr auto parent() { //DWR renamed to parent()
+      return __reflect_declaration_context(X);
+    }
+    //DWR COMMENTED OUT: I don't think this will ever be useful;
+    // it will always either be the same as the declaration context
+    // or it will be the translation unit (in the case of out-of-line
+    // definitions); either way what good is it?
+//    static constexpr auto lexical_context() {
+//      return __reflect_lexical_context(X);
+//    }
+    //DWR COMMENTED OUT: I don't think this will be used
+//  static constexpr bool has_default_access() {
+//    return __reflect_has_default_access(X);
+//  }
+  };
+
+  //DWR ADDN/EXTRACTION/MOD:
+  /// A helper class for enities for which you need access to the unqualified name (i.e. namespaces,
+  /// user-defined-types, and typed decls (where the name refers to the decl name not the type name)
+  /// -- but NOT pointer/reference/other non-decayed types)
+  template<reflection_t X>
+  struct has_unquald_name {
+    static constexpr auto&& name() {
+      return std::move(__reflect_unqualified_name(X));
+    }
+    static constexpr auto namesize() {
+      return sstr::cestrlen(std::move(name()));
+    }
+  };
+  //END
+} //detail
+
+
+
+
+
+template<typename T>
+constexpr void generate_decl_tuple(const T& t) {
+  for... (auto m : t) {
+    m.generate();
+  }
+  //DWR TODO verify for... works for std::tuples too (if not, you could specialize for std::tuples)
+}
+
+namespace detail {
+  template<reflection_t X>
+  struct has_members {
+
+    //DWR FIXME
+
+//  private:
+//    struct member_info {
+//      static constexpr std::size_t size() {
+//        return __reflect_num_members(X);
+//      }
+//      template<std::size_t I>
+//      static constexpr auto get() {
+//        return __reflect_member(X, I);
+//      }
+//    };
+//  public:
+//    static constexpr auto members() {
+//      return reflected_tuple<member_info>();
+//    }
+
+//TEMP
+    struct member_info {
+      static constexpr std::size_t size() {
+        return __reflect_num_members(X);
+      }
+      template<std::size_t I>
+      static constexpr auto get() {
+        return __reflect_member(X, I);
+      }
+    };
+
+    using member_tuple = filtered_tuple<member_info, is_observable_trait>;
+
+    static constexpr member_tuple members() {
+      return {};
+    }
+
+    static constexpr std::size_t size() {
+      return member_tuple::size();
+    }
+    static constexpr bool empty() {
+      return member_tuple::empty();
+    }
+    //END TEMP
+
+  };
+} //detail
+
+//DWR TEMP/ DWR FIXME
+
+// Returns the Ith element in the filtered tuple.
+template<std::size_t I, reflection_t X>
+constexpr auto
+get(detail::has_members<X> const& t) {
+  return get<I>(t.members());
+}
+
+// Returns the Ith element in the filtered tuple as a constant expression.
+template<std::size_t I, reflection_t X>
+constexpr auto
+cget(detail::has_members<X> const& t) {
+  return get<I>(t.members());
+}
+//END DWR TEMP
+
+// Reflects the current translation unit.
+template<reflection_t X>
+struct tu : detail::decl<X, translation_unit_kind>, detail::has_members<X> {
+
+  //No generate function here, tu should never e.g. be in a member tuple;
+  // thus we want to generate ots members (e.g. inside a new namespace),
+  // call generate_decl_tuple(x.members())
+};
+
+
+
+template<typename T>
+constexpr void generate_scope(const T& t, bool commaseps) {
+  __expand "{";
+  if (commaseps)
+    generate_list_tuple(t.members());
+  else
+    generate_decl_tuple(t.members());
+  __expand "}";
+}
+
+namespace detail {
+  template<reflection_t X>
+  struct scope : has_members<X> {
+    constexpr void generate(bool commaseps = false) {
+      generate_scope(*this, commaseps);
+    }
+  };
+//DWR ADDN:
+  template<reflection_t X>
+  struct namedscope : scope<X>, has_unquald_name<X>
+  {}; //NB we leave out qualdname<X> from the bases because
+      // we will need to inherit that via "type" separately below
+//END
+} //detail
+
+
+namespace user {
+  namespace detail {
+    class named_nokind { //base_spec has no K, but uses _name, so this is a useful helper base
+      const char *_name;
+      std::size_t _namesize;
+    public:
+      //NB: we are storing name as a const char *, rather than a const char [N],
+      // so we cannot concatenate to it, even via sstr::literal.
+      // This is different from the reflected 'named' class above,
+      // which returns a const char [N].
+      constexpr auto name() const {
+        return _name;
+      }
+      constexpr auto namesize() const {
+        return _namesize;
+      }
+      constexpr named_nokind(const char *name, std::size_t N)
+              : _name(name), _namesize(N) {
+        assert(name[N-1]==0 && "not null-terminated!");
+      }
+    };
+    class named : public named_nokind {
+      reflection_kind _K;
+    public:
+      constexpr reflection_kind kind() const {
+        return _K;
+      }
+      constexpr named(const char *name, std::size_t N, reflection_kind K)
+              : named_nokind(name, N)
+              , _K(K)
+      {}
+    };
+
+    template<typename MEMTUP>
+    class scope {
+      MEMTUP _memtup;
+    public:
+      constexpr MEMTUP& members() {
+        return _memtup;
+      }
+      constexpr scope(MEMTUP&& memtup)
+              : _memtup(std::move(memtup))
+      {}
+      constexpr void generate(bool commaseps = false) const {
+        generate_scope(*this, commaseps);
+      }
+    };
+
+    template<typename MEMTUP>
+    struct namedscope : named, scope<MEMTUP> {
+      constexpr namedscope(const char *name, std::size_t N, reflection_kind K, MEMTUP&& memtup)
+        : named(name, N, K)
+        , scope<MEMTUP>(std::move(memtup))
+      {}
+    };
+  } //namespace detail
+} //namespace user
+
+
+
+//DWR ADDN:
+template<typename T>
+constexpr void generate_ns(const T& t) {
+  if (t.is_inline)
+    __expand "inline";
+  __expand "namespace";
+  __expand t.name();
+  t.scope().generate();
+}
+//END
+
+
+// Reflects a namespace.
+template<reflection_t X>
+class ns : public detail::qualnamed<X, namespace_decl_kind>, public detail::namedscope<X> {
+  static constexpr namespace_traits traits() {
+    return namespace_traits(__reflect_traits(X));
+  }
+public:
+  static constexpr bool is_inline() {
+    return traits().is_inline;
+  }
+  constexpr void generate() const {
+    generate_ns(*this);
+  }
+};
+
+namespace user {
+
+  template<typename MEMTUP>
+  class ns : public detail::namedscope<MEMTUP> {
+    bool _is_inline;
+  public:
+    constexpr bool is_inline() const {
+      return _is_inline;
+    }
+    constexpr void generate() const {
+      generate_ns(*this);
+    }
+    template<std::size_t N>
+    constexpr ns(const char (&name)[N], MEMTUP&& memtup, bool is_inline = false)
+      : detail::namedscope<MEMTUP>(name, N, namespace_decl_kind, std::move(memtup))
+      , _is_inline(is_inline)
+    {}
+  };
+
+} //namespace user
+
+// Base class of the type hierarchy.
+//
+// FIXME: This is woefully incomplete.
+template<reflection_t X, reflection_kind K>
+struct type : detail::qualnamed<X, K> {
+};
+
+//DWR ADDN:
+//DWR FIXME
+// Reflects a typedef (only used for member aliases right now -- when reflecting an alias not via get<...>,
+// the underlying type is reflected.  Might change though.
+template<reflection_t X>
+struct type_alias
+    : detail::qualnamed<X, type_alias_kind>
+    , has_unquald_name<X>
+{
+  //DWR ADDN:
+  static constexpr auto rhs_type_name() {
+    return __reflect_return_name(X);
+  }
+  static constexpr bool is_template() {
+    return false;
+  }
+};
+template<reflection_t X>
+struct type_alias_template : type_alias<X> {
+  static constexpr bool is_template() {
+    return true;
+  }
+  static constexpr auto template_parameters() {
+    return __reflect_template_parameters(X);
+  }
+};
+
+//END
+
+template<reflection_t X1, reflection_kind K1, reflection_t X2, reflection_kind K2>
+constexpr bool operator==(type<X1, K1>, type<X2, K2>) {
+  return X1 == X2;
+}
+
+template<reflection_t X1, reflection_kind K1, reflection_t X2, reflection_kind K2>
+constexpr bool operator!=(type<X1, K1>, type<X2, K2>) {
+  return X1 != X2;
+}
+
+
+template<reflection_t X>
+struct fundamental_type : type<X, fundamental_type_kind> {
+};
+
+template<reflection_t X>
+struct pointer_type : type<X, pointer_type_kind> {
+};
+
+template<reflection_t X>
+struct reference_type : type<X, reference_type_kind> {
+};
+
+//TODO need  RValue too... frankly would be better to be able to reflect a qualtype that has all this info: the utype,
+// and all the qualifiers.
+// Then, I think an alias should still be treated as a decl.  You should probably reintroduce the alias stuff; it was
+// just the memcls filtered tuple that was problematic.
+
+template<reflection_t X>
+struct array_type : type<X, array_type_kind> {
+};
+
+//NB: function_type is distinct from function
+template<reflection_t X>
+struct function_type : type<X, function_type_kind> {
+  static constexpr auto return_type() {
+    return __reflect_return(X);
+  }
+  //DWR ADDN:
+  static constexpr auto return_name() {
+    return __reflect_return_name(X);
+  }
+  //END
+};
+
+template<reflection_t X>
+struct member_pointer_type : type<X, member_pointer_type_kind> {
+};
+
+namespace detail {
+  // All user-defined types define a scope, and have a unqualified name accessible.
+  template<reflection_t X, reflection_kind K>
+  struct user_defined_type : type<X, K>, namedscope<X> {
+  };
+
+
+// A useful base class for class and union types.
+  template<reflection_t X, reflection_kind K>
+  class type_with_member_decls : public user_defined_type<X, K> {
+  protected:
+    static constexpr class_traits traits() {
+      return class_traits(__reflect_traits(X));
+    }
+  public:
+    static constexpr bool is_complete() {
+      return traits().is_complete;
+    }
+  };
+} //detail
+
+namespace user {
+  namespace detail {
+    template<typename MEMTUP>
+    struct type_with_member_decls : public namedscope<MEMTUP> {
+      constexpr bool is_complete() {
+        return true; //TEMP HACK DWR FIXME
+      }
+      constexpr type_with_member_decls(const char *name, std::size_t N, reflection_kind K, MEMTUP&& memtup)
+        : namedscope<MEMTUP>(name, N, K, std::move(memtup))
+      {}
+    };
+  }
+}
+
+
+//DWR NOTE: the names of the below templates (e.g. base_spec, ns, tu, etc.) must be kept in sync with
+// any calls to RequireReflectionType(...) in lib/Sema/SemaReflect.cpp
+// (e.g. the GetReflectionClass(...) switch statement)
+
+template<typename T>
+constexpr void generate_base_spec(const T& t) {
+  __expand kw2chars::access_(t.access());
+  if (t.is_virtual())
+    __expand "virtual";
+  __expand t.type_name(); //DWR TEST is this right?
+}
+
+template<reflection_t X>
+class base_spec {
+  static constexpr base_spec_traits traits() {
+    return base_spec_traits(__reflect_traits(X));
+  }
+public:
+//  static constexpr auto type() {
+//    return __reflect_type(X);
+//  } //DWR FIXME remove?
+  //DWR ADDN:
+  static constexpr auto type_name() {
+    return __reflect_type_name(X);
+  }
+  //END
+  static constexpr bool is_virtual() {
+    return traits().is_virtual;
+  }
+  static constexpr access_kind access() {
+    return traits().access;
+  }
+//  static constexpr void print() {
+//    // FIXME: This ignores specifiers.
+//    return type().print();
+//  } //DWR FIXME test out calling print on a reflected base spec, and if it doesn't work, solve it in ReflectPrint, not here.
+  constexpr void generate() const {
+    generate_base_spec(*this);
+  }
+};
+
+//DWR ADDN:
+namespace user {
+
+  // DWR NOTE: the user won't have access to the reflected base via this base_spec, but that's
+  // okay in most cases when this will be used (since when you use this you generally will have
+  // transformed the base already in the same code, and so you won't need to reason about the base's
+  // contents).  HOWEVER, if you DO need to reason about a base's contents, you can use a nested
+  // constexpr decl that reflects the generated type_name of the base, if that makes sense -- DWR TODO
+  // provide example code.
+
+//  template<typename R>
+  class base_spec : public detail::named_nokind {
+    access_kind _access;
+    bool _is_virtual;
+//    R& _refl;
+  public:
+//    static constexpr R& type() {
+//      return _refl;
+//    }
+    constexpr auto type_name() const {
+      return std::move(named_nokind::name());
+    }
+    constexpr bool is_virtual() const {
+      return _is_virtual;
+    }
+    constexpr access_kind access() const {
+      return _access;
+    }
+    constexpr void generate() const {
+      generate_base_spec(*this);
+    }
+    template<std::size_t N>
+    constexpr base_spec(const char (&basename)[N + 1], access_kind access, bool is_virtual)
+      : named_nokind(basename, N)
+      , _access(access)
+      , _is_virtual(is_virtual)
+    {}
+  };
+
+} //namespace user
+
+/*
+ * When dealing with a parameter tuple, there are
+ * a few different ways we might want to generate it:
+ * 1) just the types (e.g. to refer to a particular template instantiation),
+ * 2) just the names (e.g. to forward arguments), or
+ * 3) the full decls (i.e. the types and the names)
+ *
+ * We'll define three distinct functions, generating the body
+ * of each using a MACRO, rather than adding an extra
+ * method pointer argument to a single function,
+ * since we're dealing with iterating over tuples,
+ * the elems of which are often not the same type,
+ * so no way to give a standard enclosing type of
+ * a method pointer, if that makes sense.
+ * -------------------------------------------*/
+#define DWR_PP_generate_tuple(MP_elemgenfunc) \
+  bool first = true;                          \
+    for... (auto b : t) {                     \
+      if (first)                              \
+        first = false;                        \
+      else                                    \
+        __expand ",";                         \
+      b.MP_elemgenfunc();                     \
+    }                                         \
+/*-------------------------------------------*/
+/// generate_list_tuple_types/_names
+/// Used for generating parts of parameter tuples:
+///   _types gives just the types
+///   _names gives just the names
+template<typename T>
+constexpr void generate_list_tuple_types(const T& t) {
+//  DWR_PP_generate_tuple(generate_type) //DWR FIXME UNCOMMENT this and below
+}
+template<typename T>
+constexpr void generate_list_tuple_names(const T& t) {
+//  DWR_PP_generate_tuple(generate_name) //UNCOMMENT
+}
+/// generate_list_tuple:
+/// This one is useful for generating
+/// comma separate lists for things other than parameters
+/// (e.g. base_specs and enumerators)
+template<typename T>
+constexpr void generate_list_tuple(const T& t) {
+//  DWR_PP_generate_tuple(generate) //UNCOMMENT
+}
+#undef DWR_PP_generate_tuple
+
+
+
+//DWR FIXME need to be able to incorporate template params (for this AND functions)
+//DWR FIXME: reflection of type decls should still be considered decls, so you can add the semicolon at the end.
+template<typename T>
+constexpr void generate_class_type(const T& t) {
+  //DWR FIXME generate template params
+  __expand "class";
+  __expand t.name();
+  if (t.is_final())
+    __expand "final";
+  if constexpr (std::tuple_size<decltype(t.bases())>::value) {
+    __expand ":";
+    generate_list_tuple(t.bases());
+  }
+  t.scope().generate();
+  //NB: no closing semicolon: we're not generating a decl, just a type.
+}
+
+
+template<reflection_t X>
+class class_type : public detail::type_with_member_decls<X, class_type_kind> {
+  struct base_info {
+    static constexpr std::size_t size() {
+      return __reflect_num_bases(X);
+    }
+    template<std::size_t I>
+    static constexpr auto get() {
+      return __reflect_base(X, I);
+    }
+  };
+  using detail::type_with_member_decls<X, class_type_kind>::traits;
+public:
+  static constexpr reflected_tuple<base_info> bases() {
+    // static_assert(type_with_member_decls<X, class_type_kind>::is_complete());
+    return {};
+  }
+  static constexpr bool is_polymorphic() {
+    return traits().is_polymorphic;
+  }
+  static constexpr bool is_abstract() {
+    return traits().is_abstract;
+  }
+  static constexpr bool is_final() {
+    return traits().is_final;
+  }
+  static constexpr bool is_empty() {
+    return traits().is_empty;
+  }
+  // using reflection_base<X, class_type_kind>::is_member_variable;
+  constexpr void generate() const {
+    generate_class_type(*this);
+  }
+};
+
+namespace user {
+
+template<typename BASETUP, typename MEMTUP>
+class class_type : public detail::type_with_member_decls<MEMTUP> {
+  BASETUP _basetup;
+  bool _is_final;
+public:
+  constexpr BASETUP& bases() {
+    return _basetup;
+  }
+  constexpr bool is_polymorphic() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_abstract() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_final() {
+    return _is_final;
+  }
+  constexpr bool is_empty() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr void generate() const {
+    generate_class_type(*this);
+  }
+  template<std::size_t N>
+  constexpr class_type( const char (&name)[N + 1]
+                      , BASETUP&& basetup
+                      , MEMTUP&& memtup
+                      , bool is_final )
+    : detail::type_with_member_decls<MEMTUP>(name, N, class_type_kind, std::move(memtup))
+    , _basetup(std::move(basetup))
+    , _is_final(is_final)
+  {}
+};
+
+} //namespace user
+
+template<typename T>
+constexpr void generate_union_type(const T& t) {
+  __expand "union";
+  __expand t.name();
+  t.scope().generate();
+}
+
+template<reflection_t X>
+struct union_type : detail::type_with_member_decls<X, union_type_kind> {
+  // TODO: Are there any interesting traits here?
+  constexpr void generate() const {
+    generate_union_type(*this);
+  }
+};
+
+namespace user {
+
+template<typename MEMTUP>
+struct union_type : detail::type_with_member_decls<MEMTUP> {
+  constexpr void generate() const {
+    generate_union_type(*this);
+  }
+  template<std::size_t N>
+  constexpr union_type(const char (&name)[N + 1], MEMTUP&& memtup)
+    : detail::type_with_member_decls<MEMTUP>(name, N, union_type_kind, std::move(memtup))
+  {}
+};
+
+} //user
+
+//DWR TODO test this one: are the members indeed the expected enum members?
+template<typename T>
+constexpr void generate_enum_type(const T& t) {
+  if (t.is_scoped())
+    __expand "enum class";
+  else
+    __expand "enum";
+  __expand t.name();
+  if (t.utype() != $int) {
+    __expand ":";
+    __expand t.utype().name();
+  }
+  t.scope().generate(true/*commaseps*/);
+}
+
+template<reflection_t X>
+class enum_type : public detail::user_defined_type<X, enum_type_kind> {
+  static constexpr enum_traits traits() {
+    return enum_traits(__reflect_traits(X));
+  }
+public:
+  static constexpr auto utype() {
+    return $int; //TEMP HACK: assumes underlying type is always int
+    //TODO: add utype to traits(), get below to work.
+//    return traits().utype;
+  }
+  static constexpr bool is_scoped() {
+    return traits().is_scoped;
+  }
+  static constexpr bool is_complete() {
+    return traits().is_complete;
+  }
+  constexpr void generate() const {
+    generated_enum_type(*this);
+  }
+};
+
+namespace user {
+
+template<typename MEMTUP, typename UTYPE = int>
+class enum_type : public detail::type_with_member_decls<MEMTUP> {
+  bool _is_scoped;
+public:
+  static constexpr auto utype() {
+    return $UTYPE;
+  }
+  constexpr bool is_scoped() {
+    return _is_scoped;
+  }
+  constexpr bool is_complete() {
+    return false; //TEMP HACK DWR TODO
+  }
+  constexpr void generate() const {
+    generate_enum_type(*this);
+  }
+  template<std::size_t N>
+  constexpr enum_type(const char (&name)[N + 1], MEMTUP&& memtup, bool is_scoped)
+    : detail::type_with_member_decls<MEMTUP>(name, N, enum_type_kind, std::move(memtup))
+    , _is_scoped(is_scoped)
+  {}
+};
+
+} //user
+
+namespace detail {
+  // A typed entity is an entity described by a type: objects, references,
+  // and functions (and presumably also values?).  Note that an expression
+  // is not an entity.
+  template<reflection_t X, reflection_kind K>
+  struct typed : qualnamed<X, K>, has_unquald_name<X> {
+    static constexpr auto type() {
+      return __reflect_type(X);
+    }
+    //DWR ADDN:
+    static constexpr auto type_name() {
+      return __reflect_type_name(X);
+    }
+    //END
+  };
+} //detail
+
+namespace user {
+  namespace detail {
+    template<typename R>
+    class typed : public named {
+      const R& _type;
+    public:
+      constexpr auto type() {
+        return _type;
+      }
+      //DWR FIXME need type_name instead of type
+      constexpr typed(const R& type, const char *name, std::size_t N, reflection_kind K)
+              : named(name, N, K), _type(type)
+      {}
+    };
+  } //detail
+
+} //user
+
+namespace gen {
+
+  template<typename T>
+  constexpr void generate_name(const T& t) {
+    __expand t.name();
+  }
+
+  template<typename T>
+  constexpr void generate_type_name(const T& t) {
+    __expand t.type_name();
+  }
+
+  template<typename T>
+  constexpr void generate_return_name(const T& t) {
+    __expand t.return_name();
+  }
+
+  template<typename T>
+  constexpr void generate_inline_constexpr(const T& t) {
+    if (t.is_inline())
+      __expand "inline";
+    if (t.is_constexpr())
+      __expand "constexpr";
+  }
+
+  template<typename T>
+  constexpr void generate_linkage(const T& t) {
+    __expand kw2chars::linkage_(t.linkage());
+  }
+
+  template<typename T>
+  constexpr void generate_storage(const T& t) {
+    __expand kw2chars::storage_(t.storage());
+  }
+
+  template<typename T>
+  constexpr void generate_valued(const T& t) {
+    generate_inline_constexpr(t);
+    generate_linkage(t);
+    generate_storage(t);
+    generate_type_name(t);
+  }
+
+} //gen
+
+
+namespace detail {
+  template<reflection_t X, reflection_kind K>
+  class valued : public typed<X, K> {
+    static constexpr variable_traits traits() {
+      return variable_traits(__reflect_traits(X));
+    }
+  public:
+    static constexpr storage_kind storage() {
+      return traits().storage;
+    }
+    static constexpr linkage_kind linkage() {
+      return decl<X, K>::traits().linkage;
+    }
+    static constexpr bool is_inline() {
+      return traits().is_inline;
+    }
+    static constexpr bool is_constexpr() {
+      return traits().is_constexpr;
+    }
+    constexpr auto pointer() { //What is this?  Need a clearer term
+      return __reflect_pointer(X);
+    }
+    constexpr void generate() const {
+      gen::generate_valued(*this);
+    }
+  };
+} //detail
+
+
+
+namespace user {
+namespace detail {
+  template<typename R>
+  class valued : public typed<R> {
+    storage_kind _storage;
+    linkage_kind _linkage;
+    bool _is_inline;
+    bool _is_constexpr;
+  public:
+    constexpr storage_kind storage() {
+      return _storage;
+    }
+    constexpr linkage_kind linkage() {
+      return _linkage;
+    }
+    constexpr bool is_inline() {
+      return _is_inline;
+    }
+    constexpr bool is_constexpr() {
+      return _is_constexpr;
+    }
+    constexpr void generate() const {
+      gen::generate_valued(*this);
+    }
+
+    constexpr valued(const R& type
+            , const char *name
+            , std::size_t N
+            , reflection_kind K
+            , storage_kind storage
+            , linkage_kind linkage
+            , bool is_inline
+            , bool is_constexpr
+    )
+            : typed<R>(type, name, N, K)
+            , _storage(storage)
+            , _linkage(linkage)
+            , _is_inline(is_inline)
+            , _is_constexpr(is_constexpr)
+    {}
+  };
+} //detail
+} //user
+
+template<reflection_t X>
+struct variable : detail::valued<X, variable_decl_kind> {
+};
+
+namespace user {
+
+template<typename R>
+class variable : public detail::valued<R> {
+  //Note: no need for new generate() function; generate_valued covers it
+  template<std::size_t N>
+  constexpr variable( const R& type
+                    , const char (&name)[N + 1]
+                    , storage_kind storage = no_storage
+                    , linkage_kind linkage = no_linkage
+                    , bool is_constexpr = false
+                    , bool is_inline = false
+                    )
+    : detail::valued<R>(
+            type,
+            name, N, variable_decl_kind,
+            storage, linkage, is_inline, is_constexpr)
+  {}
+};
+
+} //user
+
+//DWR FIXME: need to incorporate template parameters
+
+namespace gen {
+
+  template<typename T>
+  constexpr void generate_fname_pmdecls(const T& t) {
+    generate_name(t);
+    __expand "(";
+    generate_list_tuple_decls(t.parameters());
+    __expand ")";
+  }
+
+  template<typename T>
+  constexpr void generate_noexcept_delete(const T& t) {
+    if (t.is_noexcept())
+      __expand "noexcept";
+    if (t.is_deleted())
+      __expand "= delete;";
+  }
+
+  template<typename T>
+  constexpr void generate_function(const T& t) {
+    generate_inline_constexpr(t);
+    generate_linkage(t);
+    generate_return_name(t);
+    generate_fname_pmdecls(t);
+    generate_noexcept_delete(t);
+  }
+
+} //gen
+
+template<reflection_t X>
+class function : public detail::typed<X, function_decl_kind> {
+  struct parm_info {
+    static constexpr std::size_t size() {
+      return __reflect_num_parameters(X);
+    }
+    template<std::size_t I>
+    static constexpr auto get() {
+      return __reflect_parameter(X, I);
+    }
+  };
+  static constexpr function_traits traits() {
+    return function_traits(__reflect_traits(X));
+  }
+public:
+  static constexpr auto return_type() {
+    return __reflect_return(X);
+  }
+  //DWR ADDN:
+  static constexpr auto return_name() {
+    return __reflect_return_name(X);
+  }
+  //END
+  static constexpr auto linkage() { //DWR ADDN
+    return traits().linkage;
+  }
+  static constexpr bool is_constexpr() {
+    return traits().is_constexpr;
+  }
+  static constexpr bool is_noexcept() {
+    return traits().is_noexcept;
+  }
+  static constexpr bool is_defined() {
+    return traits().is_defined;
+  }
+  static constexpr bool is_inline() {
+    return is_defined() && traits().is_inline;
+  }
+  static constexpr bool is_deleted() {
+    return traits().is_deleted;
+  }
+  static constexpr reflected_tuple<parm_info> parameters() {
+    return {};
+  }
+  static constexpr auto pointer() {
+    return __reflect_pointer(X);
+  }
+  constexpr auto generate() const {
+    gen::generate_function(*this);
+  }
+};
+
+namespace user {
+  namespace detail {
+  class function_quals {
+    linkage_kind _linkage : 2;
+    unsigned : 2;
+    unsigned _is_constexpr : 1;
+    unsigned _is_noexcept : 1;
+    unsigned _is_inline : 1;
+    unsigned _is_deleted : 1;
+  public:
+    constexpr linkage_kind linkage() {
+      return _linkage;
+    }
+    constexpr bool is_constexpr() {
+      return _is_constexpr;
+    }
+    constexpr bool is_noexcept() {
+      return _is_noexcept;
+    }
+    constexpr bool is_inline() {
+      return _is_inline;
+    }
+    constexpr bool is_deleted() {
+      return _is_deleted;
+    }
+    constexpr function_quals(
+            linkage_kind linkage,
+            bool is_constexpr, bool is_noexcept,
+            bool is_inline, bool is_deleted)
+      : _linkage(linkage)
+      , _is_constexpr(is_constexpr), _is_noexcept(is_noexcept)
+      , _is_inline(is_inline), _is_deleted(is_deleted)
+    {}
+  };
+
+
+  template<typename R>
+  class function_rettype {
+    const R& _type;
+  public:
+    constexpr auto return_type() {
+      return _type;
+    }
+    //DWR FIXME need return_name()...which means perhaps no return_type, right??  Same logic as before -- use nested constexpr decls when you need to reason about the type?
+    constexpr function_rettype(const R& type) : _type(type) {}
+  };
+  template<typename PARAMTUP>
+  class function_params {
+    PARAMTUP _parameters;
+  public:
+    constexpr function_params(PARAMTUP&& parameters)
+      : _parameters(std::move(parameters))
+    {}
+  };
+  } //detail
+
+template<typename RETREFL, typename PARAMTUP>
+struct function : detail::named
+                , detail::function_rettype<RETREFL>
+                , detail::function_params<PARAMTUP>
+                , detail::function_quals {
+  constexpr void generate() const {
+    generate_function(*this);
+  }
+  template<std::size_t N>
+  constexpr function(
+          const RETREFL& retrefl,
+          const char (&name)[N],
+          PARAMTUP&& parameters,
+          linkage_kind linkage,
+          bool is_constexpr,
+          bool is_inline,
+          bool is_noexcept, bool is_deleted)
+    : detail::named(name, N, function_decl_kind)
+    , detail::function_rettype<RETREFL>(retrefl)
+    , detail::function_params<PARAMTUP>(std::move(parameters))
+    , detail::function_quals(linkage, is_constexpr, is_noexcept, is_inline, is_deleted)
+  {}
+};
+
+} //user
+
+
+/*
+ DWR TODO: add a has_access base class with this:
+
+ static constexpr access_kind access() {
+    return decl<X, K>::traits().access;
+  }
+
+  OR, should you instead just always udpate an access variable as you're progressing through the loop? Maybe...
+
+ */
+
+template<typename T>
+constexpr void generate_method(const T& t) {
+  generate_inline_constexpr(t);
+
+  if (t.is_virtual() && !t.is_override())
+    __expand "virtual";
+  if (t.is_explicit())
+    __expand "explicit";
+  switch(t.methodkind()) {
+    case method_ctor:
+      break;
+    case method_dtor:
+      __expand "~";
+      break;
+    case method_conv:
+      __expand "operator";
+      //NO break: still need return_type
+    case method_normal:
+      generate_return_name(t);
+      break;
+  }
+  generate_fname_pmdecls(t);
+
+  if (t.is_const())
+    __expand "const";
+
+  generate_noexcept_delete(t);
+
+  if (t.is_defaulted())
+    __expand "= default;";
+  else if (t.is_final())
+    __expand "final";
+  else if (t.is_override())
+    __expand "override";
+  if (t.is_pure_virtual())
+    __expand "= 0;";
+}
+
+
+// A helper class for member functions.
+template<reflection_t X>
+class method : public detail::typed<X, member_function_decl_kind> {
+  struct parm_info
+  {
+    static constexpr std::size_t size() {
+      return __reflect_num_parameters(X);
+    }
+    template<std::size_t I>
+    static constexpr auto get() {
+      return __reflect_parameter(X, I);
+    }
+  };
+  static constexpr method_traits traits() {
+    return method_traits(__reflect_traits(X));
+  }
+public:
+  static constexpr reflected_tuple<parm_info> parameters() {
+    return {};
+  }
+  static constexpr auto return_type() {
+    return __reflect_return(X);
+  }
+  //DWR FIXME need return_name
+  static constexpr method_kind methodkind() {
+    return traits().kind;
+  }
+
+
+  // Specifiers
+
+  static constexpr bool is_constexpr() {
+    return traits().is_constexpr;
+  }
+  static constexpr bool is_explicit() {
+    return traits().is_explicit;
+  }
+  static constexpr bool is_const() {
+    return false; //TEMP HACK
+    //DWR FIXME need to get below to work
+//    return traits().is_const;
+  }
+
+  // Virtual functions
+
+  static constexpr bool is_virtual() {
+    return traits().is_virtual;
+  }
+  static constexpr bool is_pure_virtual() {
+    return traits().is_pure;
+  }
+  static constexpr bool is_final() {
+    return traits().is_final;
+  }
+  static constexpr bool is_override() {
+    return traits().is_override;
+  }
+
+  // Traits
+  static constexpr bool is_default_constructor() {
+    return traits().is_copy_ctor;
+  }
+  static constexpr bool is_copy_constructor() {
+    return traits().is_copy_ctor;
+  }
+  static constexpr bool is_move_constructor() {
+    return traits().is_move_ctor;
+  }
+  static constexpr bool is_copy_assignment_operator() {
+    return traits().is_copy_assign;
+  }
+  static constexpr bool is_move_assignment_operator() {
+    return traits().is_move_assign;
+  }
+  static constexpr bool is_copy_assign() {
+    return traits().is_copy_assign;
+  }
+  static constexpr bool is_move_assign() {
+    return traits().is_move_assign;
+  }
+  static constexpr bool is_copy() {
+    return is_copy_constructor() || is_copy_assignment_operator();
+  }
+  static constexpr bool is_move () {
+    return is_move_constructor() || is_move_assignment_operator();
+  }
+
+  // Exceptions
+
+  static constexpr bool is_noexcept() {
+    return traits().is_noexcept;
+  }
+
+  // Definition
+
+  static constexpr bool is_defined() {
+    return traits().is_defined;
+  }
+  static constexpr bool is_inline() {
+    return is_defined() && traits().is_inline;
+  }
+  static constexpr bool is_deleted() {
+    return traits().is_deleted;
+  }
+  static constexpr bool is_defaulted() {
+    return traits().is_defaulted;
+  }
+  static constexpr bool is_trivial() {
+    return traits().is_trivial;
+  }
+};
+
+namespace user {
+
+  namespace detail {
+
+  class method_quals {
+    method_kind _kind : 2;
+    unsigned _is_explicit : 1;
+    unsigned _is_const : 1;
+    unsigned _is_virtual : 1;
+    unsigned _is_pure_virtual : 1;
+    unsigned _is_final : 1;
+    unsigned _is_override : 1;
+    unsigned _is_noexcept : 1;
+    unsigned _is_inline : 1;
+    unsigned _is_deleted : 1;
+    unsigned _is_defaulted : 1;
+    unsigned _is_constexpr : 1;
+
+  public:
+    constexpr method_kind methodkind() {
+      return _kind;
+    }
+
+#   define PP_BOOLFLAGFUNC(MP_name)\
+    constexpr bool is_ ## MP_name() {\
+      return _is_ ## MP_name;\
+    }\
+    /**/
+    PP_BOOLFLAGFUNC(explicit)
+    PP_BOOLFLAGFUNC(const)
+    PP_BOOLFLAGFUNC(virtual)
+    PP_BOOLFLAGFUNC(pure_virtual)
+    PP_BOOLFLAGFUNC(final)
+    PP_BOOLFLAGFUNC(override)
+    PP_BOOLFLAGFUNC(noexcept)
+    PP_BOOLFLAGFUNC(inline)
+    PP_BOOLFLAGFUNC(deleted)
+    PP_BOOLFLAGFUNC(defaulted)
+    PP_BOOLFLAGFUNC(constexpr)
+#   undef PP_BOOLFLAGFUNC
+
+    constexpr method_quals(
+            method_kind kind,
+            bool is_explicit,
+            bool is_const,
+            bool is_virtual,
+            bool is_pure_virtual,
+            bool is_final,
+            bool is_override,
+            bool is_noexcept,
+            bool is_inline,
+            bool is_deleted,
+            bool is_defaulted,
+            bool is_constexpr)
+      : _kind(kind)
+      , _is_explicit(is_explicit)
+      , _is_const(is_const)
+      , _is_virtual(is_virtual)
+      , _is_pure_virtual(is_pure_virtual)
+      , _is_final(is_final)
+      , _is_override(is_override)
+      , _is_noexcept(is_noexcept)
+      , _is_inline(is_inline)
+      , _is_deleted(is_deleted)
+      , _is_defaulted(is_defaulted)
+      , _is_constexpr(is_constexpr)
+    {}
+  };
+
+  } //detail
+
+  //DWR FIXME: most of below is still copied from function, need to fix
+template<typename RETREFL, typename PARAMTUP>
+struct method   : detail::named
+                , detail::function_rettype<RETREFL>
+                , detail::function_params<PARAMTUP>
+                , detail::method_quals
+{
+  // Traits
+  constexpr bool is_default_constructor() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_copy_constructor() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_move_constructor() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_copy_assignment_operator() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_move_assignment_operator() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_copy_assign() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_move_assign() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_copy() {
+    return is_copy_constructor() || is_copy_assignment_operator();
+  }
+  constexpr bool is_move () {
+    return is_move_constructor() || is_move_assignment_operator();
+  }
+  constexpr bool is_defined() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr bool is_trivial() {
+    return false; //TEMP HACK DWR FIXME
+  }
+  constexpr void generate() const {
+    generate_method(*this);
+  }
+  template<std::size_t N>
+  constexpr method(
+          const RETREFL& retrefl,
+          const char (&name)[N + 1],
+          PARAMTUP&& parameters = PARAMTUP(),
+          method_kind kind = method_normal,
+          bool is_explicit = false,
+          bool is_const = false,
+          bool is_virtual = false,
+          bool is_pure_virtual = false,
+          bool is_final = false,
+          bool is_override = false,
+          bool is_noexcept = false,
+          bool is_inline = false,
+          bool is_deleted = false,
+          bool is_defaulted = false,
+          bool is_constexpr = false
+          )
+    : named(name, N, function_decl_kind) //FIXME
+    , detail::function_rettype<RETREFL>(retrefl)
+    , detail::function_params<PARAMTUP>(std::move(parameters))
+    , detail::method_quals(
+            kind,
+            is_explicit,
+            is_const,
+            is_virtual,
+            is_pure_virtual,
+            is_final,
+            is_override,
+            is_noexcept,
+            is_inline,
+            is_deleted,
+            is_defaulted,
+            is_constexpr)
+    {}
+    //DWR FIXME: this constructor blows, need to develop one that just takes a const char * and scans for keywords.
+};
+
+} //user
+
+
+template<typename T>
+constexpr void generate_field(const T& t) {
+  if (t.is_mutable())
+    __expand "mutable";
+  generate_valued(t);
+}
+
+// A member variable is a non-static data member.
+template<reflection_t X>
+struct field : detail::valued<X, member_variable_decl_kind> { //DWR TODO change enumerator name to field_decl_kind
+  static constexpr field_traits traits() {
+    return field_traits(__reflect_traits(X));
+  }
+
+  static constexpr bool is_mutable() {
+    return traits().is_mutable;
+  }
+
+  static constexpr auto pointer() {
+    return __reflect_pointer(X);
+  }
+
+////ASUTON ADDN:
+//  // FIXME: This is dumb.
+//  static constexpr void make_constexpr() {
+//    compiler.error("cannot make fields constexpr");
+//  }
+////END
+};
+
+namespace user {
+  template<typename R>
+  class field : public detail::valued<R> {
+    bool _is_mutable;
+  public:
+    constexpr bool is_mutable() {
+      return _is_mutable;
+    }
+    template<std::size_t N>
+    constexpr field( const R& type
+          , const char (&name)[N]
+          , storage_kind storage
+          , linkage_kind linkage
+          , bool is_inline
+          , bool is_constexpr
+          , bool is_mutable )
+      : detail::valued<R>(
+              type,
+              name, N, member_variable_decl_kind,
+              storage, linkage, is_inline, is_constexpr)
+      , _is_mutable(is_mutable)
+    {}
+  };
+} //user
+
+
+// A function parameter is essentially a variable. (DWR: no it isn't -- no storage/linkage/constexpr stuff to deal with...)
+template<reflection_t X>
+struct parameter : detail::typed<X, parameter_decl_kind> { //DWR MOD: changed to typed from valued
+  //TODO need generate_decl, _type, _name, INSTEAD OF
+  // a single generate function.
+  using detail::typed<X, parameter_decl_kind>::type; //DWR FIXME Will this work, or do you need to reference base?
+  constexpr void generate_type() {
+    gen::generate_type_name(*this);
+  }
+  constexpr void generate_name() {
+    gen::generate_name(*this);
+  }
+  constexpr void generate() {
+    this->generate_type();
+    this->generate_name();
+  }
+};
+
+namespace user {
+
+  template<typename R>
+  struct parameter : detail::typed<R> {
+    template<std::size_t N>
+    constexpr parameter(const R& type, const char (&name)[N])
+      : detail::typed<R>(type, name, N, parameter_decl_kind)
+    {}
+    constexpr void generate_type() {
+      gen::generate_type_name(*this);
+    }
+    constexpr void generate_name() {
+      gen::generate_name(*this);
+    }
+    constexpr void generate() {
+      this->generate_type();
+      this->generate_name();
+    }
+  };
+
+}; //user
+
+namespace gen {
+  template<typename T>
+  constexpr void generate_enumerator(const T& t) {
+    __expand t.name();
+    //FIXME get the below working -- though would be nice if we could detect when it has default value and only give below when it doesn't
+//  __expand "="
+//  __expand t.value(); //need to convert to string I assume...
+  }
+}
+
+
+
+// An enumeration value.
+//
+// NOTE: Value traits do not currently differ from decl traits.
+// DWR FIXME: while an enumerator is typed (the type is the enum, I assume), I'm not sure it makes sense to reflect that type --
+// if we ever have a variable or param or whatever that is an enumerator, that thing will give the type; I think perhaps
+// the enumerator can just inherit from named.
+template<reflection_t X>
+struct enumerator : detail::typed<X, enumerator_decl_kind> {
+  static constexpr auto value() {
+    return __reflect_value(X);
+  }
+  constexpr void generate() {
+    gen::generate_enumerator(*this);
+  }
+};
+
+namespace user {
+
+  template<typename R>
+  class enumerator : public detail::typed<R> {
+    const char *_valueasstr; //DWR FIXME or should this be an int?
+  public:
+    constexpr auto value() {
+      return _valueasstr;
+    }
+    template<std::size_t N>
+    constexpr enumerator(const R& type, const char (&name)[N], const char * valueasstr)
+      : detail::typed<R>(type, name, N, enumerator_decl_kind)
+      , _valueasstr(valueasstr)
+    {}
+    constexpr void generate() {
+      gen::generate_enumerator(*this);
+    }
+  };
+
+}
+
+
+//DWR TEMP
+// -------------------------------------------------------------------------- //
+// Tuple traversal/application
+
+template<typename T, typename F>
+constexpr void
+for_each(T const& t, F f) {
+  detail::tuple_for_each_recursive<0>(t, f);
+}
+//END DWR TEMP
+
+
+// -------------------------------------------------------------------------- //
+// Type traits
+
+// is internal
+//
+// True for any internally generated AST nodes. These are typically filtered
+// from sequences by the is_observable trait.
+
+template<typename T>
+struct is_internal
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_internal<internal<X>>
+  : std::integral_constant<bool, true> { };
+
+// is observable
+//
+// True for all non-internal nodes.
+
+template<typename T>
+struct is_observable_trait
+  : std::integral_constant<bool, !is_internal<T>::value> { };
+
+template<typename T>
+constexpr bool is_observable_v = is_observable_trait<T>::value;
+
+template<typename T>
+constexpr bool is_observable(T) {
+  return is_observable_v<T>;
+}
+
+// is variable
+//DWR NOTE: I think that for class members, only STATIC variables will satisfy this trait
+template<typename T>
+struct is_variable_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_variable_trait<variable<X>>
+  : std::integral_constant<bool, true> { };
+
+template<typename T>
+constexpr bool is_variable_v = is_variable_trait<T>::value;
+
+template<typename T>
+constexpr bool is_variable(T) {
+  return is_variable_v<T>;
+}
+
+// is function
+// DWR NOTE: I think that for class members, only STATIC functions will satisfy this trait
+template<typename T>
+struct is_function_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_function_trait<function<X>>
+  : std::integral_constant<bool, true> { };
+
+template<typename T>
+constexpr bool is_function_v = is_function_trait<T>::value;
+
+template<typename T>
+constexpr bool is_function(T) {
+  return is_function_v<T>;
+}
+
+// is member variable
+
+template<typename T>
+struct is_member_variable_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_member_variable_trait<field<X>>
+  : std::integral_constant<bool, true> { };
+
+template<typename T>
+constexpr bool is_member_variable_v = is_member_variable_trait<T>::value;
+
+template<typename T>
+constexpr bool is_member_variable(T) {
+  return is_member_variable_v<T>;
+}
+
+// is member function
+
+template<typename T>
+struct is_member_function_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_member_function_trait<method<X>>
+  : std::integral_constant<bool, true> { };
+
+template<typename T>
+constexpr bool is_member_function_v = is_member_function_trait<T>::value;
+
+template<typename T>
+constexpr bool is_member_function(T) {
+  return is_member_function_v<T>;
+}
+
+// is constructor
+
+template<typename T>
+struct is_constructor_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_constructor_trait<method<X>>
+  : std::integral_constant<bool, method<X>::is_constructor()> { };
+
+template<typename T>
+constexpr bool is_constructor_v = is_constructor_trait<T>::value;
+
+template<typename T>
+constexpr bool is_constructor(T) {
+  return is_constructor_v<T>;
+}
+
+// is destructor
+
+template<typename T>
+struct is_destructor_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_destructor_trait<method<X>>
+  : std::integral_constant<bool, method<X>::is_destructor()> { };
+
+template<typename T>
+constexpr bool is_destructor_v = is_destructor_trait<T>::value;
+
+template<typename T>
+constexpr bool is_destructor(T) {
+  return is_destructor_v<T>;
+}
+
+// is function or method
+//
+// True for any (possibly static) member function.
+
+template<typename T>
+struct is_function_or_method_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_function_or_method_trait<function<X>>
+  : std::integral_constant<bool, true> { };
+
+template<reflection_t X>
+struct is_function_or_method_trait<method<X>>
+  : std::integral_constant<bool, true> { };
+
+template<typename T>
+constexpr bool is_function_or_method_v = is_function_or_method_trait<T>::value;
+
+template<typename T>
+constexpr bool is_function_or_method(T) {
+  return is_function_or_method_v<T>;
+}
+
+// is variable or field
+//
+// True for any (possibly static) member variable.
+
+template<typename T>
+struct is_variable_or_field_trait
+  : std::integral_constant<bool, false> { };
+
+template<reflection_t X>
+struct is_variable_or_field_trait<variable<X>>
+  : std::integral_constant<bool, true> { };
+
+template<reflection_t X>
+struct is_variable_or_field_trait<field<X>>
+  : std::integral_constant<bool, true> { };
+
+template<typename T>
+constexpr bool is_variable_or_field_v = is_variable_or_field_trait<T>::value;
+
+template<typename T>
+constexpr bool is_variable_or_field(T) {
+  return is_variable_or_field_v<T>;
+}
+
+////DWR ADDN:
+//// is nested class
+//template<typename T>
+//struct is_class_trait
+//  : std::integral_constant<bool, false> { };
+//
+//template<reflection_t X>
+//struct is_class_trait<class_type<X>>
+//  : std::integral_constant<bool, true> { };
+//
+//template<typename T>
+//constexpr bool is_class_v = is_class_trait<T>::value;
+//
+//template<typename T>
+//constexpr bool is_class(T) {
+//  return is_class_v<T>;
+//}
+////END DWR ADDN
+
+} // inline namespace v1
+} // namespace meta
+} // namespace cppx
+
+
+namespace std
+{
+
+// Tuple adaptors for class_type
+
+template<cppx::meta::reflection_t X>
+struct tuple_size<cppx::meta::class_type<X>>
+  : std::integral_constant<std::size_t, cppx::meta::class_type<X>::size()>
+{ };
+
+template<std::size_t I, cppx::meta::reflection_t X>
+struct tuple_element<I, cppx::meta::class_type<X>>
+{
+  using type = decltype(get<I>(std::declval<cppx::meta::class_type<X>>().members()));
+};
+
+// Tuple adaptors for union_type
+
+template<cppx::meta::reflection_t X>
+struct tuple_size<cppx::meta::union_type<X>>
+  : std::integral_constant<std::size_t, cppx::meta::union_type<X>::size()>
+{ };
+
+template<std::size_t I, cppx::meta::reflection_t X>
+struct tuple_element<I, cppx::meta::union_type<X>>
+{
+  using type = decltype(get<I>(std::declval<cppx::meta::union_type<X>>().members()));
+};
+
+// Tuple adaptors for enum_type
+
+template<cppx::meta::reflection_t X>
+struct tuple_size<cppx::meta::enum_type<X>>
+  : std::integral_constant<std::size_t, cppx::meta::enum_type<X>::size()>
+{ };
+
+template<std::size_t I, cppx::meta::reflection_t X>
+struct tuple_element<I, cppx::meta::enum_type<X>>
+{
+  using type = decltype(get<I>(std::declval<cppx::meta::enum_type<X>>().members()));
+};
+
+// Tuple adaptors for ns
+
+template<cppx::meta::reflection_t X>
+struct tuple_size<cppx::meta::ns<X>>
+  : std::integral_constant<std::size_t, cppx::meta::ns<X>::size()>
+{ };
+
+template<std::size_t I, cppx::meta::reflection_t X>
+struct tuple_element<I, cppx::meta::ns<X>>
+{
+  using type = decltype(get<I>(std::declval<cppx::meta::ns<X>>().members()));
+};
+
+// Tuple adaptors for tu
+
+template<cppx::meta::reflection_t X>
+struct tuple_size<cppx::meta::tu<X>>
+  : std::integral_constant<std::size_t, cppx::meta::tu<X>::size()>
+{ };
+
+template<std::size_t I, cppx::meta::reflection_t X>
+struct tuple_element<I, cppx::meta::tu<X>>
+{
+  using type = decltype(get<I>(std::declval<cppx::meta::tu<X>>().members()));
+};
+
+} // namespace std
+
+
+/// Make it easier for people to use the online compiler.
+///
+/// TODO: Remove this.
+using namespace cppx::meta;
+
+#endif // CPPX_META

@@ -1,0 +1,16 @@
+// -*- C++ -*-
+
+#ifndef CPPX_META
+#define CPPX_META
+
+#include "types.h"
+#include "decls.h"
+#include "generate.h"
+
+
+/// Make it easier for people to use the online compiler.
+///
+/// TODO: Remove this.
+using namespace cppx::meta;
+
+#endif // CPPX_META

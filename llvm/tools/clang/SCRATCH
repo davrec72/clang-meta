@@ -1,0 +1,23 @@
+Okay lemme think here.
+
+I think we should have a __compiler_diag which is NOT void -- instead it takes a a bool err1warn0, and a const char *DiagMsg, and a SourceLocation Xs... (optional, perhaps) and is implemented to report it and then construct, via a reflection type, a clang::DiagnosticBuilder with the DiagID = user-defined error/warning.
+Then, we can
+Then, we just need to be sure to add the DiagnosticBuilder to the primitive reflection includes.
+Eh WAIT.  The problem, as usual, is that the DiagnosticBuilder is a temporary; once we destroy it it will emit it's stuff; so we can't construct something then add to it.
+So, we really do need to supply all the fixits, etc. right at the initial construction.
+Okay good.  So, since you can have MULTIPLE fixits, each CompilerDiagnosticExpr needs to take an ArrayRef<Expr *>, which it evalutes and adds to a vector of FixitHints.
+I.e. its data is:
+  ArrayRef<Expr *> (each evaluated one is set to nullptr)
+  bool err1warn0; //[0]
+  const char *Msg; //[1]
+  SmallVector<FixitHint, 1> fixits; //[2...]
+
+To parse this, the first two are obvious; for the fixit hints it just looks for...I guess structs with the fixit parameters.  That's the best way to do it -- that way you can express this with a parameter pack in the client reflection header.  (Be sure to expand the parameter packs as necessary, same as with ReflectionTraitExpr.)
+--So you'll have to figure out the getStructField or whatever for APValue, and do a while loop or something.
+
+Good, I think this will work.
+
+PICK UP HERE -- need to incorporate ArrayRef<Expr *> into DiagnosticExpr class, plsu change Message to a StringRef, and then set up the ActOn so it tries to evaluate each one as it becomes non-dependent, just like with ReflectionTraitExpr.
+
+
+

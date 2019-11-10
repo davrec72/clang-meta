@@ -1,0 +1,12 @@
+//
+// Created by David Rector on 2019-08-20.
+//
+
+#ifndef LLVM_REFLECTIONHEADERID_H
+#define LLVM_REFLECTIONHEADERID_H
+
+// CMake will define this identically here and in the client reflection.hpp
+// If they don't match, will get error -- no reflection allowed
+#cmakedefine CMAKE_GEN_REFLHEADERID @CMAKE_GEN_REFLHEADERID@
+
+#endif //LLVM_REFLECTIONHEADERID_H
