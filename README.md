@@ -1,6 +1,6 @@
 # clang-meta
 
-*[UPDATE 11/10: clang folder added, should work now, sorry for the trouble]*
+*[UPDATE 11/10: clang folder added, and llvm/projects/libcxx etc.  It should compile now, sorry for the trouble]*
 
 A C++ compiler with added meta-programming features: 
 1) **static reflection** (of just about anything - templates, function definitions, other reflections, you name it), 
@@ -78,12 +78,12 @@ Please also check out his newer work (https://gitlab.com/lock3/clang) for an alt
 
 ## Discussion
 
-### This stuff isn't an agreed-upon C++ standard, why should I bother writing any code in it?
-Because it is far more general.  You can reflect anything -- down to the individual statements in your function definitions!  Your inline assembly code statements!  You will never want for reflection.
+### This reflection interface isn't an agreed-upon C++ standard, why should I bother writing any code with it?
+Because it is far more general that other proposed reflection standards.  You can reflect anything -- down to the individual statements in your function definitions!  Your inline assembly code statements!  You will never want for reflection.  
 
-The C++ standards will surely *eventually* incorporate such capabilities, years hence -- the demand for more reflection capability will be ever-present, and insatiable; they will just *have* to be met.  But it will take years for them to decide exactly how they want to name things etc.  (This is why I recommend below that we bite the bullet now and define the compiler AST architecture itself into the standard -- a lot of hassle/arguments now in exchange for a lot less maintenance in years hence.)
+The C++ standards will surely *eventually* incorporate such capabilities, years hence -- the demand for more reflection capability will be ever-present, and insatiable.  But it will take years for them to decide exactly how they want to name things etc.  (This is why I recommend below that we bite the bullet now and define the compiler AST architecture itself into the standard -- a lot of hassle/arguments now in exchange for a) full capabilities right away and b) a lot less maintenance in years hence.)
 
-Save yourself the stress of awaiting standardized reflection features by using this version of clang to write your metafunctions in the interim and simply isolate away the eventual implementation details:
+Save yourself the stress of awaiting reflection standards features by using this version of clang to write your metafunctions in the interim and simply isolating away the eventual implementation details:
 1) Extract out into constexpr helper functions any reflection functions whose definition might 
    change from this implementation to the eventual standard.
 2) Only interface with those helper functions.
