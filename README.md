@@ -133,7 +133,13 @@ cmake --build . --target clang-wreflection
 
 13. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.
 
-
+### Updating:
+```
+cd /PATH/TO/YOUR/clang-meta
+git pull https://github.com/drec357/clang-meta.git
+cd build
+cmake --build . --target clang-wreflection
+```
 
 ## Discussion/implementation notes
 
