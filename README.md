@@ -130,19 +130,16 @@ cmake --build . --target clang-wreflection
   - Click the "+" again and assign `CC` to e.g. `/.../clang-meta/build/bin/clang`.
 - In CMake-based IDEs like CLion, you must set `CMAKE_CXX_COMPILER` and `CMAKE_C_COMPILER` appropriately, and the language dialect.
 
-13. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.  As explained in `0_reflection.hpp`, you may encounter an unexplained crash now and then -- just rebuild if you do.
+13. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.
 
-
-Please create an Issue if you encounter one.  Even better, create one if you encountered a problem but came up with a solution
-to share with others.
 
 
 ## Discussion/implementation notes
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
-Metaprograms outside your main program to generate the sources your C++ compiler runs -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you, forever.
+Metaprograms outside your main program used to generate the sources fed to your C++ compiler -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you.
 
-Our metaprograms -- let's call them "immanent metaprograms" -- ARE reflectible; others can write metafunctions to check them/fix them, or to generate them outright.  Less need for CMake trickery and long term maintenance thereof.
+Our metaprograms -- let's call them "immanent metaprograms" -- ARE reflectible.  Higher level meta-functions can be written about them - to check their logic or depend on them in some way.  The source files thus become whole representations of the program, giving you AND your metafunctions a birds eye view of the project within a standard set of files.  As more sophisticated metafunctions are developed, the advantages of this standardazation will be more fully realized.
 
 
 ### Reflection
