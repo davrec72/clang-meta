@@ -105,11 +105,10 @@ constexpr {
   for (auto kv : mymap) {
     QPARSE(kv.second);
   }
-}
+} //queued metaparses performed here...
 
 void dummyfunc1() {
   Z1 z1;
-  //Z3 z3; //ERROR: undeclared identifier
   ZZ3 zz3;
   Z5 z5;
 }
