@@ -22,10 +22,15 @@ If you're not *using* metafunctions, you *are* one!
 tempalte<typename T>
 struct MyClassTmplA { 
   T t; 
-  int i; 
+  int i;
+  void f();
 };
 
 constexpr {  //aka DO_META
+
+  using namespace cppx::meta;
+  using namespace cppx::meta::clang;
+
   auto_ CTD = cast<ClassTemplateDecl>(reflexpr(MyClassTmplA));
   	     // ^ cast/dyn_cast/isa work as you'd expect
 
@@ -38,13 +43,22 @@ constexpr {  //aka DO_META
   ce_assert(CTD->getNumTemplateParameters() == 1);
   
   FOR ((Decl *) D : CTD->getTemplatedDecl()->decls()) { 
+    if constexpr (D->isImplicit())
+      continue;
     if constexpr (auto_ FD = dyn_cast<FieldDecl>(D)) {
         auto_ QT = FD->getType();
 	if (QT->isDependentType())
 	  ce_debug("Field named ", FD->getQualifiedNameAsString(), " has a dependent type");
-    	FD->dump();
+    } else {
+    	D->dump();
+    	ce_error(  D->getBeginLoc() //your IDE will register an error pointing here
+	         , "Unhandled Decl kind; see dump above this in build "
+		   "output to figure out what it was"
+		 , user::FixItHint::CreateRemoval(user::SourceRange(D->getBeginLoc(), D->getEndLoc()));
+		 ); 
     }
   }
+  
 }
 ```
 
