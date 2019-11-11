@@ -16,20 +16,27 @@
 // original reflection/metaclass implementation on GitHub -- we
 // don't bother with that; normal class templates serve just fine
 // as metaclass wrappers, and are more general.
+// Mr. Sutton's more recent class(metafuncname) { ... } syntax
+// for metafunctions, we also abjure.
 //
-// i.e. instead of:
+// i.e. instead of either Herb Sutter's old syntax:
 //
 // $class interface { ... }
 // interface MyIfc { ...prototype content... };
 // MyIfc *ifcobj;
+// 
+// or Andrew Sutton's more recent syntax:
+// 
+// constexpr void interface(meta::info classrefl) { ... }
+// class(interface) { ...prototype content... };
 //
-// You must do:
+// You instead write everything using traditional syntax:
 //
 // template<typename T> struct interface { ... };
 // struct MyProto { ...prototype content... };
 // interface<MyProto> *ifcobj;
 //
-// I prefer the latter.  Why?
+// Why do I prefer the last one?
 //
 // First, the prototype is decoupled from the interface, so it can be
 // used in other metaclasses independent of the interface definition.
