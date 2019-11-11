@@ -201,7 +201,9 @@ Compare that to metaparsing:
 ```
   // DWR'S "METAPARSING":
   template<typename T>
-  constexpr const char *funcSigAsStr(T funcrefl) { /*...textual copying of function signature ...*/ }
+  constexpr const char *funcSigAsStr(T funcrefl) { 
+    /*...textual copying of function signature ...*/
+  }
   
   namespace b {
     DO_META {
