@@ -29,6 +29,7 @@
 // 
 // constexpr void interface(meta::info classrefl) { ... }
 // class(interface) MyIfc { ...prototype content... };
+// MyIfc *ifcobj;
 //
 // You instead write everything using traditional syntax:
 //
