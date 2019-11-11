@@ -86,6 +86,8 @@ Save yourself the stress of awaiting the resolution of such discussions by simpl
 2) Only interface with those helper functions.
 3) When standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly and switch to the new compiler.
 
+The same goes for metaparsing/"injection"/"reification"/whatever they eventually call it: best to isolate away such details into helper functions where possible.  
+
 This is a vast new frontier; no need to wait further for all the implementation details to be worked out before beginning exploration.
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
