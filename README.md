@@ -43,15 +43,15 @@ constexpr {
     if constexpr (D->isImplicit())
       continue;
     if constexpr (auto_ FD = dyn_cast<FieldDecl>(D)) {
-        auto_ QT = FD->getType();
-	if (QT->isDependentType())
-	  ce_debug("Field named ", FD->getQualifiedNameAsString(), " has a dependent type");
+      auto_ QT = FD->getType();
+      if (QT->isDependentType())
+	ce_debug("Field named ", FD->getQualifiedNameAsString(), " has a dependent type");
     } else {
-    	D->dump();
-    	ce_error(  D->getBeginLoc() //your IDE will register an error pointing here
-	         , "Unhandled Decl kind; see dump"
-		 , user::FixItHint::CreateRemoval(user::SourceRange(D->getBeginLoc(), D->getEndLoc()));
-		 ); 
+      D->dump();
+      ce_error( D->getBeginLoc() //your IDE will register an error pointing here
+	      , "Unhandled Decl kind; see dump"
+	      , user::FixItHint::CreateRemoval(user::SourceRange(D->getBeginLoc(), D->getEndLoc()));
+	      ); 
     }
   }
   
