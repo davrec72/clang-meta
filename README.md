@@ -182,7 +182,7 @@ I see at least three benefits over the existing reflection proposals:
 ### Metaparsing
 
 The metaparsing feature will, I suspect, have some detractors.  It feels a bit Python-y; a bit out of place in strict typing environment like C++.
-This is why, I imagine, other proposals lean toward using cleaner, more C++-like statements; consider Mr. Sutton's implementation:
+This is why, I imagine, other proposals lean toward using cleaner, more C++-like statements; consider Mr. Sutton and co's implementation:
 ```
   namespace a {
     int foo();
@@ -228,7 +228,7 @@ I have annotated with `//DWR ADDN` or `//DWR MOD` etc. everywhere I have added t
 
 I have done likewise -- `//ASUTTON ADDN` -- for wherever I have copied over or adapted code from Andrew Sutton's original repository, linked above (which is based around clang 5.x).
 
-Mr. Sutton and co. have made subsequent progress along their own track for reflection & "reification" (their analog of metaparsing); I encourage you to also check out their newer work:
+As mentioned previously Mr. Sutton and co. have made subsequent progress along their own track for reflection & "reification" (their analog of metaparsing); I encourage you to also check out their newer work:
 	https://gitlab.com/lock3/clang.
 Their code is very impressive, but owing to the divergence of our implementations, I have not borrowed anything additional from it excepting what was already in Mr. Sutton's original 5.x code (`ConstexprDecl`, `CXXTupleExpansionStmt`, `CXXConcatenateExpr`, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
 
