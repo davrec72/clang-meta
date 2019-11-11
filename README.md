@@ -79,14 +79,14 @@ Please also check out his newer work (https://gitlab.com/lock3/clang) for an alt
 ### This reflection interface isn't an agreed-upon C++ standard, why should I bother writing any code with it?
 Because it is far more general than other proposed reflection standards.  You can reflect anything -- down to the individual statements in your function definitions!  You will never want for reflection.  
 
-The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.  (This is why I recommend below that we bite the bullet now and define the compiler AST architecture itself into the standard, and use my reflection-src-generator tool to lock the reflection interface to the AST interface.  A lot of hassle/arguments now in exchange for a) full reflection capabilities right away and b) a lot less maintenance in years hence.)
+The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.
 
-Save yourself the stress of awaiting the resolution of such arguments by simply isolating away any dependencies on the eventual standards:
+Save yourself the stress of awaiting the resolution of such discussions by simply isolating away any dependencies on the eventual standards:
 1) Extract out into constexpr helper functions any reflection functions whose definition might change from this implementation to the eventual standard.
 2) Only interface with those helper functions.
 3) When standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly (or write a metafunction to do it for you) and switch to the new compiler.
 
-This is a vast new frontier; no need to wait further for all the implementation details to be worked out before beginning exploration. 
+This is a vast new frontier; no need to wait further for all the implementation details to be worked out before beginning exploration.
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
 Metaprograms outside your main program used to generate the sources fed to your C++ compiler -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you.
