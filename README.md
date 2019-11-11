@@ -19,7 +19,7 @@ If you're not *using* metafunctions, you *are* one!
 
 ### Reflection:
 ```
-tempalte<typename T>
+template<typename T>
 struct MyClassTmplA { 
   T t; 
   int i;
