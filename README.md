@@ -13,9 +13,7 @@ Use these to define your own metaclasses, metanamespaces, meta-metafunctions, th
 Stop doing repetitive coding tasks.  Start delegating to your compiler.  
 If you're not *using* metafunctions, you *are* one!
 
-## Code examples
-
-(TODO) Please see the examples folder for an in-depth tutorial; here are just some basic syntax examples:
+## Examples
 
 ### Reflection/custom diagnostics:
 ```
