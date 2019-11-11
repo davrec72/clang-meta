@@ -26,7 +26,7 @@
 //
 // But how can this possibly allow you to define containers of your
 // own types?  Clang knew nothing about them when it compiled the
-// reflected containers, and we aren't allowed to use void* with
+// reflected containers, and we aren't allowed to use 
 // reinterpret_casts like you might do at run time.
 //
 // Simple: for any class whose objects you want to use in a
