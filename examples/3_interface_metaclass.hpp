@@ -28,7 +28,7 @@
 // 
 // or Andrew Sutton's more recent syntax:
 // 
-// constexpr void interface(meta::info classrefl) { ... }
+// constexpr void interface(meta::info protorefl) { ... }
 // class(interface) MyIfc { ...prototype content... };
 // MyIfc *ifcobj;
 //
