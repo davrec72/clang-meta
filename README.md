@@ -226,6 +226,8 @@ cmake --build . --target clang-wreflection
 
 14. Then, build the example project.  I recommend going through the examples in order, there is a lot of new stuff here.
 
+*Please* create an "Issue" if you follow these instructions but cannot build the example project! 
+
 ### Updating:
 ```
 cd /PATH/TO/YOUR/clang-meta
