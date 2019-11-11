@@ -153,12 +153,10 @@ Because it is far more general than other proposed reflection standards.  You ca
 
 The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.
 
-Save yourself the stress of awaiting the resolution of such discussions by simply isolating away any dependencies on the eventual standards:
-1) Extract out into constexpr helper functions any reflection property queries whose definition might need to change from this implementation to the eventual standard.
-2) Only interface with those helper functions.
-3) When standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly and switch to the new compiler.
+Save yourself the stress and lost productivity of awaiting official support by using our implementation for now, and simply isolating away any dependencies on the eventual naming standards into helper functions.
+Then, when standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly and switch to the new compiler.
 
-The same goes for metaparsing/"injection"/"reification"/whatever they eventually call it: best to isolate away such details into helper functions where possible.  
+The same goes for metaparsing/"injection"/"reification"/whatever they eventually call it: isolate away such details into helper functions where possible.
 
 This is a vast new frontier; no need to wait further for all the implementation details to be worked out before beginning exploration.
 
