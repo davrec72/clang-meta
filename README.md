@@ -79,7 +79,7 @@ static_assert(j == 42);
 //static_assert(jval == 39); //ERROR: undeclared identifier
 ```
 
-### Constexpr containers 1:
+### Constexpr containers:
 ```
 struct MyKeyClass {
   int i;
