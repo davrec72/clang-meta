@@ -51,8 +51,7 @@ constexpr {  //aka DO_META
     } else {
     	D->dump();
     	ce_error(  D->getBeginLoc() //your IDE will register an error pointing here
-	         , "Unhandled Decl kind; see dump above this in build "
-		   "output to figure out what it was"
+	         , "Unhandled Decl kind; see dump"
 		 , user::FixItHint::CreateRemoval(user::SourceRange(D->getBeginLoc(), D->getEndLoc()));
 		 ); 
     }
