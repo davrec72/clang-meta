@@ -32,7 +32,6 @@ constexpr {  //aka DO_META
   using namespace cppx::meta::clang;
 
   auto_ CTD = cast<ClassTemplateDecl>(reflexpr(MyClassTmplA));
-  	     // ^ cast/dyn_cast/isa work as you'd expect
 
   CTD->
   //   ^Your IDE will provide suggestions for all reflection properties 
