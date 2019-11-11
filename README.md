@@ -292,7 +292,7 @@ Furthermore, there seem to be problems that ONLY metaparsing can solve; see how 
 
 But metaparsing's most obvious benefit: it is *dirt-simple*.  Anybody can figure it out in five minutes.  Anybody can see how a generative metaprogram works by just glancing at it.  This leaves more brainpower for considering the actual logic of the metaprogram.
 
-Mr. Sutton's infrastructure has clearly been laboriously thought out, but it gets very complex, once he introduces `__fragment`s and `requires` statements to introduce dependencies.  I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, think how you might do them with metaparsing, and perhaps consider the converse.  I'd be interested to know if anyone finds anything that can be done his infrastructure that cannot be done with metaparsing.  
+Mr. Sutton's infrastructure has clearly been laboriously thought out, but it gets fairly complex, once he introduces `__fragment`s and `requires` statements to declare dependencies.  I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, think how you might do them with metaparsing, and perhaps consider the converse, see which feels better.  I'd be interested to know if anyone finds anything that can be done his infrastructure that cannot be done with metaparsing.  
 
 
 ### Source code notes
