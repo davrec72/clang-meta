@@ -17,7 +17,7 @@ If you're not *using* metafunctions, you *are* one!
 
 (TODO) Please see the examples folder for an in-depth tutorial; here are just some basic syntax examples:
 
-### Reflection:
+### Reflection/custom diagnostics:
 ```
 template<typename T>
 struct MyClassTmplA { 
@@ -60,7 +60,7 @@ constexpr {
 }
 ```
 
-### metaparsing:
+### Metaparsing:
 ```
 constexpr {
   __queue_metaparse("static const int i = 3;");
@@ -79,7 +79,7 @@ static_assert(j == 42);
 //static_assert(jval == 39); //ERROR: undeclared identifier
 ```
 
-### containers:
+### Constexpr containers 1:
 ```
 struct MyKeyClass {
   int i;
@@ -91,7 +91,7 @@ struct MyKeyClass {
   }
 };
 
-DO_META {  //= 'constexpr {'
+constexpr {
   auto mymap = ce::map<MyKeyClass, const char *>();
   
   mymap.assign(MyKeyClass(1), "struct Z1 {};");
@@ -114,6 +114,28 @@ void dummyfunc1() {
   //Z3 z3; //ERROR: undeclared identifier
   ZZ3 zz3;
   Z5 z5;
+}
+```
+### Constexpr containers 2:
+```
+constexpr {
+  auto myvec1 = ce::vector<int>();
+  myvec1.push_back(-43);
+  nce_assert(myvec1.back() == -43);
+
+  auto myvec2 = ce::vector<ce::vector<int>>();
+  myvec2.push_back(myvec1); //copy construction (see below)
+  nce_assert(myvec4.size() == 1);
+  nce_assert(myvec4.back().back() == -43);
+
+  myvec2.back().push_back(23);
+  nce_assert(myvec2.back().back() == 23);
+  nce_assert(myvec1.back() == -43); //!
+
+  myvec2.emplace_back(std::move(myvec1));
+  myvec2.back().push_back(23);
+  nce_assert(myvec2.back().back() == 23);
+  nce_assert(myvec1.back() == 23); //!
 }
 ```
 
