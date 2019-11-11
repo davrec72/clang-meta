@@ -115,6 +115,7 @@ void dummyfunc1() {
 ```
 constexpr {
   auto myvec1 = ce::vector<int>();
+  myvec1.reserve(10);
   myvec1.push_back(-43);
   nce_assert(myvec1.back() == -43);
 
