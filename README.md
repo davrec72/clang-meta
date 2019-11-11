@@ -282,7 +282,7 @@ Compare that to metaparsing:
   }
   
 ```
-I prefer the latter for some of the same reasons as above: with the metaparsing solution, there is
+I prefer the latter for the same reasons as above: with the metaparsing solution, there is
 1) no parallel code to maintain a la `make_constexpr` -- new parse-able keywords etc. are automatically supported; and
 2) Implementers needn't answer to complaints about what is or is not "injectible", or what properties of a reflection are modifiable before injection.
 
