@@ -306,7 +306,7 @@ I have annotated with `//DWR ADDN` or `//DWR MOD` etc. everywhere I have added t
 
 I have done likewise -- `//ASUTTON ADDN` -- for wherever I have copied over or adapted code from Andrew Sutton's original repository, linked above (which is based around clang 5.x).
 
-As mentioned previously Mr. Sutton and co. have made subsequent progress along their own track for reflection & "reification" (their analog of metaparsing); I encourage you to also check out their newer work:
+As mentioned previously Mr. Sutton and co. have made subsequent progress along their own track for reflection & "reification"; I encourage you to check out their newer work:
 	https://gitlab.com/lock3/clang.
 Their code is very impressive, but owing to the divergence of our implementations, I have not borrowed anything additional from it excepting what was already in Mr. Sutton's original 5.x code (`ConstexprDecl`, `CXXTupleExpansionStmt`, `CXXConcatenateExpr`, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
 
