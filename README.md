@@ -212,8 +212,8 @@ Compare that to metaparsing:
   
 ```
 I prefer the latter for some of the same reasons as above: with the metaparsing solution, there is
-1) no parallel code to maintain -- new parse-able keywords etc. are automatically supported, and
-2) Implementers needn't answer to complaints about what is or is not "injectible".
+1) no parallel code to maintain a la `make_constexpr` -- new parse-able keywords etc. are automatically supported; and
+2) Implementers needn't answer to complaints about what is or is not "injectible"; i.e. what other functions they must supply to keep users happy.
 
 Not to mention that it is dirt-simple to understand, and there seem to be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
 
