@@ -122,7 +122,7 @@ constexpr {
   nce_assert(myvec1.back() == -43);
 
   auto myvec2 = ce::vector<ce::vector<int>>();
-  myvec2.push_back(myvec1); //copy construction (see below)
+  myvec2.push_back(myvec1); //copy construction
   nce_assert(myvec4.size() == 1);
   nce_assert(myvec4.back().back() == -43);
 
@@ -130,7 +130,7 @@ constexpr {
   nce_assert(myvec2.back().back() == 23);
   nce_assert(myvec1.back() == -43); //!
 
-  myvec2.emplace_back(std::move(myvec1));
+  myvec2.emplace_back(std::move(myvec1)); //move construction
   myvec2.back().push_back(23);
   nce_assert(myvec2.back().back() == 23);
   nce_assert(myvec1.back() == 23); //!
