@@ -17,9 +17,10 @@
 // don't bother with that; normal class templates serve just fine
 // as metaclass wrappers, and are more general.
 // Mr. Sutton's more recent class(metafuncname) { ... } syntax
-// for metafunctions, we also abjure.
+// for metaclasses, we also abjure.
+// [https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial]
 //
-// i.e. instead of either Herb Sutter's old syntax:
+// I.e. instead of either Herb Sutter's old syntax:
 //
 // $class interface { ... }
 // interface MyIfc { ...prototype content... };
