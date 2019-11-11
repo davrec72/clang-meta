@@ -19,24 +19,31 @@ If you're not *using* metafunctions, you *are* one!
 
 ### Reflection:
 ```
-struct MyClassA { float f; };
+tempalte<typename T>
+struct MyClassTmplA { 
+  T t; 
+  int i; 
+};
 
 constexpr {  //aka DO_META
-  auto_ RD = cast<CXXRecordDecl>(reflexpr(MyClassA));
+  auto_ CTD = cast<ClassTemplateDecl>(reflexpr(MyClassTmplA));
   	     // ^ cast/dyn_cast/isa work as you'd expect
 
-  RD->
-  //  ^ Your IDE will provide suggestions for all reflection properties 
+  CTD->
+  //   ^Your IDE will provide suggestions for all reflection properties 
   //    (100s of them -- just about every public const method in the clang AST!)
   //    And if you make changes to clang, just recompile and the new properties 
   //    are automatically reflected!
   
-  ce_assert(!RD->isClass());
-  ce_assert(RD->isStruct());
+  ce_assert(CTD->getNumTemplateParameters() == 1);
   
-  FOR ((Decl *) D : RD->decls()) { 
-    if constexpr (auto_ FD = dyn_cast<FieldDecl>(D))
+  FOR ((Decl *) D : CTD->getTemplatedDecl()->decls()) { 
+    if constexpr (auto_ FD = dyn_cast<FieldDecl>(D)) {
+        auto_ QT = FD->getType();
+	if (QT->isDependentType())
+	  ce_debug("Field named ", FD->getQualifiedNameAsString(), " has a dependent type");
     	FD->dump();
+    }
   }
 }
 ```
