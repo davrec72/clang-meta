@@ -8,6 +8,17 @@ A C++ compiler with added meta-programming features:
 
 Use these to define your own metaclasses, metanamespaces, meta-metafunctions, etc. -- recursion works endlessly. 
 
+
+## Acknowledgments
+
+This work is based around llvm/clang 7.0.0.  More significantly, this
+work is adapted from Andrew Sutton's original reflection/metaclasses repository: 
+	https://github.com/asutton/clang.
+Many thanks to him for sharing his excellent work; without it these additional 
+contributions would not have been possible.  
+Please also check out his newer work (https://gitlab.com/lock3/clang) for an alternate implementation along these lines.
+
+
 ## Syntax examples
 
 ### Reflection/custom diagnostics:
@@ -131,16 +142,6 @@ constexpr {
   nce_assert(myvec1.back() == 23); //!
 }
 ```
-
-
-## Acknowledgments
-
-This work is based around llvm/clang 7.0.0.  More significantly, this
-work is adapted from Andrew Sutton's original reflection/metaclasses repository: 
-	https://github.com/asutton/clang.
-Many thanks to him for sharing his excellent work; without it these additional 
-contributions would not have been possible.  
-Please also check out his newer work (https://gitlab.com/lock3/clang) for an alternate implementation along these lines.
 
 
 ## Discussion
