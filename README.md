@@ -82,7 +82,7 @@ Because it is far more general than other proposed reflection standards.  You ca
 The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.
 
 Save yourself the stress of awaiting the resolution of such discussions by simply isolating away any dependencies on the eventual standards:
-1) Extract out into constexpr helper functions any reflection-related functions whose definition might need to change from this implementation to the eventual standard.
+1) Extract out into constexpr helper functions any reflection property queries whose definition might need to change from this implementation to the eventual standard.
 2) Only interface with those helper functions.
 3) When standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly and switch to the new compiler.
 
