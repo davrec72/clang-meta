@@ -46,18 +46,18 @@ constexpr {  //aka DO_META
 constexpr {
   __queue_metaparse("static const int i = 3;");
   __queue_metaparse("static const int j = i + ");
-  constexpr int jval = __metaparse_expr(__concatenate("3", 2+2), int);
+  constexpr int jval = __metaparse_expr(__concatenate("3", 2+2, " + 5"), int);
   __queue_metaparse(__concatenate(jval, ";"));
   
   //ce_assert(i == 3); //ERROR: undeclared identifier
-  //ce_assert(j == 37); //ERROR: undeclared identifier
-  ce_assert(jval == 34);
+  //ce_assert(j == 42); //ERROR: undeclared identifier
+  ce_assert(jval == 39);
   
 } //...queued metaparses performed here...
 
 static_assert(i == 3);
-static_assert(j == 37);
-//static_assert(jval == 34); //ERROR: undeclared identifier
+static_assert(j == 42);
+//static_assert(jval == 39); //ERROR: undeclared identifier
 ```
 
 Check out the examples folder for custom diagnostics and constexpr containers examples, and
