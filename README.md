@@ -8,7 +8,7 @@ A C++ compiler with added meta-programming features:
 
 Use these to define your own metaclasses, metanamespaces, meta-metafunctions, etc. -- recursion works endlessly. 
 
-## Examples
+## Syntax examples
 
 ### Reflection/custom diagnostics:
 ```
