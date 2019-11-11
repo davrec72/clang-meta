@@ -288,11 +288,11 @@ I prefer the latter for some of the same reasons as above: with the metaparsing 
 1) no parallel code to maintain a la `make_constexpr` -- new parse-able keywords etc. are automatically supported; and
 2) Implementers needn't answer to complaints about what is or is not "injectible", or what properties of a reflection are modifiable before injection.
 
-Not to mention metaparsing is dirt-simple to understand, and there seem to be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
+Furthermore, there seem to be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
 
-I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, think how you might do them with metaparsing, and decide which feels better.
+But metaparsing's most obvious benefit: it is *dirt-simple*.  
 
-Also consider the converse -- how his injection facilities might perform the metaparsing examples you see here.
+Mr. Sutton's infrastructure has clearly been laboriously thought out, but it gets very complex, once he introduces `__fragment`s and `requires` statements to introduce dependencies.  I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, think how you might do them with metaparsing, and perhaps consider the converse.  I'd be interested to know if anyone finds anything that can be done his infrastructure that cannot be done with metaparsing.  
 
 
 ### Source code notes
