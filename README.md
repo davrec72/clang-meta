@@ -26,7 +26,7 @@ struct MyClassTmplA {
   void f();
 };
 
-constexpr {  //aka DO_META
+constexpr {
 
   using namespace cppx::meta;
   using namespace cppx::meta::clang;
@@ -79,8 +79,43 @@ static_assert(j == 42);
 //static_assert(jval == 39); //ERROR: undeclared identifier
 ```
 
-Check out the examples folder for custom diagnostics and constexpr containers examples, and
-more advanced reflection/metaparsing stuff.
+### containers:
+```
+struct MyKeyClass {
+  int i;
+  constexpr MyKeyClass(int i = 0) : i(i) {}
+  
+  // Need this for any container elem class (see tutorial):
+  constexpr operator const char *() {
+    return __concatenate("MyKeyClass(", i, ")");
+  }
+};
+
+DO_META {  //= 'constexpr {'
+  auto mymap = ce::map<MyKeyClass, const char *>();
+  
+  mymap.assign(MyKeyClass(1), "struct Z1 {};");
+  mymap.assign(MyKeyClass(3), "struct Z3 {};");
+  mymap.assign(MyKeyClass(5), "struct Z5 {};");
+  
+  nce_assert(mymap.contains(MyKeyClass(3)));
+  nce_assert(ce_streq(mymap.at(MyKeyClass(3)), "struct Z3 {};"));
+  
+  mymap.assign(MyKeyClass(3), "struct ZZ3 {};"); //reassignment
+  nce_assert(ce_streq(mymap.at(MyKeyClass(3)), "struct ZZ3 {};"));
+
+  for (auto kv : mymap) {
+    QPARSE(kv.second);
+  }
+}
+
+void dummyfunc1() {
+  Z1 z1;
+  //Z3 z3; //ERROR: undeclared identifier
+  ZZ3 zz3;
+  Z5 z5;
+}
+```
 
 
 ## Acknowledgments
