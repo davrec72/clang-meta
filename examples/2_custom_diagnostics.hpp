@@ -153,7 +153,7 @@ namespace custom_diagnostics_example {
                                                               __concatenate("/// @name ", ND->getNameAsString(), "\n"
                                                                             "/// @brief TODO Add real documentation\n"))
     //                       // (b) user::FixitHint::CreateRemoval
-    //                       , FixItHint::CreateRemoval(user::SourceRange(ND->getBeginLoc(), ND->getEndLoc()));
+    //                       , user::FixItHint::CreateRemoval(user::SourceRange(ND->getBeginLoc(), ND->getEndLoc()));
                            
     //                       // (c) user::FixitHint::CreateReplacement
     //                       , user::FixItHint::CreateReplacement(user::SourceRange(ND->getBeginLoc(), ND->getEndLoc()),
