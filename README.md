@@ -146,7 +146,7 @@ Please also check out his newer work (https://gitlab.com/lock3/clang) for an alt
 ## Discussion
 
 ### This reflection interface isn't an agreed-upon C++ standard, why should I bother writing any code with it?
-Because it is far more general than other proposed reflection standards.  You can reflect anything -- down to the individual statements in your function definitions!  You will never want for reflection.  
+Because it is far more general than other proposed or implemented reflection standards.  You can reflect anything -- down to the individual statements in your function definitions!  You will never want for reflection.  
 
 The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.
 
