@@ -227,7 +227,7 @@ namespace constexpr_containers_example {
         // overloads of metacast
     }
 
-    // THIS WORKS!!! QPARSEs within NORMAL for loops, over a non-const ce container!!
+    // QPARSEs within NORMAL for loops, over a non-const ce container
     DO_META {
         auto mystrvec = ce::vector<const char *>();
         mystrvec.push_back("struct WontExist {};");
