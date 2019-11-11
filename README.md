@@ -111,7 +111,7 @@ void dummyfunc1() {
   Z5 z5;
 }
 ```
-### Constexpr containers 2:
+### More constexpr containers:
 ```
 constexpr {
   auto myvec1 = ce::vector<int>();
