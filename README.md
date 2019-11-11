@@ -182,7 +182,7 @@ I see at least three benefits over the existing reflection proposals:
 ### Metaparsing
 
 The metaparsing feature will, I suspect, have some detractors.  It feels a bit Python-y; a bit out of place in strict typing environment like C++.
-This is why, I imagine, other proposals lean toward methods of source code "injection" or modification using cleaner, more C++-like statements:
+This is why, I imagine, other proposals lean toward using cleaner, more C++-like statements; consider Mr. Sutton's implementation:
 ```
   namespace a {
     int foo();
@@ -197,9 +197,9 @@ This is why, I imagine, other proposals lean toward methods of source code "inje
     }
   }
 ```
-instead of 
+Compare that to metaparsing:
 ```
-  // MY METAPARSING IMPLEM:
+  // DWR'S "METAPARSING":
   template<typename T>
   const char *funcSigAsStr(T funcrefl) { /*...textual copying of function signature...*/ }
   
