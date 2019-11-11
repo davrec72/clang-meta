@@ -184,19 +184,43 @@ I see at least three benefits over the existing reflection proposals:
 The metaparsing feature will, I suspect, have some detractors.  It feels a bit Python-y; a bit out of place in strict typing environment like C++.
 This is why, I imagine, other proposals lean toward methods of source code "injection" or modification using cleaner, more C++-like statements:
 ```
-	// CURRENT INJECTION PROPOSALS:
-	myfuncrefl->addVirtual();
+  namespace a {
+    int foo();
+  }
+  
+  // ASUTTON'S "INJECTION":
+  namespace b {
+    consteval {
+      meta::info  afoorefl = reflexpr(a::foo);
+      meta::make_constexpr(afoorefl);
+      -> a_foo_refl;
+    }
+  }
 ```
 instead of 
 ```
-	// MY METAPARSING IMPLEM:
-	QPARSE("virtual ", ...outright textual copying of function signature...);
+  // MY METAPARSING IMPLEM:
+  template<typename T>
+  const char *funcSigAsStr(T funcrefl) { /*...textual copying of function signature...*/ }
+  
+  namespace b {
+    DO_META {
+      auto_ afoorefl = reflexpr(a::foo);
+      if (afoorefl->isConstexpr())
+      	QPARSE(funcSigAsStr(afoorefl)); 
+      else	
+        QPARSE("constexpr ", funcSigAsStr(afoorefl));
+    }
+  }
+  
 ```
-I disagree, for some of the same reasons as above: with the metaparsing solution, there is
+I prefer the latter, despite it's inelegance, for some of the same reasons as above: with the metaparsing solution, there is
 1) no parallel code to maintain -- new parse-able keywords etc. are automatically supported, and
-2) Implementers needn't answer to complaints about what is or is not injectible.
+2) Implementers needn't answer to complaints about what is or is not "injectible".
 
 Not to mention that it is dirt-simple to understand, and there seem to be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
+
+I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, and think how you might do them with metaparsing.  I believe it gets just too complex once he gets into `__fragment`s -- such things would be more straightforward with metaparsing -- but I leave it for others to judge.
 
 
 ### Source code
