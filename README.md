@@ -243,12 +243,12 @@ There are many C++ reflection proposals floating around.  I believe the way I've
 
 E.g., if `clang::NamespaceDecl` has an `isAnonymousNamespace()` public const method, so the user will be able to access a `reflexpr(mynamespace)->isAnonymousNamespace()` reflection.
 
-More generally, my argument is that the C++ standard should define a minimum compiler AST architecture that all compilers must use; this would be the basis of the reflection library.
+More generally, my argument is that the C++ standard should define a minimum compiler AST interface that all compilers must use; this would be the basis of the reflection library.  It would be an exhausting endeavor, lots of arguments, lots of resistance from developers who like their idiosyncrasies.
 
-I see at least three benefits over the existing reflection proposals:
-1) No parallel code to maintain -- e.g. you don't need to keep up to date an `NamespaceDecl::isAnonymousNamespace()` member AND some sort of `reflectIsAnonymousNamespace()` function.
+But if it were to be done, I see at least three benefits over the existing reflection proposals:
+1) No parallel code to maintain long-term -- e.g. you don't need to keep up to date an `NamespaceDecl::isAnonymousNamespace()` member AND some sort of `reflectIsAnonymousNamespace()` function.
 
-2) Improvements to the compilers' ASTs would be linked inextricably to improvements to the C++ standards, which would benefit all.
+2) Improvements to the compilers' ASTs would be linked to improvements to the C++ standards, which would benefit all.  The shared language wouldn't hurt either.
 
 3) Reflection implementers needn't answer to complaints about what properties of this or that decl are or are not reflectible.  Any change a user wants, she or he can make by modifying the AST interface and rebuilding `clang-wreflection` -- and indeed they should.  Interested parties can have discussions about what they want reflected without feeling they are hostage to the reflection implementers, and the implementers can work without having to engage in the hundreds of arguments sure to be required to make such decisions.  The two are decoupled.  Everyone benefits.
 
