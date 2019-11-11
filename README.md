@@ -103,9 +103,9 @@ constexpr {
   nce_assert(ce_streq(mymap.at(MyKeyClass(3)), "struct ZZ3 {};"));
 
   for (auto kv : mymap) {
-    QPARSE(kv.second);
+    __queue_metaparse(kv.second);
   }
-} //queued metaparses performed here...
+}
 
 void dummyfunc1() {
   Z1 z1;
