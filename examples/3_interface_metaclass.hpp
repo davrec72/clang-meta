@@ -65,7 +65,7 @@
 // and to give it the desired aesthetics,
 // 2) user syntax-definition commands (#syndef?), defined roughly like 
 // preprocessor #defines but just a bit more involved, capable in this case 
-// of expanding
+// of expanding e.g.
 //
 //   interface myifc { void f(); void g(); };
 //
