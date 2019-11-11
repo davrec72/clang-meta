@@ -293,9 +293,9 @@ I prefer the latter for some of the same reasons as above: with the metaparsing 
 
 Not to mention metaparsing is dirt-simple to understand, and there seem to be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
 
-I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, and think how you might do them with metaparsing.  I believe it gets a bit too complex once he gets into `__fragment`s -- such things would be obviously more straightforward with metaparsing, where one needn't distinguish single declarations or statements from fragments (which I infer are intended to group several together).  
+I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, think how you might do them with metaparsing, and decide which feels better.  I believe it gets a bit too complex once he gets into `__fragment`s -- such things would be obviously more straightforward with metaparsing, where one needn't distinguish single declarations or statements from fragments (which I infer are intended to group several together).  
 
-Also consider the converse -- how his injection facilities might perform the metaparsing examples you see in this repository.
+Also consider the converse -- how his injection facilities might perform the metaparsing examples you see here.
 
 
 ### Source code notes
