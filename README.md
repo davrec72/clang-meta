@@ -158,7 +158,7 @@ Then, when standards are agreed upon and a compliant compiler is built that supp
 
 The same goes for metaparsing/"injection"/"reification"/whatever they eventually call it: isolate away such details into helper functions where possible.
 
-This is a vast new frontier; no need to wait further for all the implementation details to be worked out before beginning exploration.
+The important thing is you can *do* just about any metaprogramming feat with this compiler.  It is a vast new frontier.  You need not wait for the standards to be perfectly worked out to begin exploration.
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
 Metaprograms outside your main program used to generate the sources fed to your C++ compiler -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you.
