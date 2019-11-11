@@ -206,21 +206,18 @@ instead of
   namespace b {
     DO_META {
       auto_ afoorefl = reflexpr(a::foo);
-      if (afoorefl->isConstexpr())
-      	QPARSE(funcSigAsStr(afoorefl)); 
-      else	
-        QPARSE("constexpr ", funcSigAsStr(afoorefl));
+      QPARSE((afoorefl->isConstexpr() ? "" : "constexpr "), funcSigAsStr(afoorefl)); 
     }
   }
   
 ```
-I prefer the latter, despite it's inelegance, for some of the same reasons as above: with the metaparsing solution, there is
+I prefer the latter for some of the same reasons as above: with the metaparsing solution, there is
 1) no parallel code to maintain -- new parse-able keywords etc. are automatically supported, and
 2) Implementers needn't answer to complaints about what is or is not "injectible".
 
 Not to mention that it is dirt-simple to understand, and there seem to be problems that ONLY metaparsing can solve; see how I use it to implement constexpr containers, for example.
 
-I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, and think how you might do them with metaparsing.  I believe it gets just too complex once he gets into `__fragment`s -- such things would be more straightforward with metaparsing -- but I leave it for others to judge.
+I suggest you see other metaprogramming examples of Mr. Sutton's at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial, and think how you might do them with metaparsing.  I believe it gets just too complex once he gets into `__fragment`s -- such things would be more straightforward with metaparsing -- but I leave it for others to judge.  Also consider how the metaparsing examples you see in this repository might be done with his injection capabilities.
 
 
 ### Source code
