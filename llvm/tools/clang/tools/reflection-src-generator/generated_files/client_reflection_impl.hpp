@@ -438,7 +438,7 @@ IFMETA_ELSE( (template<typename T> ptrwrp(T t) -> ptrwrp<T>;), () )
   /// the types we cast to, as our dummy cast implems above don't do any actual
   /// casting; their goal here is to just helping the IDE navigate the types,
   /// without resorting to casting nullptrs (which raises other errors).
-# define reflexpr(...)  (&DfltNonnullObj<_RememberToManuallyCastReflexprForNow_>)
+# define reflexpr(...)  (&cppx::meta::DfltNonnullObj<cppx::meta::_RememberToManuallyCastReflexprForNow_>)
 
   /// Cast this to whatever makes sense in the context; e.g. `cast<CXXRecordDecl>(reflexpr(SomeClass))`.
   /// Not necessary to compile, but definitely a good practice to help the IDE help you.

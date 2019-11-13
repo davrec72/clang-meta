@@ -155,7 +155,7 @@ if (LIBCXX_OSX_REEXPORT_SYSTEM_ABI_LIBRARY)
       "-current_version 1"
       "-install_name /usr/lib/libc++.1.dylib"
       "-Wl,-reexport_library,/usr/lib/libc++abi.dylib"
-      "-Wl,-unexported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/libc++unexp.exp"
+      "-Wl,-unexported_symbols_list,\"${CMAKE_CURRENT_SOURCE_DIR}/libc++unexp.exp\"" #DWR MOD added \"\"
       "/usr/lib/libSystem.B.dylib")
   else()
 	  if (DEFINED CMAKE_OSX_SYSROOT AND NOT CMAKE_OSX_SYSROOT STREQUAL "")
@@ -163,24 +163,24 @@ if (LIBCXX_OSX_REEXPORT_SYSTEM_ABI_LIBRARY)
       if (NOT OSX_HAS_ARMV7 EQUAL -1)
         set(OSX_RE_EXPORT_LINE
           "${CMAKE_OSX_SYSROOT}/usr/lib/libc++abi.dylib"
-          "-Wl,-reexported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/libc++sjlj-abi.exp")
+          "-Wl,-reexported_symbols_list,\"${CMAKE_CURRENT_SOURCE_DIR}/libc++sjlj-abi.exp\"") #DWR MOD added \"\"
       else()
         set(OSX_RE_EXPORT_LINE
           "-Wl,-reexport_library,${CMAKE_OSX_SYSROOT}/usr/lib/libc++abi.dylib")
       endif()
     else()
-      set(OSX_RE_EXPORT_LINE "/usr/lib/libc++abi.dylib -Wl,-reexported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/libc++abi${LIBCXX_LIBCPPABI_VERSION}.exp")
+      set(OSX_RE_EXPORT_LINE "/usr/lib/libc++abi.dylib -Wl,-reexported_symbols_list,\"${CMAKE_CURRENT_SOURCE_DIR}/libc++abi${LIBCXX_LIBCPPABI_VERSION}.exp\"") #DWR MOD added \"\"
       if (NOT LIBCXX_ENABLE_NEW_DELETE_DEFINITIONS)
-        add_link_flags("/usr/lib/libc++abi.dylib -Wl,-reexported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/libc++abi-new-delete.exp")
+        add_link_flags("/usr/lib/libc++abi.dylib -Wl,-reexported_symbols_list,\"${CMAKE_CURRENT_SOURCE_DIR}/libc++abi-new-delete.exp\"") #DWR MOD added \"\"
       endif()
     endif()
     add_link_flags(
       "-compatibility_version 1"
       "-install_name /usr/lib/libc++.1.dylib"
-      "-Wl,-unexported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/libc++unexp.exp"
+      "-Wl,-unexported_symbols_list,\"${CMAKE_CURRENT_SOURCE_DIR}/libc++unexp.exp\"" #DWR MOD added \"\"
       "${OSX_RE_EXPORT_LINE}"
-      "-Wl,-force_symbols_not_weak_list,${CMAKE_CURRENT_SOURCE_DIR}/notweak.exp"
-      "-Wl,-force_symbols_weak_list,${CMAKE_CURRENT_SOURCE_DIR}/weak.exp")
+      "-Wl,-force_symbols_not_weak_list,\"${CMAKE_CURRENT_SOURCE_DIR}/notweak.exp\"" #DWR MOD added \"\"
+      "-Wl,-force_symbols_weak_list,\"${CMAKE_CURRENT_SOURCE_DIR}/weak.exp\"") #DWR MOD added \"\"
   endif()
 endif()
 

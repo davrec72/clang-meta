@@ -78,8 +78,8 @@ namespace custom_diagnostics_example {
         // Let's recurse to child members first.
         //
         // Need to use IF (= 'if constexpr') here
-        // to avoid a null reflection ptr cast when the
-        // dyn_cast fails.
+        // to avoid a null reflection ptr dereference error
+        // later whenever the dyn_cast fails.
         //
         IF (auto_ DC = dyn_cast<DeclContext>(idrefl(refl))) {
             
@@ -181,7 +181,7 @@ namespace custom_diagnostics_example {
                 // "CompilerDiagnosticExpr".)
             }
         }
-    }
+    } 
 
     DO_META {
         auto_ myproj1refl = cast<NamespaceDecl>(reflexpr(myproj1));
