@@ -87,16 +87,20 @@ constexpr {
   __queue_metaparse("static const int j = i + ");
   constexpr int jval = __metaparse_expr(__concatenate("3", 2+2, " + 5"), int);
   __queue_metaparse(__concatenate(jval, ";"));
+  __queue_metaparse("constexpr { __queue_metaparse(\"static const int k = ", 1+1, " + 2 + \", 4); }");
   
-  //ce_assert(i == 3); //ERROR: undeclared identifier
-  //ce_assert(j == 42); //ERROR: undeclared identifier
+  //i; //ERROR: undeclared identifier
+  //j; //ERROR: undeclared identifier
   ce_assert(jval == 39);
+  //k; //ERROR: undeclared identifier
+
   
 } //...queued metaparses performed here...
 
 static_assert(i == 3);
 static_assert(j == 42);
 //static_assert(jval == 39); //ERROR: undeclared identifier
+static_assert(k == 8);
 ```
 
 ### Constexpr containers:
@@ -133,29 +137,6 @@ void dummyfunc1() {
   Z1 z1;
   ZZ3 zz3;
   Z5 z5;
-}
-```
-### More constexpr containers:
-```
-constexpr {
-  auto myvec1 = ce::vector<int>();
-  myvec1.reserve(10);
-  myvec1.push_back(-43);
-  nce_assert(myvec1.back() == -43);
-
-  auto myvec2 = ce::vector<ce::vector<int>>();
-  myvec2.push_back(myvec1); //copy construction
-  nce_assert(myvec4.size() == 1);
-  nce_assert(myvec4.back().back() == -43);
-
-  myvec2.back().push_back(23);
-  nce_assert(myvec2.back().back() == 23);
-  nce_assert(myvec1.back() == -43); //!
-
-  myvec2.emplace_back(std::move(myvec1)); //move construction
-  myvec2.back().push_back(23);
-  nce_assert(myvec2.back().back() == 23);
-  nce_assert(myvec1.back() == 23); //!
 }
 ```
 
