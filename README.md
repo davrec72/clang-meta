@@ -1,3 +1,15 @@
+### Status update 11/17/19
+
+I'm currently working to 
+1) rename `reflexpr` to `__creflexpr`, so it could live in harmony with Andrew Sutton/Lock3 software's ISO reflection implementation should those be merged (just imagine being able to use ISO-compliant reflections when they do what you need via `reflexpr`, and resorting to our non-ISO reflections via `__creflexpr` -- and perhaps someday, `__msvcreflexpr` or `__gccreflexpr` should they make use of my system -- when you need something not yet officially supported), and 
+2) copy/adapt Lock3's *implementation* of `reflexpr` so `__creflexpr` so they both reflect the same entity *and more importantly*, have the same capabilities.  In the current code, our `reflexpr` (basically unchanged from Andrew's old prototype implementation) does not do so well on e.g. template template parameters, or complicated dependent ID expressions, whereas it appears Lock3 has done some great work to get those to work.  It's really quite difficult what has to happen under the hood to get that stuff to work -- kudos to them.
+
+It also makes great sense to incorporate their excellent `unqualid(...)` feature, as that will work excellently with our `const char *`-centric implementation.  Like our `__metaparse_expr`, `unqualid(...)` is an excellent tool for transferring information between "meta-levels" without having to resort to `DEFERRED_META` techniques (discussed in our metaparsing example hpp).
+
+Incorporating the new stuff takes a lot of work, and has been tricky thus far.  I'm hoping I'll have it ready in a few days.  (At some point, I really need to just port *my* code into a fork of the latest clang repository, would probably be not much more complex than what I have to do to incorporate even a little clang 9 code into my clang 7 implem...)
+
+Once that is done, I will work on putting the compiler on Matt Godbolt's excellent Compiler Explorer -- many thanks to him for responding to my inquiries, that will make it so much more convenient to test these new features.  Just imagine that godbolt.org link in place of the page and a half of installation instructions below...ah, won't that be nice...
+
 # clang-meta
 
 A C++ compiler with added meta-programming features: 
@@ -7,6 +19,7 @@ A C++ compiler with added meta-programming features:
 4) **constexpr containers** (vector, set, map -- or add your own!) of any of your constexpr classes.
 
 Use these to define your own metaclasses, metanamespaces, meta-metafunctions, etc. -- recursion works endlessly. 
+
 
 
 ## Acknowledgments
@@ -277,7 +290,7 @@ Compare that to metaparsing:
   }
   
   namespace b {
-    DO_META {
+    constexpr {
       auto_ afoorefl = reflexpr(a::foo);
       QPARSE((afoorefl->isConstexpr() ? "" : "constexpr "), funcSigAsStr(afoorefl)); 
     }
