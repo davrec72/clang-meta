@@ -154,7 +154,7 @@ But in the meantime, we can save ourselves the stress and lost productivity by u
 
 The same goes for metaparsing/"injection"/"reification"/whatever they eventually call it: isolate away such details into helper functions where possible.
 
-(*In fact*, because the standards being considered are all external functions of the form `meta::some_property(refl)` (e.g. `meta::is_constexpr(funcrefl)`), I suggest you just make your own `meta::` library of constexpr functions of that same basic form.  Perhaps collect them in an `inline namespace myreflnames {...}` within `namespace meta { ... }`, and implement them for now in terms of our clang-specific reflections.  If you come up with some useful ones, share them with the rest of us, including the standards committee.  Let's make their job easier by providing bottom-up information on which reflections we need, and how we want to interface with them.)
+(*In fact*, because the standards being considered are all external functions of the form `meta::some_property(refl)` (e.g. `meta::is_constexpr(funcrefl)`), I suggest you just make your own `meta::` library of constexpr functions of that same basic form.  Perhaps collect them in an `inline namespace yourinitialshere {...}` within `namespace meta { ... }`, and implement them for now in terms of our clang-specific reflections.  If you come up with some useful ones, share them with the rest of us, including the standards committee.  Let's make their job easier by providing bottom-up information on which reflections we need, and how we want to interface with them.)
 
 You can *do* just about any metaprogramming feat with this compiler.  It is a vast new frontier.  You need not wait for the standards to be perfectly worked out to begin exploration.
 
