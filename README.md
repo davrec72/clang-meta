@@ -83,6 +83,7 @@ constexpr {
 ### Metaparsing:
 ```
 constexpr {
+
   __queue_metaparse("static const int i = 3;");
   __queue_metaparse("static const int j = i + ");
   constexpr int jval = __metaparse_expr(__concatenate("3", 2+2, " + 5"), int);
@@ -93,7 +94,6 @@ constexpr {
   //j; //ERROR: undeclared identifier
   ce_assert(jval == 39);
   //k; //ERROR: undeclared identifier
-
   
 } //...queued metaparses performed here...
 
