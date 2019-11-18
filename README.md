@@ -146,7 +146,9 @@ void dummyfunc1() {
 ### This reflection interface isn't an agreed-upon C++ standard, why should I bother writing any code with it?
 Because it is far more general than other proposed or implemented reflection standards.  You can reflect anything -- down to the individual statements in your function definitions!  You will never want for reflection.  
 
-The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.  While our reflected clang methods can *do* anything you want, if often takes some gymnastics to do it -- so we should certainly respect and appreciate the efforts of the standards folks to take the time to get the names and general aesthetics right.
+The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.  
+
+To be sure, while our reflected clang methods can *do* anything you want, if often takes some gymnastics to do it -- so we should certainly respect and appreciate the efforts of the standards folks to take the time to get the names and general aesthetics right.
 
 But in the meantime, we can save ourselves the stress and lost productivity by using this "practical" implementation for now, and simply isolating away any dependencies on the eventual naming standards into a limited library of helper functions.  When standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly and switch to the new compiler.
 
