@@ -88,8 +88,11 @@ constexpr {
   __queue_metaparse("static const int j = i + ");
   constexpr int jval = __metaparse_expr(__concatenate("3", 2+2, " + 5"), int);
   __queue_metaparse(__concatenate(jval, ";"));
-  __queue_metaparse("constexpr { 
-  	__queue_metaparse(__concatenate(\"static const int k = ", 1+1, " + 2 + \", 4)); }");
+  __queue_metaparse(__concatenate(
+  	"constexpr { __queue_metaparse(__concatenate(\"static const int k = ", 
+	1+1, 
+	" + 2 + \", 4)); }" 
+	));
   
   //i; //ERROR: undeclared identifier
   //j; //ERROR: undeclared identifier
@@ -97,6 +100,10 @@ constexpr {
   //k; //ERROR: undeclared identifier
   
 } //...queued metaparses performed here...
+  //---The last one is first eval'd to:
+  //     constexpr { __queue_metaparse(__concatenate("static const int k = 2 + 2 + ", 4)); }
+  //---Then that is itself eval'd as it would be during a normal parse, etc.; 
+  //   No limit to degree of evaluation/parsing recursion...
 
 static_assert(i == 3);
 static_assert(j == 42);
