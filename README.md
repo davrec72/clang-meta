@@ -164,7 +164,7 @@ The same goes for metaparsing/"injection"/"reification"/whatever they eventually
 
 (*In fact*, because the standards being considered are all external functions of the form `meta::some_property(refl)` (e.g. `meta::is_constexpr(funcrefl)`), I suggest you just make your own `meta::` library of constexpr functions of that same basic form.  Perhaps collect them in an `inline namespace yourinitialshere {...}` within `namespace meta { ... }`, and implement them for now in terms of our clang-specific reflections.  If you come up with some useful ones, share them with the rest of us, including the standards committee.  Let's make their job easier by providing bottom-up information on which reflections we need, and how we want to interface with them.)
 
-You can *do* just about any metaprogramming feat with this compiler.  It is a vast new frontier.  You need not wait for the standards to be perfectly worked out to begin exploration.
+Main takeaway: you can *do* just about any metaprogramming feat with this compiler.  It is a vast new frontier.  You need not wait for the standards to be perfectly worked out to begin exploration.
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
 Metaprograms outside your main program used to generate the sources fed to your C++ compiler -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you.
