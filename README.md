@@ -146,14 +146,15 @@ void dummyfunc1() {
 ### This reflection interface isn't an agreed-upon C++ standard, why should I bother writing any code with it?
 Because it is far more general than other proposed or implemented reflection standards.  You can reflect anything -- down to the individual statements in your function definitions!  You will never want for reflection.  
 
-The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.
+The C++ standards will surely *eventually* incorporate all such capabilities -- the demand for more reflection capability will be ever-present, insatiable.  But it will take years for them to decide exactly how they want to name things etc.  While our reflected clang methods can *do* anything you want, if often takes some gymnastics to do it -- so we should certainly respect and appreciate the efforts of the standards folks to take the time to get the names and general aesthetics right.
 
-Save yourself the stress and lost productivity of awaiting official support by using our implementation for now, and simply isolating away any dependencies on the eventual naming standards into helper functions.
-Then, when standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly and switch to the new compiler.
+But in the meantime, we can save ourselves the stress and lost productivity by using this "practical" implementation for now, and simply isolating away any dependencies on the eventual naming standards into a limited library of helper functions.  When standards are agreed upon and a compliant compiler is built that supports every reflection you need, alter those helper functions accordingly and switch to the new compiler.
 
 The same goes for metaparsing/"injection"/"reification"/whatever they eventually call it: isolate away such details into helper functions where possible.
 
-The important thing is you can *do* just about any metaprogramming feat with this compiler.  It is a vast new frontier.  You need not wait for the standards to be perfectly worked out to begin exploration.
+(*In fact*, because the standards being considered are all external functions of the form `meta::some_property(refl)` (e.g. `meta::is_constexpr(funcrefl)`), I suggest you just make your own `meta::` library of constexpr functions of that same basic form.  Perhaps collect them in an `inline namespace myreflnames {...}` within `namespace meta { ... }`, and implement them for now in terms of our clang-specific reflections.  If you come up with some useful ones, share them with the rest of us, including the standards committee.  Let's make their job easier by providing bottom-up information on which reflections we need, and how we want to interface with them.)
+
+You can *do* just about any metaprogramming feat with this compiler.  It is a vast new frontier.  You need not wait for the standards to be perfectly worked out to begin exploration.
 
 ### I already use Python scripts/clang tools/CMake etc. to metaprogram.  Why is this any better? 
 Metaprograms outside your main program used to generate the sources fed to your C++ compiler -- call them "transcendent metaprograms" -- are not reflectible.  There is no meta-metaprogram we can write to check them or modify them or call them conditionally.  Maintenance is up to you.
