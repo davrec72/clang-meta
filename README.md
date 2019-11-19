@@ -144,7 +144,7 @@ To be sure, the code is working great now -- all the examples work, and you can 
 
 Among the things I'll be doing:
 
-1) Merging my source code into Andrew Sutton/Lock3 software's ISO tentative reflection implementation -- in the process renaming our `reflexpr` to `__clangrefl`, so it does not conflict with their reflection interface.  Just imagine being able to use ISO-compliant reflections when they do what you need via `reflexpr(x)`, and for e.g. unsupported reflections resorting to our non-ISO reflections via `__clangrefl(x)` (and perhaps someday, `__msvcrefl(x)` or `__gccrefl(x)`?)
+1) Merging my source code into a fork of Andrew Sutton/Lock3 software's ISO tentative reflection implementation -- in the process renaming our `reflexpr` to `__clangrefl`, so it does not conflict with their reflection interface.  Just imagine being able to use ISO-compliant reflections when they do what you need via `reflexpr(x)`, and for e.g. unsupported reflections resorting to our non-ISO reflections via `__clangrefl(x)` (and perhaps someday, `__msvcrefl(x)` or `__gccrefl(x)`?)
 
 2) Copying/adapting Lock3's *implementation* of `reflexpr` so `__clangrefl` so they both reflect the same entity *and more importantly*, have the same capabilities.  In the current code, our `reflexpr` (basically unchanged from Andrew's old prototype implementation) does not do so well on e.g. template template parameters, or complicated dependent ID expressions, whereas it appears Lock3 has done some great work to get those to work.  It's really quite difficult what has to happen under the hood to get that stuff to work -- kudos to them.  
 Our implementations will then differ only in how you extract reflection properties from that point -- via e.g. 
