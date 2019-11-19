@@ -133,7 +133,8 @@ void dummyfunc1() {
 }
 ```
 
-### Status update 11/19/19
+## Status updates
+### 11/19/19
 
 I've decided that, instead of making slight incremental fixes, I'm going to bite the bullet and take a few weeks to really clean up the code and bring it into an up-to-date version of clang.  Once that is done, I will put the compiler on Matt Godbolt's excellent Compiler Explorer service and provide a godbolt.org link here, to spare you the hours and frustration and uncertainty and gigabytes of installing on your own system.  *Many thanks* to Matt.
 
