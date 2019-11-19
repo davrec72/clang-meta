@@ -1,18 +1,3 @@
-### Status update 11/17/19
-
-I'm currently working to 
-1) rename `reflexpr` to `__clangrefl`, so it could live in harmony with Andrew Sutton/Lock3 software's ISO reflection implementation should those be merged (just imagine being able to use ISO-compliant reflections when they do what you need via `reflexpr(x)`, and resorting to our non-ISO reflections via `__clangrefl(x)` -- and perhaps someday, `__msvcrefl(x)` or `__gccrefl(x)` should they incorporate my system to interface with their ASTs -- when you need something not yet officially supported), and 
-2) copy/adapt Lock3's *implementation* of `reflexpr` so `__clangrefl` so they both reflect the same entity *and more importantly*, have the same capabilities.  In the current code, our `reflexpr` (basically unchanged from Andrew's old prototype implementation) does not do so well on e.g. template template parameters, or complicated dependent ID expressions, whereas it appears Lock3 has done some great work to get those to work.  It's really quite difficult what has to happen under the hood to get that stuff to work -- kudos to them.  
-Our implementations will then differ only in how you extract reflection properties from that point -- via e.g. 
-`meta::some_standard_property(reflexpr(x))` queries in their case, vs. 
-`__clangrefl(x)->someClangSpecificProperty()` in ours.
-
-It also makes great sense to incorporate their excellent `unqualid(...)` feature, as that will work excellently with our `const char *`-centric implementation.  Like our `__metaparse_expr(..., T)`, `unqualid(...)` is an excellent tool for accessing meta information *in-place* (the main advantage of their reification infrastructure over our metaparsing, discussed further below), so you needn't always resort to stringizing and metaparsing huge blocks of code (`DEFERRED_META` techniques, discussed in our metaparsing example hpp) that only depend on a few measly "reifications".  See their tutorial at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial for how `unqualid` is used (in our implementation, the arguments will always be string literals or integers, as with `__concatenate`).  
-
-Incorporating the new stuff takes a lot of work, and has been tricky thus far.  I'm hoping I'll have it ready in a few days.  (At some point, I really need to just port *my* code into a fork of the latest clang repository, would probably be not much more complex than what I have to do to incorporate even a little clang 9 code into my clang 7 implem...)
-
-Once that is done, I will work on putting the compiler on Matt Godbolt's excellent Compiler Explorer -- many thanks to him for responding to my inquiries, that will make it so much more convenient to test these new features.  Just imagine that godbolt.org link in place of the page and a half of installation instructions below...ah, won't that be nice...
-
 # clang-meta
 
 A C++ compiler with added meta-programming features: 
@@ -23,6 +8,29 @@ A C++ compiler with added meta-programming features:
 
 Use these to define your own metaclasses, metanamespaces, meta-metafunctions, etc. -- recursion works endlessly. 
 
+
+### Status update 11/19/19
+
+I've decided that, instead of making slight incremental fixes, I'm going to bite the bullet and take a few weeks to really clean up the code and bring it into an up-to-date version of clang.  Once that is done, I will put the compiler on Matt Godbolt's excellent Compiler Explorer service and provide a godbolt.org link here, to spare you the hours and frustration and uncertainty and gigabytes of installing on your own system.  *Many thanks* to Matt.
+
+To be sure, the code is working great now -- all the examples work, and you can develop sophisticated metaclasses and meta-anything right now.  But you cannot do everything -- template template parameters and non-type template parameters cannot be properly reflected, and there are other small issues.  I'm going to get that all cleaned up.  
+
+Among the things I'll be doing:
+
+1) Merging my source code into Andrew Sutton/Lock3 software's ISO tentative reflection implementation -- in the process renaming our `reflexpr` to `__clangrefl`, so it does not conflict with their reflection interface.  Just imagine being able to use ISO-compliant reflections when they do what you need via `reflexpr(x)`, and for e.g. unsupported expressions reflections resorting to our non-ISO reflections via `__clangrefl(x)` (and perhaps someday, `__msvcrefl(x)` or `__gccrefl(x)`?)
+
+2) Copying/adapting Lock3's *implementation* of `reflexpr` so `__clangrefl` so they both reflect the same entity *and more importantly*, have the same capabilities.  In the current code, our `reflexpr` (basically unchanged from Andrew's old prototype implementation) does not do so well on e.g. template template parameters, or complicated dependent ID expressions, whereas it appears Lock3 has done some great work to get those to work.  It's really quite difficult what has to happen under the hood to get that stuff to work -- kudos to them.  
+Our implementations will then differ only in how you extract reflection properties from that point -- via e.g. 
+`meta::some_standard_property(reflexpr(x))` queries in their case, vs. 
+`__clangrefl(x)->someClangSpecificProperty()` in ours.
+
+3) It also makes great sense to incorporate their excellent `unqualid(...)` feature, as that will work excellently with our `const char *`-centric implementation.  Like our `__metaparse_expr(..., T)`, `unqualid(...)` is an excellent tool for accessing meta information *in-place* (the main advantage of their reification infrastructure over our metaparsing, discussed further below), so you needn't always resort to stringizing and metaparsing huge blocks of code (`DEFERRED_META` techniques, discussed in our metaparsing example hpp) that only depend on a few measly "reifications".  See their tutorial at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial for how `unqualid` is used (in our implementation, the arguments will always be string literals or integers, as with `__concatenate`).  
+
+4) Clean the structure of some of the new Expr and Stmt etc. AST nodes we have introduced, so that you can reflect them more easily.  For example, metaprograms are named `ConstexprDecl`s, which aren't really a suggestive name -- I will rename it to `MetaprogramDecl`.  And, `__metaparse_expr("3", int)` would be better structured as `__metaparse_expr<int>("3")`, and implemented as any other `ExplicitCastExpr` (`static_cast` etc.), to fix the casting issues it has right now.  Perhaps it could be better named as well.  And for my other new nodes -- e.g. `CompilerDiagnosticExpr`, the names could be clearer and the interface could be cleaner.  Reflection forces us to look in the mirror, and I'm not thrilled with the interface I've provided for some of these nodes -- I will improve them.
+
+Happy Thanksgiving!
+
+Dave
 
 
 ## Acknowledgments
