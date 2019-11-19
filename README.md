@@ -148,8 +148,8 @@ Among the things I'll be doing:
 
 2) Copying/adapting Lock3's *implementation* of `reflexpr` so `__clangrefl` so they both reflect the same entity *and more importantly*, have the same capabilities.  In the current code, our `reflexpr` (basically unchanged from Andrew's old prototype implementation) does not do so well on e.g. template template parameters, or complicated dependent ID expressions, whereas it appears Lock3 has done some great work to get those to work.  It's really quite difficult what has to happen under the hood to get that stuff to work -- kudos to them.  
 Our implementations will then differ only in how you extract reflection properties from that point -- via e.g. 
-`meta::some_standard_property(reflexpr(x))` queries in their case, vs. 
-`__clangrefl(x)->someClangSpecificProperty()` in ours.
+```meta::some_standard_property(reflexpr(x))```  queries in their case, vs.  
+```__clangrefl(x)->someClangSpecificProperty()```   in ours.
 
 3) It also makes great sense to incorporate their excellent `unqualid(...)` feature, as that will work excellently with our `const char *`-centric implementation.  Like our `__metaparse_expr(..., T)`, `unqualid(...)` is an excellent tool for accessing meta information *in-place* (the main advantage of their reification infrastructure over our metaparsing, discussed further below), so you needn't always resort to stringizing and metaparsing huge blocks of code (`DEFERRED_META` techniques, discussed in our metaparsing example hpp) that only depend on a few measly "reifications".  See their tutorial at https://gitlab.com/lock3/clang/wikis/Metaprogramming-Introductory-Tutorial for how `unqualid` is used (in our implementation, the arguments will always be string literals or integers, as with `__concatenate`).  
 
