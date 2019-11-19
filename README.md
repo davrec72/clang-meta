@@ -140,7 +140,7 @@ Instead of making slight incremental fixes, I'm going to bite the bullet and tak
 
 Once that is done, I will put the compiler on Matt Godbolt's excellent Compiler Explorer service and provide a godbolt.org link here, to spare you the hours and frustration and uncertainty and gigabytes of installing on your own system.  *Many thanks* to Matt.
 
-To be sure, the code is working great now -- all the examples work, and you can develop sophisticated metaclasses and meta-most things right now.  But you cannot do everything -- template template parameters and non-type template parameters cannot be properly reflected, and there are other small issues.  I'm going to get that all cleaned up.  
+To be sure, the code is working great now -- all the examples work, and you can develop sophisticated metaclasses and meta-most things right now.  But you cannot do everything -- template template parameters and non-type template parameters and parameter packs cannot be properly reflected, and there are other small issues.  I'm going to get that all cleaned up.  
 
 Among the things I'll be doing:
 
