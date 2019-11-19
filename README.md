@@ -136,7 +136,9 @@ void dummyfunc1() {
 ## Status updates
 ### 11/19/19
 
-I've decided that, instead of making slight incremental fixes, I'm going to bite the bullet and take a few weeks to really clean up the code and bring it into an up-to-date version of clang.  Once that is done, I will put the compiler on Matt Godbolt's excellent Compiler Explorer service and provide a godbolt.org link here, to spare you the hours and frustration and uncertainty and gigabytes of installing on your own system.  *Many thanks* to Matt.
+Instead of making slight incremental fixes, I'm going to bite the bullet and take a few weeks to really clean up the code and bring it into an up-to-date version of clang.  
+
+Once that is done, I will put the compiler on Matt Godbolt's excellent Compiler Explorer service and provide a godbolt.org link here, to spare you the hours and frustration and uncertainty and gigabytes of installing on your own system.  *Many thanks* to Matt.
 
 To be sure, the code is working great now -- all the examples work, and you can develop sophisticated metaclasses and meta-anything right now.  But you cannot do everything -- template template parameters and non-type template parameters cannot be properly reflected, and there are other small issues.  I'm going to get that all cleaned up.  
 
