@@ -54,7 +54,7 @@ constexpr {
       if (QT->isDependentType())
 	ce_debug("Field named ", FD->getQualifiedNameAsString(), " has a dependent type");
     } else {
-      D->dump();
+      D->dump(); //displays in your build-time output
       ce_error( D->getBeginLoc() //your IDE will register an error pointing at D
 	      , "Unhandled Decl kind; see dump"
 	      , user::FixItHint::CreateRemoval(user::SourceRange(D->getBeginLoc(), D->getEndLoc()));
