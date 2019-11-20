@@ -4,7 +4,7 @@
 
 A C++ compiler with added meta-programming features: 
 1) **static reflection** (of just about anything - templates, function definitions, other reflections, you name it), 
-2) **metaparsing** (parse string literals, e.g. into individual template instantiations),
+2) **metaparsing** (parse string literals as code, e.g. into individual template instantiations),
 3) **custom compiler diagnostics** (pointing to locations *you* define, with fixits *you* define, displayed by your IDE just like built-in diagnostics), and
 4) **constexpr containers** (vector, set, map -- or add your own!) of any of your constexpr classes.
 
