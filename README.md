@@ -87,8 +87,7 @@ constexpr {
 } //...queued metaparses performed here...
   //---The last one is first eval'd to:
   //     constexpr { __queue_metaparse(__concatenate("static const int k = 2 + 2 + ", 4)); }
-  //---Then that is itself eval'd as it would be during a normal parse, etc.; 
-  //   No limit to degree of evaluation/parsing recursion...
+  //---Then that is parsed and itself eval'd, etc.; 
 
 static_assert(i == 3);
 static_assert(j == 42);
