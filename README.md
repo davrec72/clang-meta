@@ -1,4 +1,4 @@
-*[11/19/19 update -- see notes after Syntax Examples]*
+Disclaimer: this is an old, defunct project, filled with bugs and failed tests.  It likely has issues out of the box on many platforms.  It should only serve as a proof of concept/guide to how this functionality could be more rigorously implemented.
 
 # clang-meta
 
@@ -277,14 +277,6 @@ As mentioned previously Mr. Sutton and co. have made subsequent progress along t
 	https://gitlab.com/lock3/clang.
 Their code is very impressive, but owing to the divergence of our implementations, I have not borrowed anything additional from it excepting what was already in Mr. Sutton's original 5.x code (`ConstexprDecl`, `CXXTupleExpansionStmt`, `CXXConcatenateExpr`, the idea for reflection classes as template instantiations to solve constexpr issues, various structural ideas, etc. -- you'll see all of ASUTTON's great contributions all annotated in my code).
 
-The source code is a bit of a mess right now -- lots of big blocks of commented out code, etc.  I will clean it up it subsequent commits; but I thought it was good to have all the various old stuff I tried in there for the first commit, to help others who might try to hack further on the code.
-
-The clang tool for generating the reflection sources -- `llvm/tools/clang/tools/reflection-src-generator` -- is likewise a mess, needs to be completely rewritten for clarity - but darned if isn't working perfectly right now on translating just about the entire clang AST into reflection code.  And I have at least documented all the various hacks needed to make it work.
-
-I would very much welcome others contributing fixes and additions.  I have developed this contribution because of my desperation to USE C++ in this way.  But I would rather not become endlessly bogged down in maintaining it.  You would not be stepping on my toes in the least if you see improvements you'd like to implement and share.
-
 Note that you only need to rebuild the `clang-wreflection` target when you change `clang/tools/reflection-src-generator/GenReflectionSrc.cpp` or one of the `include/clang/AST` headers (i.e. the reflected interfaces).  When just making ordinary adjustments to clang cpps, just rebuild the `clang` target -- much faster. 
-
-Have fun!
 
 Dave
